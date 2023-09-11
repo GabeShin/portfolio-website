@@ -7,7 +7,7 @@ import NavigationBar from "./navigation";
 
 export default function Header() {
   return (
-    <div>
+    <div className=" bg-white">
       <BackdropImage />
       <Profile />
       <NavigationBar />
