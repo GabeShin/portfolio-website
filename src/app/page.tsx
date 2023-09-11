@@ -1,25 +1,6 @@
 import Image from "next/image";
+import PostPage from "./posts/page";
 
 export default function Home() {
-  return (
-    <main className="">
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-      <h1>Test Page</h1>
-    </main>
-  );
+  return <PostPage />;
 }
