@@ -1,7 +1,9 @@
+import AboutDetail from "@/components/about/about-detail";
+
 export default function AboutPage() {
   return (
     <main>
-      <h1>We are at /about</h1>
+      <AboutDetail />
     </main>
   );
 }
