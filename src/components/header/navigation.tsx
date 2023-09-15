@@ -1,12 +1,9 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
 export default function NavigationBar() {
-  const [activeNav, setActiveNav] = useState("Posts");
-
-  const handleNavClick = (nav: string) => {
-    setActiveNav(nav);
-  };
+  const pathname = usePathname();
 
   const routes = [
     {
@@ -22,24 +19,27 @@ export default function NavigationBar() {
       path: "/about",
     },
   ];
+
+  const [activeNav, setActiveNav] = useState(
+    routes.find((route) => route.path === pathname)?.name || "Posts"
+  );
+
   return (
-    <>
-      <div className="flex justify-start space-x-4 pl-4">
-        {routes.map((route) => (
-          <Link
-            key={route.name}
-            href={route.path}
-            className={`py-1 px-4  font-medium font-sans text-sm ${
-              activeNav === route.name
-                ? "text-black border-b-4 border-green-500 "
-                : "text-gray-500"
-            }`}
-            onClick={() => handleNavClick(route.name)}
-          >
-            {route.name}
-          </Link>
-        ))}
-      </div>
-    </>
+    <div className="flex justify-start space-x-4 pl-4">
+      {routes.map((route) => (
+        <Link
+          key={route.name}
+          href={route.path}
+          className={`py-1 px-4 font-medium font-sans text-sm ${
+            activeNav === route.name
+              ? "text-black border-b-4 border-green-500"
+              : "text-gray-500"
+          }`}
+          onClick={() => setActiveNav(route.name)}
+        >
+          {route.name}
+        </Link>
+      ))}
+    </div>
   );
 }
