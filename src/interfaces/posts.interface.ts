@@ -4,7 +4,7 @@ export enum PostCategory {
   EXPERIENCE = "experience",
 }
 
-export interface Post {
+export interface IPost {
   id: string; // Unique Identifier for each post
   counter: number; // Counter for upvotes and downvotes
   category: PostCategory; // Category of the post

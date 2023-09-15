@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { Post } from "../../interfaces/posts.interface";
+import { IPost } from "../../interfaces/posts.interface";
 import OverlayTitle from "./overlay-title";
 
 interface PostOverlayProps {
-  post: Post;
+  post: IPost;
   onClose: () => void;
   onUpvote: () => void;
   onDownvote: () => void;

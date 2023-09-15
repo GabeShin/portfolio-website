@@ -1,5 +1,5 @@
 import React from "react";
-import { Post } from "../../interfaces/posts.interface";
+import { IPost } from "../../interfaces/posts.interface";
 import { CategoryIcon } from "./category-icon";
 
 const formatDate = (date: Date) => {
@@ -7,7 +7,7 @@ const formatDate = (date: Date) => {
   return date.toDateString();
 };
 
-const PostDetails = ({ post }: { post: Post }) => {
+const PostDetails = ({ post }: { post: IPost }) => {
   const { category, title, date, author = "Gabe" } = post;
   return (
     <div className="p-2 flex">

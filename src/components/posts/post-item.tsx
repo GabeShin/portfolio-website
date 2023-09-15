@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from "react";
-import { Post } from "../../interfaces/posts.interface";
+import { IPost } from "../../interfaces/posts.interface";
 import { PostOverlay } from "./post-overlay";
 import PostDetails from "./post-detail";
 import { VoteCounter } from "./vote-counter";
 
 export interface PostItemProperties {
-  post: Post;
+  post: IPost;
 }
 
 export const PostItem = ({ post }: PostItemProperties) => {

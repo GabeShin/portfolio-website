@@ -2,11 +2,11 @@ import React from "react";
 import IconButton from "@mui/material/IconButton";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { Post } from "@/interfaces/posts.interface";
+import { IPost } from "@/interfaces/posts.interface";
 import { VoteCounter } from "./vote-counter";
 
 interface OverlayTitleProps {
-  post: Post;
+  post: IPost;
   onUpvote: () => void;
   onDownvote: () => void;
 }

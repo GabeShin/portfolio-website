@@ -1,6 +1,6 @@
-import { Post, PostCategory } from "@/interfaces/posts.interface";
+import { IPost, PostCategory } from "@/interfaces/posts.interface";
 
-const dummyPosts: Post[] = [
+const dummyPosts: IPost[] = [
   {
     id: "1",
     counter: 10,
