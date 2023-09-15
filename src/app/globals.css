@@ -10,6 +10,38 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb))
-    
-    
+}
+
+/* styles.css */
+.no-tailwind *,
+.no-tailwind *:before,
+.no-tailwind *:after {
+  all: revert;
+}
+
+.markdown-content {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-content pre {
+  overflow-x: auto;
+}
+
+.markdown-content code {
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.clickable-item {
+  cursor: pointer;
 }

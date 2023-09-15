@@ -1,0 +1,15 @@
+export enum PostCategory {
+  PERSONAL = "personal",
+  WORK = "work",
+  EXPERIENCE = "experience",
+}
+
+export interface Post {
+  id: string; // Unique Identifier for each post
+  counter: number; // Counter for upvotes and downvotes
+  category: PostCategory; // Category of the post
+  title: string; // Title of the post
+  content: string; // Content of the post (Markdown)
+  date: Date; // Date when the post was created
+  author: string; // Author of the post
+}

@@ -1,9 +1,21 @@
-import Image from "next/image";
+"use client";
+import SearchBar from "@/components/posts/searchbar";
+import { Post } from "@/interfaces/posts.interface";
+import dummyPosts from "../test/post.dummy";
+import PostItem from "@/components/posts/post-item";
 
-export default function PostPage() {
+const PostPage = () => {
   return (
     <main>
-      <h1>We are at /posts</h1>
+      <SearchBar />
+      {/* create post-item list with dummyPosts */}
+      <div className="flex flex-col rounded-sm ml-5 mr-5">
+        {dummyPosts.map((post: Post) => (
+          <PostItem key={post.id} post={post} />
+        ))}
+      </div>
     </main>
   );
-}
+};
+
+export default PostPage;
