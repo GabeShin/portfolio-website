@@ -1,15 +1,13 @@
 import { Collection } from "chromadb"; // Replace with actual ChromaDB collection import
-import { CollectionService } from "./collection-service";
 
-export async function createDocumentService(
-  collectionService: CollectionService,
-  collectionName: string
-): Promise<DocumentService> {
-  const collection = await collectionService.getCollection(collectionName);
-  return new DocumentService(collection);
+export interface IDocumentService {
+  addDocument(document: any): Promise<void>;
+  deleteDocuments(ids: string[]): Promise<void>;
+  listDocuments(limit?: number, offset?: number): Promise<any[]>;
+  queryDocuments(query: any): Promise<any[]>;
 }
 
-export class DocumentService {
+export class DocumentService implements IDocumentService {
   constructor(private readonly collection: Collection) {}
 
   async addDocument(document: any) {
@@ -21,11 +19,13 @@ export class DocumentService {
     // Your logic to delete documents
   }
 
-  async listDocuments(limit: number, offset: number) {
+  async listDocuments(limit?: number, offset?: number) {
     // Your logic to list documents
+    return [];
   }
 
   async queryDocuments(query: any) {
     // Your logic to query documents
+    return [];
   }
 }

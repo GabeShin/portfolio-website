@@ -1,10 +1,17 @@
 import { ChromaClient, Collection } from "chromadb"; // Replace with actual ChromaDB client import
 
-export class CollectionService {
+export interface ICollectionService {
+  createCollection(name: string): Promise<void>;
+  deleteCollection(name: string): Promise<void>;
+  listCollections(): Promise<string[]>;
+  getCollection(name: string): Promise<Collection>;
+}
+
+export class CollectionService implements ICollectionService {
   private readonly client: ChromaClient;
 
-  constructor() {
-    this.client = new ChromaClient({ path: process.env.CHROMADB_HOST }); // Initialize ChromaDB client
+  constructor(path: string) {
+    this.client = new ChromaClient({ path }); // Initialize ChromaDB client
   }
 
   async createCollection(name: string) {
@@ -17,6 +24,7 @@ export class CollectionService {
 
   async listCollections() {
     // Your logic to list collections
+    return [];
   }
 
   async getCollection(name: string): Promise<Collection> {
