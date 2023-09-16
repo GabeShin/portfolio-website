@@ -29,6 +29,9 @@ dependencies:
   autoprefixer:
     specifier: 10.4.15
     version: 10.4.15(postcss@8.4.29)
+  chromadb:
+    specifier: ^1.5.9
+    version: 1.5.9
   eslint:
     specifier: 8.49.0
     version: 8.49.0
@@ -1091,6 +1094,32 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
+    dev: false
+
+  /chromadb@1.5.9:
+    resolution: {integrity: sha512-lHSdQE6WAhn0Ba6In/z4jPkUFa0MhkeX99JfUVrRdJsgc77IUEtlb+pP+ULM/Qb5fXmfY/lz5hIM+Ns2v8ywIg==}
+    engines: {node: '>=14.17.0'}
+    peerDependencies:
+      '@visheratin/web-ai': ^1.0.0
+      '@visheratin/web-ai-node': ^1.0.0
+      '@xenova/transformers': ^2.0.0
+      cohere-ai: ^6.0.0
+      openai: ^3.0.0 || ^4.0.0
+    peerDependenciesMeta:
+      '@visheratin/web-ai':
+        optional: true
+      '@visheratin/web-ai-node':
+        optional: true
+      '@xenova/transformers':
+        optional: true
+      cohere-ai:
+        optional: true
+      openai:
+        optional: true
+    dependencies:
+      isomorphic-fetch: 3.0.0
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /client-only@0.0.1:
@@ -2180,6 +2209,15 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: false
 
+  /isomorphic-fetch@3.0.0:
+    resolution: {integrity: sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==}
+    dependencies:
+      node-fetch: 2.7.0
+      whatwg-fetch: 3.6.19
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /iterator.prototype@1.1.2:
     resolution: {integrity: sha512-DR33HMMr8EzwuRL8Y9D3u2BMj8+RqSE850jfGu59kS7tbmPLzGkZmVSfyCFSDxuZiEY6Rzt3T2NA/qU+NwVj1w==}
     dependencies:
@@ -2780,6 +2818,18 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: false
+
+  /node-fetch@2.7.0:
+    resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
     dev: false
 
   /node-releases@2.0.13:
@@ -3522,6 +3572,10 @@ packages:
       is-number: 7.0.0
     dev: false
 
+  /tr46@0.0.3:
+    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
+    dev: false
+
   /trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
     dev: false
@@ -3724,6 +3778,21 @@ packages:
     dependencies:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
+    dev: false
+
+  /webidl-conversions@3.0.1:
+    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
+    dev: false
+
+  /whatwg-fetch@3.6.19:
+    resolution: {integrity: sha512-d67JP4dHSbm2TrpFj8AbO8DnL1JXL5J9u0Kq2xW6d0TFDbCA3Muhdt8orXC22utleTVj7Prqt82baN6RBvnEgw==}
+    dev: false
+
+  /whatwg-url@5.0.0:
+    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
     dev: false
 
   /which-boxed-primitive@1.0.2:

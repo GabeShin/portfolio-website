@@ -1,8 +1,8 @@
 "use client";
 import SearchBar from "@/components/posts/searchbar";
 import { IPost } from "@/interfaces/posts.interface";
-import dummyPosts from "../test/post.dummy";
 import PostItem from "@/components/posts/post-item";
+import dummyPosts from "@/test/post.dummy";
 
 const PostPage = () => {
   return (
