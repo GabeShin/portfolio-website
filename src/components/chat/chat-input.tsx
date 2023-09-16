@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import SendButton from "../common/send-button"; // Assuming that SendButton is a wrapper around some button component
+import SendButton from "../common/send-button";
 
 export interface ChatInputProperties {
   send: (message: string) => void;
+  disabled: boolean;
 }
 
-const ChatInput = ({ send }: ChatInputProperties) => {
+const ChatInput = ({ send, disabled }: ChatInputProperties) => {
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
@@ -16,23 +17,25 @@ const ChatInput = ({ send }: ChatInputProperties) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
       handleSend();
     }
   };
 
   return (
-    // Parent container surrounding ChatInput
-    <div className="w-full max-w-screen-md min-w-1/2 flex items-center justify-between rounded-md p-2 bg-white mb-8 shadow-md border-2 border-gray-100">
+    <div className="w-full max-w-screen-md min-w-1/2 flex items-center justify-between rounded-md p-2 bg-white shadow-md border-2 border-gray-100">
       <input
         type="text"
+        aria-label="Chat input"
         className="flex-grow rounded-md p-2"
-        placeholder="Ask me any question about myself"
+        placeholder="Ask me any question"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyDown}
+        disabled={disabled}
       />
-      <SendButton onClick={handleSend} />
+      <SendButton onClick={handleSend} aria-label="Send message" />
     </div>
   );
 };

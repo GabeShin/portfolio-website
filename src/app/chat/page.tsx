@@ -1,8 +1,8 @@
 "use client";
+import React, { useState, useEffect, useRef } from "react";
 import ChatInput from "@/components/chat/chat-input";
 import ChatMessage from "@/components/chat/message";
 import { IMessage } from "@/interfaces/message.interface";
-import React, { useState, useEffect, useRef } from "react";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -18,7 +18,21 @@ const ChatPage = () => {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    const storedMessages = localStorage.getItem("messages");
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("messages", JSON.stringify(messages));
+  }, [messages]);
+
+  const [disabled, setDisabled] = useState(false);
+
   const sendMessage = (content: string) => {
+    setDisabled(true);
     const newMessage: IMessage = {
       id: `${Date.now()}`,
       sender: "user",
@@ -36,9 +50,14 @@ const ChatPage = () => {
 
     setTimeout(() => {
       scrollToBottom();
-
       setMessages((prevMessages) => [...prevMessages, responseMessage]);
+      setDisabled(false);
     }, 1000);
+  };
+
+  const deleteChat = () => {
+    setMessages([]);
+    localStorage.removeItem("messages");
   };
 
   return (
@@ -49,8 +68,16 @@ const ChatPage = () => {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <div className="absolute bottom-0 w-full flex justify-center">
-        <ChatInput send={sendMessage} />
+      <div className="absolute bottom-0 w-full flex flex-col items-center">
+        {" "}
+        {/* Changed to flex-col */}
+        <ChatInput send={sendMessage} disabled={disabled} />
+        <button
+          onClick={deleteChat}
+          className="text-sm my-4 font-light hover:font-medium"
+        >
+          Delete Chat
+        </button>
       </div>
     </div>
   );
