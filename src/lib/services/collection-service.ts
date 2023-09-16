@@ -1,6 +1,8 @@
 import { ChromaClient, Collection } from "chromadb"; // Replace with actual ChromaDB client import
+import { CustomError } from "../errors/custom-error";
 
 export interface ICollectionService {
+  healthCheck(): Promise<number>;
   createCollection(name: string): Promise<void>;
   deleteCollection(name: string): Promise<void>;
   listCollections(): Promise<string[]>;
@@ -12,6 +14,10 @@ export class CollectionService implements ICollectionService {
 
   constructor(path: string) {
     this.client = new ChromaClient({ path }); // Initialize ChromaDB client
+  }
+
+  async healthCheck(): Promise<number> {
+    return await this.client.heartbeat();
   }
 
   async createCollection(name: string) {
