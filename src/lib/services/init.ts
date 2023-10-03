@@ -1,68 +1,55 @@
-import { CollectionService, ICollectionService } from "./collection-service";
-import { DocumentService, IDocumentService } from "./document-service";
+import { ChatService, IChatService } from "./chat-service";
+import { DatabaseService, IDatabaseService } from "./database-service";
 
-let singletonCollectionService: ICollectionService | null = null;
-let singletonDocumentService: IDocumentService | null = null;
+let databaseService: IDatabaseService | null = null;
+let chatService: IChatService | null = null;
 
-export async function getCollectionServiceInstance(): Promise<ICollectionService> {
+export async function getDatabaseServiceInstance(): Promise<IDatabaseService> {
   try {
     // Check for environmental variables
-    if (!process.env.CHROMADB_HOST) {
-      throw new Error("CHROMADB_HOST environment variable is not defined");
-    }
-
-    // Initialize the singleton if it does not exist
-    if (!singletonCollectionService) {
-      singletonCollectionService = new CollectionService(
-        process.env.CHROMADB_HOST
+    if (!process.env.QDRANT_HOST || !process.env.QDRANT_API_KEY) {
+      throw new Error(
+        "QDRANT_HOST or QDRANT_API_KEY environment variable is not defined"
       );
-      // Perform any asynchronous checks or operations if the constructor is async
     }
 
-    return singletonCollectionService;
+    if (!databaseService) {
+      databaseService = new DatabaseService(
+        process.env.QDRANT_HOST,
+        process.env.QDRANT_API_KEY
+      );
+    }
+
+    return databaseService;
   } catch (e) {
     if (e instanceof Error) {
-      console.error(
-        "Error initializing CollectionService:",
-        e.message,
-        e.stack
-      );
+      console.error("Error initializing DatabaseService:", e.message, e.stack);
     } else {
       console.error(
-        "An unknown error occurred while initializing CollectionService:",
+        "An unknown error occurred while initializing DatabaseService:",
         e
       );
     }
-    throw new Error("Failed to obtain CollectionService instance");
+    throw new Error("Failed to obtain DatabaseService instance");
   }
 }
 
-export async function getDocumentServiceInstance(): Promise<IDocumentService> {
+export async function getChatService() {
   try {
-    if (!singletonDocumentService) {
-      const collectionService = await getCollectionServiceInstance();
-      const collection = await collectionService.getCollection("iamgabeshin");
-
-      // If getCollection returns null or an undesired value, handle that case here
-      if (!collection) {
-        throw new Error("Failed to get collection");
-      }
-
-      singletonDocumentService = new DocumentService(collection);
+    if (!chatService) {
+      chatService = new ChatService();
     }
 
-    return singletonDocumentService;
+    return chatService;
   } catch (e) {
     if (e instanceof Error) {
-      // Log the error message and stack for debugging
-      console.error("Error initializing DocumentService:", e.message, e.stack);
+      console.error("Error initializing ChatService:", e.message, e.stack);
     } else {
-      // Rethrow the error so that the caller knows initialization failed
       console.error(
-        "An unknown error occurred while initializing DocumentService:",
+        "An unknown error occurred while initializing ChatService:",
         e
       );
     }
-    throw new Error("Failed to initialize DocumentService");
+    throw new Error("Failed to obtain ChatService instance");
   }
 }

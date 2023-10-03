@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import SendButton from "../common/send-button";
+import { useRouter } from "next/navigation";
 
 export default function SearchBar() {
   const [isHealthy, setIsHealthy] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
 
   const checkHealth = async () => {
     // const response = await fetch("/api/health");
@@ -23,16 +25,22 @@ export default function SearchBar() {
     return () => clearInterval(intervalId);
   }, []);
 
-  const handleSendClick = () => {
-    if (!inputValue) return;
-    console.log("Send button clicked, input value:", inputValue);
+  const sendMessage = async (message: string) => {
+    router.push(`/chat?message=${message}`);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleSendClick = async () => {
+    if (!inputValue) return;
+    await sendMessage(inputValue);
+  };
+
+  const handleKeyDown = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (!inputValue) return;
 
     if (event.key === "Enter") {
-      console.log("Enter pressed, input value:", inputValue);
+      await sendMessage(inputValue);
     }
   };
 
@@ -41,7 +49,7 @@ export default function SearchBar() {
       <div className="relative">
         <img
           className="w-10 h-10 rounded-full object-cover"
-          src="/profile_picture.jpeg"
+          src="/robot.svg"
           alt="Profile"
         />
         <div
@@ -53,7 +61,7 @@ export default function SearchBar() {
       <input
         className="flex-1 ml-2 rounded-md bg-gray-50 border-2 border-gray-100 hover:border-gray-200 px-4 py-2"
         type="text"
-        placeholder="Ask me any question about myself."
+        placeholder="Ask me any question about Gabe Shin."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}

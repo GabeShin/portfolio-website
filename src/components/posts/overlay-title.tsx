@@ -1,7 +1,4 @@
 import React from "react";
-import IconButton from "@mui/material/IconButton";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { IPost } from "@/interfaces/posts.interface";
 import { VoteCounter } from "./vote-counter";
 
@@ -29,7 +26,7 @@ const OverlayTitle = ({ post, onUpvote, onDownvote }: OverlayTitleProps) => {
       <div>
         <div className="flex items-center">
           <img
-            src="profile_picture.jpeg"
+            src="profile-picture-small.jpeg"
             alt={"profile"}
             className="w-6 h-6 rounded-full mr-2"
           />

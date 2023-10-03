@@ -3,15 +3,57 @@ import React, { useState, useEffect, useRef } from "react";
 import ChatInput from "@/components/chat/chat-input";
 import ChatMessage from "@/components/chat/message";
 import { IMessage } from "@/interfaces/message.interface";
+import { useSearchParams } from "next/navigation";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
+  const searchParams = useSearchParams();
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const [disabled, setDisabled] = useState(false);
+
+  const sendMessage = async (content: string) => {
+    setDisabled(true);
+    const newMessage: IMessage = {
+      id: `${Date.now()}`,
+      sender: "user",
+      content,
+      date: new Date(),
+    };
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+    const response = await fetch("api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: content }),
+    });
+
+    const { data } = await response.json();
+    const responseText = data?.responseText;
+
+    const responseMessage: IMessage = {
+      id: `${Date.now() + 1}`,
+      sender: "bot",
+      content: responseText,
+      date: new Date(),
+    };
+
+    scrollToBottom();
+    setMessages((prevMessages) => [...prevMessages, responseMessage]);
+    setDisabled(false);
+  };
+
+  const deleteChat = () => {
+    setMessages([]);
+    localStorage.removeItem("messages");
   };
 
   useEffect(() => {
@@ -29,36 +71,12 @@ const ChatPage = () => {
     localStorage.setItem("messages", JSON.stringify(messages));
   }, [messages]);
 
-  const [disabled, setDisabled] = useState(false);
-
-  const sendMessage = (content: string) => {
-    setDisabled(true);
-    const newMessage: IMessage = {
-      id: `${Date.now()}`,
-      sender: "user",
-      content,
-      date: new Date(),
-    };
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
-
-    const responseMessage: IMessage = {
-      id: `${Date.now() + 1}`,
-      sender: "bot",
-      content: "I'm a bot, I don't know how to respond yet",
-      date: new Date(),
-    };
-
-    setTimeout(() => {
-      scrollToBottom();
-      setMessages((prevMessages) => [...prevMessages, responseMessage]);
-      setDisabled(false);
-    }, 1000);
-  };
-
-  const deleteChat = () => {
-    setMessages([]);
-    localStorage.removeItem("messages");
-  };
+  useEffect(() => {
+    const message = searchParams?.get("message");
+    if (message && message.length > 0) {
+      sendMessage(message);
+    }
+  }, [searchParams]);
 
   return (
     <div className="relative flex flex-col flex-grow bg-gray-100">

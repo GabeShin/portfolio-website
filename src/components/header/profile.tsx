@@ -8,13 +8,15 @@ export default function Profile() {
         <div>
           <img
             className="w-20 h-20 min-w-fit min-h-full rounded-full object-cover border-4 border-white"
-            src="/profile_picture.jpeg"
+            src="/profile-picture-small.jpeg"
             alt="Profile"
           />
         </div>
         {/* Profile Information */}
         <div className=" pl-4 mt-6 align-top">
-          <h1 className="text-2xl font-semibold pb-1 pt-1">iamGabeShin</h1>
+          <h1 className="text-2xl font-semibold pb-1 pt-1">
+            Hello. I am Gabe Shin
+          </h1>
           <p className=" text-sm text-gray-600">r/web-developer</p>
         </div>
       </div>

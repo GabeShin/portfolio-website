@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function NavigationBar() {
   const pathname = usePathname();
@@ -20,9 +20,13 @@ export default function NavigationBar() {
     },
   ];
 
-  const [activeNav, setActiveNav] = useState(
-    routes.find((route) => route.path === pathname)?.name || "Posts"
-  );
+  const [activeNav, setActiveNav] = useState("");
+
+  useEffect(() => {
+    setActiveNav(
+      routes.find((route) => route.path === pathname)?.name || "Posts"
+    );
+  }, [pathname]);
 
   return (
     <div className="flex justify-start space-x-4 pl-4">
