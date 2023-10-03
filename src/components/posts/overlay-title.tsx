@@ -10,7 +10,7 @@ interface OverlayTitleProps {
 
 const OverlayTitle = ({ post, onUpvote, onDownvote }: OverlayTitleProps) => {
   const { counter, title, date, author } = post;
-  const formattedDate = date.toDateString();
+  const formattedDate = date;
 
   return (
     <div className="flex items-start p-2 pt-4">

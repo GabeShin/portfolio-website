@@ -14,9 +14,7 @@ export default function Profile() {
         </div>
         {/* Profile Information */}
         <div className=" pl-4 mt-6 align-top">
-          <h1 className="text-2xl font-semibold pb-1 pt-1">
-            Hello. I am Gabe Shin
-          </h1>
+          <h1 className="text-2xl font-semibold pb-1 pt-1">ImGabeShin</h1>
           <p className=" text-sm text-gray-600">r/web-developer</p>
         </div>
       </div>

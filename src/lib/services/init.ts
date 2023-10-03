@@ -1,8 +1,10 @@
 import { ChatService, IChatService } from "./chat-service";
 import { DatabaseService, IDatabaseService } from "./database-service";
+import { IPostService, PostService } from "./post-service";
 
 let databaseService: IDatabaseService | null = null;
 let chatService: IChatService | null = null;
+let postService: IPostService | null = null;
 
 export async function getDatabaseServiceInstance(): Promise<IDatabaseService> {
   try {
@@ -51,5 +53,25 @@ export async function getChatService() {
       );
     }
     throw new Error("Failed to obtain ChatService instance");
+  }
+}
+
+export async function getPostService() {
+  try {
+    if (!postService) {
+      postService = new PostService();
+    }
+
+    return postService;
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error("Error initializing PostService:", e.message, e.stack);
+    } else {
+      console.error(
+        "An unknown error occurred while initializing PostService:",
+        e
+      );
+    }
+    throw new Error("Failed to obtain PostService instance");
   }
 }

@@ -10,6 +10,7 @@ export interface IPost {
   category: PostCategory; // Category of the post
   title: string; // Title of the post
   content: string; // Content of the post (Markdown)
-  date: Date; // Date when the post was created
+  date: string; // Date when the post was created
   author: string; // Author of the post
+  source: string; // Source of the post (Markdown file)
 }

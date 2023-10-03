@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { IPost } from "../../interfaces/posts.interface";
 import { PostOverlay } from "./post-overlay";
 import PostDetails from "./post-detail";
@@ -8,7 +8,9 @@ export interface PostItemProperties {
   post: IPost;
 }
 
-export const PostItem = ({ post }: PostItemProperties) => {
+export const PostItem = ({ post: tempPost }: PostItemProperties) => {
+  const [post, setPost] = useState<IPost>(tempPost);
+
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   const toggleOverlay = () => {
@@ -23,6 +25,27 @@ export const PostItem = ({ post }: PostItemProperties) => {
 
   const onDownvote = useCallback((id: string) => {
     console.log("onDownvote", id);
+  }, []);
+
+  const fetchPost = async () => {
+    try {
+      const response = await fetch(`/api/posts/${post.id}`);
+
+      if (!response.ok) {
+        throw new Error("Could not fetch posts!");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      setPost(data.data);
+    } catch (error) {
+      console.error("Could not fetch posts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPost();
   }, []);
 
   return (

@@ -15,7 +15,7 @@ const PostDetails = ({ post }: { post: IPost }) => {
       <div className="ml-4 flex flex-col">
         <span className="text-sm font-medium">{title}</span>
         <span className="text-xs font-light text-gray-500">
-          Posted by {author} on {formatDate(date)}
+          Posted by {author} on {date}
         </span>
       </div>
     </div>
