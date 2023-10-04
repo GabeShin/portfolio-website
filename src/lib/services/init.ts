@@ -54,6 +54,7 @@ export async function getChatService() {
         e
       );
     }
+    throw new Error("An unknown error occurred while initializing ChatService");
   }
 }
 
@@ -73,5 +74,6 @@ export async function getPostService() {
         e
       );
     }
+    throw new Error("An unknown error occurred while initializing PostService");
   }
 }
