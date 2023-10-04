@@ -4,6 +4,7 @@ import ChatInput from "@/components/chat/chat-input";
 import ChatMessage from "@/components/chat/message";
 import { IMessage } from "@/interfaces/message.interface";
 import { useSearchParams } from "next/navigation";
+import { sendSlackMessage } from "@/lib/utils/slack";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);

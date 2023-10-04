@@ -1,6 +1,7 @@
 import { getDatabaseServiceInstance } from "./init";
 import { getQueryEmbeddings } from "../inference/embedding";
 import { getAnswer } from "../inference/chat";
+import { sendSlackMessage } from "../utils/slack";
 
 export interface IChatService {
   sendMessage(message: string): Promise<string>;
@@ -19,6 +20,8 @@ export class ChatService implements IChatService {
 
     const response = await getAnswer(message, docTexts as string[]);
     const { text } = response;
+
+    await sendSlackMessage(message, text);
 
     return {
       relatedDocs,
