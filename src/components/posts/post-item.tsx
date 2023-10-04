@@ -45,7 +45,7 @@ export const PostItem = ({ post: tempPost }: PostItemProperties) => {
 
   useEffect(() => {
     fetchPost();
-  }, [fetchPost]);
+  }, []);
 
   return (
     <>

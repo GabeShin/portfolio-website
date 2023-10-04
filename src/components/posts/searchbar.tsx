@@ -52,6 +52,8 @@ export default function SearchBar() {
           className="w-10 h-10 rounded-full object-cover"
           src="/robot.svg"
           alt="Profile"
+          height={40}
+          width={40}
         />
         <div
           className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full ${

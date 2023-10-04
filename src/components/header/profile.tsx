@@ -11,6 +11,8 @@ export default function Profile() {
             className="w-20 h-20 min-w-fit min-h-full rounded-full object-cover border-4 border-white"
             src="/profile-picture-small.jpeg"
             alt="Profile"
+            width={80}
+            height={80}
           />
         </div>
         {/* Profile Information */}

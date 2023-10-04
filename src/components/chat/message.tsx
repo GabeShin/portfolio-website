@@ -27,6 +27,8 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
           src={profileImageSrc}
           alt={message.sender}
           className="w-full h-full"
+          height={32}
+          width={32}
         />
       </div>
       <div className="w-full max-w-lg flex-1 break-words">

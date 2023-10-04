@@ -27,9 +27,11 @@ const OverlayTitle = ({ post, onUpvote, onDownvote }: OverlayTitleProps) => {
       <div>
         <div className="flex items-center">
           <Image
-            src="profile-picture-small.jpeg"
+            src="/profile-picture-small.jpeg"
             alt={"profile"}
             className="w-6 h-6 rounded-full mr-2"
+            width={24}
+            height={24}
           />
           <span className="text-sm font-medium">r/iamGabeShin</span>
           <span className="text-xs text-gray-400 ml-2">
