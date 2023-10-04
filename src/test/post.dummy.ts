@@ -7,11 +7,12 @@ const dummyPosts: IPost[] = [
     category: PostCategory.PERSONAL,
     title: "My Personal Journey",
     author: "Gabe",
-    date: new Date("2023-09-01T12:34:56"),
+    date: "2023-09-01 12:34:56",
     content: `# My Personal Journey
     This is my journey.
     - Started from the bottom
     - Still here`,
+    source: "database/post/1.md",
   },
   {
     id: "2",
@@ -19,13 +20,14 @@ const dummyPosts: IPost[] = [
     category: PostCategory.WORK,
     title: "Challenges at Work",
     author: "Gabe",
-    date: new Date("2023-09-05T08:30:45"),
+    date: "2023-09-05 08:30:45",
     content: `# Challenges at Work\n## Issues Faced\n- Deadlines\n- Technical Debt\n- Office Politics
   
     \n## How to Overcome
     \n1. **Plan**
     \n2. *Execute*
     \n3. Review`,
+    source: "database/post/2.md",
   },
   {
     id: "3",
@@ -34,7 +36,7 @@ const dummyPosts: IPost[] = [
     title:
       "A Memorable Experience long title exmaple - A Memorable Experience long title exmaple - A Memorable Experience long title exmaple - A Memorable Experience long title exmaple - A Memorable Experience long title exmaple",
     author: "Gabe",
-    date: new Date("2023-09-10T14:22:30"),
+    date: "2023-09-10 14:22:30",
     content: `# A Memorable Experience
     \nThis was absolutely fantastic.
     \n
@@ -47,6 +49,7 @@ const dummyPosts: IPost[] = [
     \n\`\`\`
     \n
     \n![Memorable Day](profile_picture.jpeg)`,
+    source: "database/post/3.md",
   },
   {
     id: "4",
@@ -54,8 +57,9 @@ const dummyPosts: IPost[] = [
     category: PostCategory.PERSONAL,
     title: "Empty Post",
     author: "Gabe",
-    date: new Date("2023-09-15T00:00:00"),
+    date: "2023-09-15 00:00:00",
     content: ``,
+    source: "database/post/4.md",
   },
   {
     id: "5",
@@ -63,7 +67,7 @@ const dummyPosts: IPost[] = [
     category: PostCategory.WORK,
     title: "Tech Blog Example",
     author: "Gabe",
-    date: new Date("2023-09-15T00:00:00"),
+    date: "2023-09-15 00:00:00",
     content: `## Introduction
     
     \nEver since our team has started developing our new service, the agility and scalability of the modern software has been our primary concern. We operate in an ecosystem comprising a Kubernetes cluster with multiple services and multiple AWS Lambda functions serving various use cases. However, as the service grows, we faced new challenges that test our adaptability and resolve.
@@ -124,6 +128,7 @@ const dummyPosts: IPost[] = [
     
     \nOur solution aims to marry the benefits of microservices with the coherence of a monolithic architecture. This hybrid approach, we believe, will better serve our CI/CD needs, mitigating the complexities we've been facing.
     `,
+    source: "database/post/5.md",
   },
 ];
 
