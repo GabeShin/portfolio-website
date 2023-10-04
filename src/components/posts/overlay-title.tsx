@@ -1,6 +1,7 @@
 import React from "react";
 import { IPost } from "@/interfaces/posts.interface";
 import { VoteCounter } from "./vote-counter";
+import Image from "next/image";
 
 interface OverlayTitleProps {
   post: IPost;
@@ -25,7 +26,7 @@ const OverlayTitle = ({ post, onUpvote, onDownvote }: OverlayTitleProps) => {
       {/* Profile Picture, Author, Date, and Title */}
       <div>
         <div className="flex items-center">
-          <img
+          <Image
             src="profile-picture-small.jpeg"
             alt={"profile"}
             className="w-6 h-6 rounded-full mr-2"

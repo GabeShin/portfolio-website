@@ -31,10 +31,9 @@ Aenean vel velit pulvinar nulla blandit viverra. Cras convallis lacus at neque c
   `;
   return (
     <div className=" bg-white m-6 rounded-md flex-wrap min-h-screen">
-      <ReactMarkdown
-        className="no-tailwind markdown-content pl-10 pr-10 pb-16"
-        children={content}
-      />
+      <ReactMarkdown className="no-tailwind markdown-content pl-10 pr-10 pb-16">
+        {content}
+      </ReactMarkdown>
     </div>
   );
 };

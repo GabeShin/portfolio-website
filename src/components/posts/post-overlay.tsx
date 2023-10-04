@@ -67,10 +67,9 @@ export const PostOverlay = ({
               onUpvote={onUpvote}
               onDownvote={onDownvote}
             />
-            <ReactMarkdown
-              className="no-tailwind markdown-content pl-10 pr-10 pb-16"
-              children={content}
-            />
+            <ReactMarkdown className="no-tailwind markdown-content pl-10 pr-10 pb-16">
+              {content}
+            </ReactMarkdown>
           </div>
         </div>
       </div>

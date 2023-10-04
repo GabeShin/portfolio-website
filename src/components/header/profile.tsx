@@ -1,3 +1,4 @@
+import Image from "next/image";
 import * as React from "react";
 
 export default function Profile() {
@@ -6,7 +7,7 @@ export default function Profile() {
       <div className="flex items-center space-x-4 -mt-4 mb-3">
         {/* Profile Picture */}
         <div>
-          <img
+          <Image
             className="w-20 h-20 min-w-fit min-h-full rounded-full object-cover border-4 border-white"
             src="/profile-picture-small.jpeg"
             alt="Profile"

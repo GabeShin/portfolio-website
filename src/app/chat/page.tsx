@@ -76,7 +76,7 @@ const ChatPage = () => {
     if (message && message.length > 0) {
       sendMessage(message);
     }
-  }, [searchParams]);
+  }, [searchParams, sendMessage]);
 
   return (
     <div className="relative flex flex-col flex-grow bg-gray-100">

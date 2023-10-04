@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import SendButton from "../common/send-button";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function SearchBar() {
   const [isHealthy, setIsHealthy] = useState(false);
@@ -47,7 +48,7 @@ export default function SearchBar() {
   return (
     <div className="flex items-center min-w-max bg-white m-5 p-3 rounded-md border-2 border-gray-400">
       <div className="relative">
-        <img
+        <Image
           className="w-10 h-10 rounded-full object-cover"
           src="/robot.svg"
           alt="Profile"

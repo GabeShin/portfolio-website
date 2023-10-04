@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import { IMessage } from "@/interfaces/message.interface";
 import React from "react";
+import Image from "next/image";
 
 export interface ChatMessageProps {
   message: IMessage;
@@ -22,7 +23,7 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
       )}`}
     >
       <div className={`w-8 h-8 mr-4 mt-4`}>
-        <img
+        <Image
           src={profileImageSrc}
           alt={message.sender}
           className="w-full h-full"
@@ -31,10 +32,11 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
       <div className="w-full max-w-lg flex-1 break-words">
         <ReactMarkdown
           className="no-tailwind markdown-content"
-          children={message.content}
           remarkPlugins={[gfm]}
           skipHtml={true}
-        />
+        >
+          {message.content}
+        </ReactMarkdown>
       </div>
     </article>
   );
