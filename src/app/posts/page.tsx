@@ -16,7 +16,6 @@ const PostPage = () => {
       }
 
       const data = await response.json();
-      console.log(data);
 
       setPosts(data.data);
     } catch (error) {

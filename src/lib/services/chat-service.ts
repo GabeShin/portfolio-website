@@ -11,6 +11,7 @@ export class ChatService implements IChatService {
 
   async sendMessage(message: string): Promise<any> {
     const service = await getDatabaseServiceInstance();
+
     const queryEmbeddings = await getQueryEmbeddings(message);
 
     const relatedDocs = await service.query("notes", queryEmbeddings);

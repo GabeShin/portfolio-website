@@ -20,11 +20,11 @@ export const PostItem = ({ post: tempPost }: PostItemProperties) => {
   const closeOverlay = () => setIsOverlayOpen(false);
 
   const onUpvote = useCallback((id: string) => {
-    console.log("onUpvote", id);
+    // todo
   }, []);
 
   const onDownvote = useCallback((id: string) => {
-    console.log("onDownvote", id);
+    // todo
   }, []);
 
   const fetchPost = async () => {
@@ -36,7 +36,6 @@ export const PostItem = ({ post: tempPost }: PostItemProperties) => {
       }
 
       const data = await response.json();
-      console.log(data);
 
       setPost(data.data);
     } catch (error) {

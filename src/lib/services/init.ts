@@ -32,7 +32,9 @@ export async function getDatabaseServiceInstance(): Promise<IDatabaseService> {
         e
       );
     }
-    throw new Error("Failed to obtain DatabaseService instance");
+    throw new Error(
+      "An unknown error occurred while initializing DatabaseService"
+    );
   }
 }
 
@@ -52,7 +54,6 @@ export async function getChatService() {
         e
       );
     }
-    throw new Error("Failed to obtain ChatService instance");
   }
 }
 
@@ -72,6 +73,5 @@ export async function getPostService() {
         e
       );
     }
-    throw new Error("Failed to obtain PostService instance");
   }
 }

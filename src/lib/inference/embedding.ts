@@ -46,8 +46,6 @@ export async function getQueryEmbeddings(text: string): Promise<number[]> {
 
   // Generate embeddings
   const embeddings = await hf.embedQuery(text);
-  console.log("embeddings ===");
-  console.log(embeddings);
 
   return embeddings;
 }
