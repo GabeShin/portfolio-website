@@ -26,7 +26,7 @@ export default function NavigationBar() {
     setActiveNav(
       routes.find((route) => route.path === pathname)?.name || "Posts"
     );
-  }, [pathname, routes]);
+  }, [pathname]);
 
   return (
     <div className="flex justify-start space-x-4 pl-4">
