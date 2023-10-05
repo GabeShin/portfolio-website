@@ -4,15 +4,17 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-rgb: 219, 223, 229;
+  --background-rgb: 200, 200, 200; 
 }
 
 body {
+  font-family: 'Verdana', sans-serif; /* Set a readable font family */
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb))
+  background: rgb(var(--background-rgb));
+  line-height: 1.6; 
+  font-size: 14px; 
 }
 
-/* styles.css */
 .no-tailwind *,
 .no-tailwind *:before,
 .no-tailwind *:after {
@@ -20,12 +22,14 @@ body {
 }
 
 .markdown-content {
-  max-width: 100%;
+  max-width: 800px; 
+  margin: auto; 
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
+  padding: 0 2rem; 
 }
 
 .markdown-content img {
@@ -44,4 +48,12 @@ body {
 
 .clickable-item {
   cursor: pointer;
+}
+
+img[alt$="><"] {
+  display: block;
+  max-width: 50%;
+  height: auto;
+  margin: auto;
+  float: none!important;
 }

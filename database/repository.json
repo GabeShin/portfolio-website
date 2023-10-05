@@ -1,17 +1,18 @@
 {
-    "data": [{
+    "data": [
+    {
+        "id": 1,
+        "title": "Career Rundown",
+        "date": "2023-10-05 21:13",
+        "source": "career-rundown.md",
+        "category": "work"
+    },
+    {
         "id": 0,
         "title": "About Me",
         "date": "2023-10-03 17:02",
         "source": "about-me.md",
         "category": "personal"
-    },
-    {
-        "id": 1,
-        "title": "Start of my journey",
-        "date": "2023-10-03 17:36",
-        "source": "start-of-my-journey.md",
-        "category": "work"
     }
 ]
 }
