@@ -33,7 +33,7 @@ export class DatabaseService implements IDatabaseService {
   private readonly client: QdrantClient;
 
   constructor(path: string, apiKey: string) {
-    this.client = new QdrantClient({ url: path }); // Initialize Qdrant client
+    this.client = new QdrantClient({ url: path, apiKey }); // Initialize Qdrant client
   }
 
   async createCollection(name: string) {
