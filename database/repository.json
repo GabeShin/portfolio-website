@@ -1,9 +1,10 @@
 {
-    "data": [{
+    "data": [
+    {
         "id": 1,
-        "title": "Experinces in Machine Learning and AI",
-        "date": "2023-10-03 17:36",
-        "source": "experiences-in-ml.md",
+        "title": "Career Rundown",
+        "date": "2023-10-05 21:13",
+        "source": "career-rundown.md",
         "category": "work"
     },
     {

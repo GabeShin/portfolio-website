@@ -49,7 +49,7 @@ export const PostOverlay = ({
       onClick={handleBackgroundClick}
     >
       <div
-        className="bg-gray-300 w-full h-screen flex flex-col items-stretch ml-20 mr-20"
+        className="bg-gray-300 w-full h-screen flex flex-col items-stretch lg:ml-20 lg:mr-20"
         onClick={handleContentClick}
       >
         <header className="bg-black p-4">
@@ -61,13 +61,13 @@ export const PostOverlay = ({
           </button>
         </header>
         <div className="flex-1 overflow-y-auto">
-          <div className="bg-white m-10 mr-15 ml-15 rounded-md">
+          <div className="bg-white lg:mx-10 my-10 pb-16 rounded-md">
             <OverlayTitle
               post={post}
               onUpvote={onUpvote}
               onDownvote={onDownvote}
             />
-            <ReactMarkdown className="no-tailwind markdown-content pl-10 pr-10 pb-16">
+            <ReactMarkdown className="no-tailwind markdown-content">
               {content}
             </ReactMarkdown>
           </div>
