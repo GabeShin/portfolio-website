@@ -1,6 +1,13 @@
 {
     "data": [
     {
+        "id": 2,
+        "title": "Leading Seeso SDK Team",
+        "date": "2023-10-07 20:58",
+        "source": "sdk-team.md",
+        "category": "work"
+    },
+    {
         "id": 1,
         "title": "Career Rundown",
         "date": "2023-10-05 21:13",
