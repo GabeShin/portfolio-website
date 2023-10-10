@@ -3,12 +3,15 @@ import React, { useState, useEffect, useRef } from "react";
 import ChatInput from "@/components/chat/chat-input";
 import ChatMessage from "@/components/chat/message";
 import { IMessage } from "@/interfaces/message.interface";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import path from "path";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -75,6 +78,11 @@ const ChatPage = () => {
     const message = searchParams?.get("message");
     if (message && message.length > 0) {
       sendMessage(message);
+
+      // Remove query parameters
+      if (pathname) {
+        router.replace(pathname);
+      }
     }
   }, [searchParams]);
 
