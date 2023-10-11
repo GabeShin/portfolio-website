@@ -17,9 +17,14 @@ export async function getAnswer(
     (doc) => new Document({ pageContent: doc })
   );
 
+  const messages = [
+    "You are a helpful chatbot that answer questions about Gabe. User may refer to you as Gabe. Do not make anything up.",
+    question,
+  ];
+
   const response = await qaChain.call({
     input_documents,
-    question,
+    question: messages,
   });
 
   return response;

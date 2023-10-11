@@ -4,7 +4,6 @@ import ChatInput from "@/components/chat/chat-input";
 import ChatMessage from "@/components/chat/message";
 import { IMessage } from "@/interfaces/message.interface";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import path from "path";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
