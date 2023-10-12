@@ -4,6 +4,7 @@ import ChatInput from "@/components/chat/chat-input";
 import ChatMessage from "@/components/chat/message";
 import { IMessage } from "@/interfaces/message.interface";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -22,35 +23,63 @@ const ChatPage = () => {
 
   const sendMessage = async (content: string) => {
     setDisabled(true);
+
+    const botId = uuidv4();
+
     const newMessage: IMessage = {
-      id: `${Date.now()}`,
+      id: uuidv4(),
       sender: "user",
       content,
       date: new Date(),
     };
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-    const response = await fetch("api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message: content }),
-    });
-
-    const { data } = await response.json();
-    const responseText = data?.responseText;
-
-    const responseMessage: IMessage = {
-      id: `${Date.now() + 1}`,
+    const loadingMessage: IMessage = {
+      id: botId,
       sender: "bot",
-      content: responseText,
+      content: "",
       date: new Date(),
     };
 
-    scrollToBottom();
-    setMessages((prevMessages) => [...prevMessages, responseMessage]);
-    setDisabled(false);
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      newMessage,
+      loadingMessage,
+    ]);
+
+    try {
+      const response = await fetch("api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: content }),
+      });
+
+      const { data } = await response.json();
+      const responseText = data?.responseText;
+
+      // Update the loading message with actual response
+      setMessages((prevMessages) =>
+        prevMessages.map((message) =>
+          message.id === botId ? { ...message, content: responseText } : message
+        )
+      );
+    } catch (error) {
+      console.log(error);
+      setMessages((prevMessages) =>
+        prevMessages.map((message) =>
+          message.id === botId
+            ? {
+                ...message,
+                content: "Sorry, something went wrong. Please try again.",
+              }
+            : message
+        )
+      );
+    } finally {
+      setDisabled(false);
+      scrollToBottom();
+    }
   };
 
   const deleteChat = () => {

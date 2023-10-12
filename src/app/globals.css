@@ -57,3 +57,16 @@ img[alt$="><"] {
   margin: auto;
   float: none!important;
 }
+
+@keyframes loadingDots {
+  0% { content: "Preparing response." }
+  25% { content: "Preparing response.." }
+  50% { content: "Preparing response..." }
+  75% { content: "Preparing response.." }
+  100% { content: "Preparing response." }
+}
+
+.loading::after {
+  content: "Preparing response.";
+  animation: loadingDots 2s infinite;
+}

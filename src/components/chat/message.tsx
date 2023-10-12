@@ -16,6 +16,8 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
   const profileImageSrc =
     message.sender === "user" ? "/face.svg" : "/robot.svg";
 
+  const loadingClassName =
+    message.sender === "bot" && message.content === "" ? "loading" : "";
   return (
     <article
       className={`flex items-start justify-center w-full min-w-1/2 mx-auto pb-6 border-b border-b-gray-200 ${getStylesBasedOnSender(
@@ -31,14 +33,18 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
           width={32}
         />
       </div>
-      <div className="w-full max-w-lg flex-1 break-words">
-        <ReactMarkdown
-          className="no-tailwind markdown-content"
-          remarkPlugins={[gfm]}
-          skipHtml={true}
-        >
-          {message.content}
-        </ReactMarkdown>
+      <div className={`w-full max-w-lg flex-1 break-words`}>
+        {message.content ? (
+          <ReactMarkdown
+            className="no-tailwind markdown-content"
+            remarkPlugins={[gfm]}
+            skipHtml={true}
+          >
+            {message.content}
+          </ReactMarkdown>
+        ) : (
+          <div className={`w-full py-4 px-8 ${loadingClassName}`} />
+        )}
       </div>
     </article>
   );
