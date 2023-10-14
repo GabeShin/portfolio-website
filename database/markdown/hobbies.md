@@ -1,0 +1,7 @@
+Outside of work, I'm into sports, music, and gaming.
+
+I used to play competitive rugby back in secondary school. I wasn't very good at rugby when I first started - however, I committed to practicing and workout regularly and put in the hard work. Over time, I improved enough to become a starter for the team. This experience instilled in me the importance of consistency and the grind required to achieve one's goals. Although I couldn't continue team sports in college, I've tried to keep up with regular workouts and am currently training for a half-marathon next year. It's a new challenge for me, but I'm excited about it.
+
+Music has also been a big part of my life. I played clarinet and saxophone in a concert band in secondary school. This helped me a lot when I served in the military. I was part of the military band where I played the alto saxophone. We performed not just at military events but also at public gatherings. After my service, back in college, I was part of a Korean band and even formed an amateur band with a friend in Seoul. We'd perform a couple of times a year.
+
+As for gaming, it's been a hobby since I was younger. While it's challenging to find time for it these days, I've built a tight-knit online community over the years. We've become good friends, we've event met in person several times. I used to engage in fairly hardcore content, and interestingly, I've found that the dynamics of a successful gaming team often mirror those in a successful workplace. Both require clear communication and the ability to adapt quickly.
