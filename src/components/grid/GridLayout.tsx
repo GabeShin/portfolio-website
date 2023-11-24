@@ -11,13 +11,6 @@ import {
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-type GridPosition = {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-};
-
 export default function GridComponent() {
   const mdLayout: Layout[] = [
     { i: "profile", x: 0, y: 0, w: 2, h: 2 },
