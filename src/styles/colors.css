@@ -1,0 +1,13 @@
+@tailwind base;
+
+@layer base {
+  :root {
+    --primary-color: 96.32% 3.26 48.73;
+    --accent-color: 88.52% 8.51 142.57;
+    --accent-color-2: 86.13% 20.66 18.54;
+    --text-color-1: 5% 0 0;
+    --text-color-2: 5% 0 0;
+    --background-color-1: 95% 0 0;
+    --background-color-2: 95% 0 0;
+  }
+}
