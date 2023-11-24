@@ -62,8 +62,6 @@ export default function GridComponent() {
   };
 
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const [placeholderPosition, setPlaceholderPosition] =
-    useState<GridPosition | null>(null);
 
   const handleDragStart: ItemCallback = (layout, oldItem, newItem) => {
     setSelectedKey(newItem.i);
@@ -156,17 +154,6 @@ export default function GridComponent() {
       >
         chat
       </div>
-      {placeholderPosition && (
-        <div
-          className="grid-cell placeholder"
-          style={{
-            gridColumn: `span ${placeholderPosition.w}`,
-            gridRow: `span ${placeholderPosition.h}`,
-          }}
-        >
-          Placeholder
-        </div>
-      )}
     </ResponsiveGridLayout>
   );
 }
