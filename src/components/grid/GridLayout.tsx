@@ -1,4 +1,6 @@
 "use client";
+import "./placeholder.css";
+
 import { useState } from "react";
 import {
   ItemCallback,
@@ -8,6 +10,13 @@ import {
 } from "react-grid-layout";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
+
+type GridPosition = {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+};
 
 export default function GridComponent() {
   const mdLayout: Layout[] = [
@@ -52,15 +61,15 @@ export default function GridComponent() {
     xxs: xxsLayout,
   };
 
-  const [selectedKey, setSelectedKey] = useState(null);
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const [placeholderPosition, setPlaceholderPosition] =
+    useState<GridPosition | null>(null);
 
-  const handleDragStart = (layout, oldItem, newItem) => {
+  const handleDragStart: ItemCallback = (layout, oldItem, newItem) => {
     setSelectedKey(newItem.i);
-    console.log(newItem.i);
   };
 
-  const handleDragStop = () => {
-    console.log("handleDragStop");
+  const handleDragStop: ItemCallback = () => {
     setSelectedKey(null);
   };
 
@@ -147,6 +156,17 @@ export default function GridComponent() {
       >
         chat
       </div>
+      {placeholderPosition && (
+        <div
+          className="grid-cell placeholder"
+          style={{
+            gridColumn: `span ${placeholderPosition.w}`,
+            gridRow: `span ${placeholderPosition.h}`,
+          }}
+        >
+          Placeholder
+        </div>
+      )}
     </ResponsiveGridLayout>
   );
 }
