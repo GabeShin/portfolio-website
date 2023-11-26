@@ -1,7 +1,7 @@
 "use client";
 import "./placeholder.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ItemCallback,
   Layout,
@@ -9,6 +9,7 @@ import {
   WidthProvider,
 } from "react-grid-layout";
 import { layouts } from "./layouts";
+import useWindowSize from "@/app/hooks/on-window-size";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -23,21 +24,43 @@ export default function GridComponent() {
     setSelectedKey(null);
   };
 
+  const [rowHeight, setRowHeight] = useState(200); // Initial row height
+  const windowSize = useWindowSize();
+
+  useEffect(() => {
+    const handleResize = () => {
+      const container = document.querySelector(".grid-container");
+      if (container instanceof HTMLElement) {
+        const containerWidth = container.offsetWidth;
+
+        if (containerWidth >= 1200) {
+          setRowHeight(300);
+          console.log("set row height to 300");
+          return;
+        }
+      }
+    };
+    handleResize();
+    // todo: Issue with resizing height when window size is bigger than 1200px
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [windowSize]);
+
   return (
     <ResponsiveGridLayout
-      className="mx-auto mb-5 max-w-[400px] md:max-w-[800px] lg:max-w-[1200px]"
+      className="grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
       layouts={layouts}
-      breakpoints={{ md: 1024, sm: 768, xxs: 0 }}
-      cols={{ md: 4, sm: 3, xxs: 2 }}
-      rowHeight={150}
-      width={150}
+      breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
+      cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
       onDragStart={handleDragStart}
       onDragStop={handleDragStop}
+      rowHeight={rowHeight}
     >
       <div
         className={`grid-cell ${
           selectedKey === "profile" ? "selected-grid-cell" : ""
-        }`}
+        } h-[200px] w-[200px]`}
+        style={{ height: 200, width: 200 }}
         key="profile"
       >
         profile

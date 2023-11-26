@@ -19,8 +19,10 @@ const config: Config = {
       },
     },
     screens: {
-      md: "800px",
-      lg: "1200px",
+      sm: "400px",
+      md: "600px",
+      lg: "800px",
+      xl: "1200px",
     },
   },
   plugins: [],

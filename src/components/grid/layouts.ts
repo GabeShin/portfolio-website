@@ -1,4 +1,6 @@
-const mdLayout: Layout[] = [
+import { Layout } from "react-grid-layout";
+
+const lgLayout: Layout[] = [
   { i: "profile", x: 0, y: 0, w: 2, h: 2 },
   { i: "google-map", x: 2, y: 0, w: 1, h: 1 },
   { i: "seeso-sdk", x: 3, y: 0, w: 1, h: 2 },
@@ -10,7 +12,7 @@ const mdLayout: Layout[] = [
   { i: "chat", x: 2, y: 3, w: 2, h: 1 },
 ];
 
-const smLayout: Layout[] = [
+const mdLayout: Layout[] = [
   { i: "profile", x: 0, y: 0, w: 2, h: 2 },
   { i: "google-map", x: 2, y: 0, w: 1, h: 1 },
   { i: "seeso-sdk", x: 2, y: 1, w: 1, h: 2 },
@@ -35,7 +37,8 @@ const xxsLayout: Layout[] = [
 ];
 
 export const layouts = {
+  xl: lgLayout,
+  lg: lgLayout,
   md: mdLayout,
-  sm: smLayout,
   xxs: xxsLayout,
 };
