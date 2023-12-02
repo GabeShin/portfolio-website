@@ -2,12 +2,7 @@
 import "./placeholder.css";
 
 import { useEffect, useState } from "react";
-import {
-  ItemCallback,
-  Layout,
-  Responsive,
-  WidthProvider,
-} from "react-grid-layout";
+import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
 import { layouts } from "./layouts";
 import useWindowSize from "@/app/hooks/on-window-size";
 
@@ -35,8 +30,9 @@ export default function GridComponent() {
 
         if (containerWidth >= 1200) {
           setRowHeight(300);
-          console.log("set row height to 300");
           return;
+        } else {
+          setRowHeight(200);
         }
       }
     };
@@ -52,6 +48,7 @@ export default function GridComponent() {
       layouts={layouts}
       breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
       cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
+      margin={[16, 16]}
       onDragStart={handleDragStart}
       onDragStop={handleDragStop}
       rowHeight={rowHeight}
