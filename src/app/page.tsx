@@ -2,7 +2,7 @@ import GridComponent from "@/components/grid/GridLayout";
 
 export default function Home() {
   return (
-    <div className="w-screen">
+    <div className="h-full w-full bg-background">
       <GridComponent />
     </div>
   );

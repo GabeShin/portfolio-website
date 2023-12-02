@@ -10,12 +10,12 @@ const config: Config = {
     extend: {
       colors: {
         primary: "oklch(var(--primary-color) / <alpha-value>)",
-        accent1: "oklch(var(--accent-color-1) / <alpha-value>)",
-        accent2: "oklch(var(--accent-color-2) / <alpha-value>)",
-        text1: "oklch(var(--text-color-1) / <alpha-value>)",
-        text2: "oklch(var(--text-color-2) / <alpha-value>)",
-        background1: "oklch(var(--background-color-1) / <alpha-value>)",
-        background2: "oklch(var(--background-color-2) / <alpha-value>)",
+        accent: "oklch(var(--accent-color) / <alpha-value>)",
+        text: "oklch(var(--text-color) / <alpha-value>)",
+        header: "oklch(var(--header-color) / <alpha-value>)",
+        background: "oklch(var(--background-color) / <alpha-value>)",
+        content: "oklch(var(--content-bg-color) / <alpha-value>)",
+        border: "oklch(var(--border-color) / <alpha-value>)",
       },
     },
     screens: {

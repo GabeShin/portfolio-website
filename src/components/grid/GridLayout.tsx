@@ -1,5 +1,5 @@
 "use client";
-import "./placeholder.css";
+import "./grid-layout.css";
 
 import { useEffect, useState } from "react";
 import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
@@ -44,7 +44,7 @@ export default function GridComponent() {
 
   return (
     <ResponsiveGridLayout
-      className="grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
+      className="transition-a grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
       layouts={layouts}
       breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
       cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
@@ -73,7 +73,7 @@ export default function GridComponent() {
       <div
         className={`grid-cell ${
           selectedKey === "seeso-sdk" ? "selected-grid-cell" : ""
-        }`}
+        } seeso-sdk-theme`}
         key="seeso-sdk"
       >
         seeso sdk
@@ -81,7 +81,7 @@ export default function GridComponent() {
       <div
         className={`grid-cell ${
           selectedKey === "seeso-labs" ? "selected-grid-cell" : ""
-        }`}
+        } seesolabs-theme `}
         key="seeso-labs"
       >
         seesolabs
@@ -97,19 +97,15 @@ export default function GridComponent() {
       <div
         className={`grid-cell ${
           selectedKey === "instagram" ? "selected-grid-cell" : ""
-        }`}
+        } instagram-theme`}
         key="instagram"
-      >
-        instagram
-      </div>
+      ></div>
       <div
         className={`grid-cell ${
           selectedKey === "linkedin" ? "selected-grid-cell" : ""
-        }`}
+        } linkedin-theme`}
         key="linkedin"
-      >
-        linkedin
-      </div>
+      ></div>
       <div
         className={`grid-cell ${
           selectedKey === "aboutme" ? "selected-grid-cell" : ""

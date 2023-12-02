@@ -1,0 +1,62 @@
+@tailwind components;
+
+.react-grid-item.react-grid-placeholder {
+  border-radius: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5); /* Todo: style the shadow */
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 0.1);
+  transition-duration: 300ms;
+}
+
+@layer components {
+  .grid-cell {
+    @apply rounded-3xl border-2 border-border bg-content transition-all duration-500;
+  }
+
+  .selected-grid-cell {
+    @apply transition-none duration-0;
+  }
+}
+
+.instagram-theme {
+  background: radial-gradient(
+    circle at 30% 125%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+}
+
+.linkedin-theme {
+  background: oklch(54.58% 0.13 242.27);
+}
+
+.seeso-sdk-theme {
+  background: radial-gradient(
+      30rem circle at 120% 10%,
+      oklch(var(--accent-color-2)) 50%,
+      transparent 50%
+    ),
+    radial-gradient(
+      10rem circle at 95% 105%,
+      oklch(var(--accent-color)) 50%,
+      transparent 51%
+    );
+  background-color: oklch(var(--content-bg-color));
+}
+
+.seesolabs-theme {
+  background: radial-gradient(
+      20rem circle at 0% 90%,
+      oklch(var(--accent-color)) 50%,
+      transparent 50%
+    ),
+    radial-gradient(
+      8rem circle at 85% 0%,
+      oklch(var(--primary-color)) 50%,
+      transparent 50%
+    );
+  background-color: oklch(var(--content-bg-color));
+}
