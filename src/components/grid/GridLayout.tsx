@@ -117,11 +117,9 @@ export default function GridComponent() {
       <div
         className={`grid-cell ${
           selectedKey === "chat" ? "selected-grid-cell" : ""
-        }`}
+        } chatgpt-theme`}
         key="chat"
-      >
-        chat
-      </div>
+      ></div>
     </ResponsiveGridLayout>
   );
 }

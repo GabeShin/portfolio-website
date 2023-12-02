@@ -29,6 +29,10 @@
   );
 }
 
+.chatgpt-theme {
+  background: oklch(63.68% 0.106 178.71);
+}
+
 .linkedin-theme {
   background: oklch(54.58% 0.13 242.27);
 }
