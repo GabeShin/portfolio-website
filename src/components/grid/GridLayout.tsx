@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
 import { layouts } from "./layouts";
 import useWindowSize from "@/app/hooks/on-window-size";
+import ThemeGridCell from "../theme-cell/ThemeGridCell";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default function GridComponent() {
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-
   const handleDragStart: ItemCallback = (layout, oldItem, newItem) => {
     setSelectedKey(newItem.i);
   };
@@ -19,7 +19,7 @@ export default function GridComponent() {
     setSelectedKey(null);
   };
 
-  const [rowHeight, setRowHeight] = useState(200); // Initial row height
+  const [rowHeight, setRowHeight] = useState(200);
   const windowSize = useWindowSize();
 
   useEffect(() => {
@@ -30,21 +30,19 @@ export default function GridComponent() {
 
         if (containerWidth >= 1200) {
           setRowHeight(300);
-          return;
         } else {
           setRowHeight(200);
         }
       }
     };
     handleResize();
-    // todo: Issue with resizing height when window size is bigger than 1200px
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [windowSize]);
 
   return (
     <ResponsiveGridLayout
-      className="transition-a grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
+      className="grid-container max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
       layouts={layouts}
       breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
       cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
@@ -52,12 +50,12 @@ export default function GridComponent() {
       onDragStart={handleDragStart}
       onDragStop={handleDragStop}
       rowHeight={rowHeight}
+      draggableCancel=".grid-cell"
     >
       <div
         className={`grid-cell ${
           selectedKey === "profile" ? "selected-grid-cell" : ""
-        } h-[200px] w-[200px]`}
-        style={{ height: 200, width: 200 }}
+        }]`}
         key="profile"
       >
         profile
@@ -87,12 +85,12 @@ export default function GridComponent() {
         seesolabs
       </div>
       <div
-        className={`grid-cell ${
+        className={`${
           selectedKey === "theme-toggle" ? "selected-grid-cell" : ""
         }`}
         key="theme-toggle"
       >
-        theme toggle
+        <ThemeGridCell />
       </div>
       <div
         className={`grid-cell ${

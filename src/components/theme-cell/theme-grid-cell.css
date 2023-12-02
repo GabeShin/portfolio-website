@@ -1,0 +1,32 @@
+@tailwind components;
+
+@layer components {
+  .theme-button {
+    @apply mx-2 flex h-10 w-10 items-center justify-center rounded-full border border-transparent;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .theme-button:hover {
+    @apply animate-pulse;
+  }
+
+  .theme-button:active {
+    transform: scale(0.9);
+    animation: spinAndGrow 2s 0.25s linear infinite;
+  }
+}
+
+@keyframes spinAndGrow {
+  0% {
+    transform: rotate(0deg) scale(0.9);
+  }
+  40% {
+    transform: rotate(180deg) scale(0.7);
+  }
+  80% {
+    transform: rotate(360deg) scale(1.2);
+  }
+  100% {
+    transform: rotation(360deg) scale(1.1);
+  }
+}
