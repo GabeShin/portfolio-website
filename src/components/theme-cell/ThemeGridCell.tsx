@@ -17,7 +17,7 @@ export default function ThemeGridCell() {
   if (!mounted) return null;
 
   return (
-    <div className="grid-cell flex h-full w-full items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center">
       <div
         className="theme-button bg-gradient-to-r from-yellow-200 to-yellow-500"
         onClick={() => handleClick("light")}
