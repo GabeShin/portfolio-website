@@ -7,6 +7,8 @@ import { layouts } from "./layouts";
 import useWindowSize from "@/app/hooks/on-window-size";
 import ThemeGridCell from "../theme-cell/ThemeGridCell";
 import { motion } from "framer-motion";
+import InstaGridCell from "../instagram-cell/InstaGridCell";
+import LinkedInGridCell from "../linkedin-cell/LinkedInGridCell";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -103,17 +105,21 @@ export default function GridComponent() {
           <ThemeGridCell />
         </div>
         <div
-          className={`grid-cell ${
+          className={`${
             selectedKey === "instagram" ? "selected-grid-cell" : ""
-          } instagram-theme`}
+          } `}
           key="instagram"
-        ></div>
+        >
+          <InstaGridCell />
+        </div>
         <div
-          className={`grid-cell ${
+          className={`${
             selectedKey === "linkedin" ? "selected-grid-cell" : ""
-          } linkedin-theme`}
+          } `}
           key="linkedin"
-        ></div>
+        >
+          <LinkedInGridCell />
+        </div>
         <div
           className={`grid-cell ${
             selectedKey === "aboutme" ? "selected-grid-cell" : ""

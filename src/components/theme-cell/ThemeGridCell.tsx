@@ -18,7 +18,7 @@ export default function ThemeGridCell() {
 
   return (
     <div className="flex h-full w-full items-center justify-center ">
-      <div className="grid h-[150px] w-[150px] grid-cols-2 items-center justify-items-center gap-4">
+      <div className="grid h-[120px] w-[120px] grid-cols-2 items-center justify-items-center gap-4">
         {["light", "dark", "retro", "neon"].map((themeName) => (
           <button
             key={themeName}

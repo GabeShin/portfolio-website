@@ -16,51 +16,66 @@
   .selected-grid-cell {
     @apply z-50 transition-none duration-0;
   }
-}
 
-.instagram-theme {
-  background: radial-gradient(
-    circle at 30% 125%,
-    #fdf497 0%,
-    #fdf497 5%,
-    #fd5949 45%,
-    #d6249f 60%,
-    #285aeb 90%
-  );
-}
-
-.chatgpt-theme {
-  background: oklch(63.68% 0.106 178.71);
-}
-
-.linkedin-theme {
-  background: oklch(54.58% 0.13 242.27);
-}
-
-.seeso-sdk-theme {
-  background: radial-gradient(
-      30rem circle at 120% 10%,
-      oklch(var(--accent-color-2)) 50%,
-      transparent 50%
-    ),
-    radial-gradient(
-      10rem circle at 95% 105%,
-      oklch(var(--accent-color)) 50%,
-      transparent 51%
+  :root[data-theme="light"] .instagram-theme {
+    background: radial-gradient(
+      circle at 30% 125%,
+      #fdf497 0%,
+      #fdf497 5%,
+      #fd5949 45%,
+      #d6249f 60%,
+      #285aeb 90%
     );
-  background-color: oklch(var(--content-bg-color));
-}
+  }
 
-.seesolabs-theme {
-  background: radial-gradient(
-      20rem circle at 0% 90%,
-      oklch(var(--accent-color)) 50%,
-      transparent 50%
-    ),
-    radial-gradient(
-      8rem circle at 85% 0%,
-      oklch(var(--primary-color)) 50%,
-      transparent 50%
+  :root[data-theme="retro"] .instagram-theme {
+    background: radial-gradient(
+      circle at 30% 125%,
+      #fdf497 0%,
+      #fdf497 5%,
+      #fd5949 45%,
+      #d6249f 60%,
+      #285aeb 90%
     );
-  background-color: oklch(var(--content-bg-color));
+  }
+
+  .chatgpt-theme {
+    background: oklch(63.68% 0.106 178.71);
+  }
+
+  :root[data-theme="light"] .linkedin-theme {
+    background: oklch(54.58% 0.13 242.27);
+  }
+
+  :root[data-theme="retro"] .linkedin-theme {
+    background: oklch(54.58% 0.13 242.27);
+  }
+
+  .seeso-sdk-theme {
+    background: radial-gradient(
+        30rem circle at 120% 10%,
+        oklch(var(--accent-color-2)) 50%,
+        transparent 50%
+      ),
+      radial-gradient(
+        10rem circle at 95% 105%,
+        oklch(var(--accent-color)) 50%,
+        transparent 51%
+      );
+    background-color: oklch(var(--content-bg-color));
+  }
+
+  .seesolabs-theme {
+    background: radial-gradient(
+        20rem circle at 0% 90%,
+        oklch(var(--accent-color)) 50%,
+        transparent 50%
+      ),
+      radial-gradient(
+        8rem circle at 85% 0%,
+        oklch(var(--primary-color)) 50%,
+        transparent 50%
+      );
+    background-color: oklch(var(--content-bg-color));
+  }
 }
