@@ -59,6 +59,7 @@ export default function GridComponent() {
         onDragStart={handleDragStart}
         onDragStop={handleDragStop}
         rowHeight={rowHeight}
+        draggableCancel=".clickable-button"
       >
         <div
           className={`grid-cell ${

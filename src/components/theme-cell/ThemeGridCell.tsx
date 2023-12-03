@@ -18,18 +18,22 @@ export default function ThemeGridCell() {
 
   return (
     <div className="flex h-full w-full items-center justify-center ">
-      <div className="grid h-[180px] w-[180px] grid-cols-2 items-center justify-items-center gap-4">
+      <div className="grid h-[150px] w-[150px] grid-cols-2 items-center justify-items-center gap-4">
         <div
-          className="theme-button bg-gradient-to-r from-yellow-200 to-yellow-500"
+          className="clickable-button theme-button bg-gradient-to-r from-yellow-200 to-yellow-500"
           onClick={() => handleClick("light")}
         />
         <div
-          className="theme-button bg-gradient-to-r from-gray-700 to-gray-900"
+          className="clickable-button theme-button bg-gradient-to-r from-gray-700 to-gray-900"
           onClick={() => handleClick("dark")}
         />
         <div
-          className="theme-button bg-gradient-to-r from-green-700 to-red-700"
+          className="clickable-button theme-button bg-gradient-to-r from-green-700 to-red-700"
           onClick={() => handleClick("retro")}
+        />
+        <div
+          className="clickable-button theme-button bg-gradient-to-r from-green-700 to-red-700"
+          onClick={() => handleClick("neon")}
         />
       </div>
     </div>
