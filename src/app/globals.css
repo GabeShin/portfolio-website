@@ -58,6 +58,7 @@
     --accent-color-2: 61.63% 0.074 263.42;
     --background-color: 15.29% 0.01 255.44;
     --content-bg-color: 17.63% 0.014 258.36;
+    --border-color: 33% 0.015 252.31;
   }
 
   :root[data-theme="retro"] {
@@ -65,8 +66,8 @@
     --accent-color: 74.15% 0.157 64.73;
     --accent-color-2: 59.11% 0.192 29.3;
     --background-color: 96.87% 0.009 44.89;
-    --content-bg-color: 80.47% 0.157 88.1;
-    --border-color: 84% 0.015 252.31;
+    --content-bg-color: 100% 0 0;
+    --border-color: 80.47% 0.157 88.1;
   }
 
   :root[data-theme="neon"] {
@@ -75,6 +76,6 @@
     --accent-color-2: 79.34% 0.128 203.85;
     --background-color: 15.29% 0.01 255.44;
     --content-bg-color: 17.63% 0.014 258.36;
-    --border-color: 60.31% 0.186 310.89;
+    --border-color: 33% 0.015 252.31;
   }
 }

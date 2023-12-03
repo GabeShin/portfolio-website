@@ -14,7 +14,7 @@
   }
 
   .selected-grid-cell {
-    @apply transition-none duration-0;
+    @apply z-50 transition-none duration-0;
   }
 }
 
