@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Eczar, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import ThemeClientProvider from "@/components/providers/ThemeProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const noto_sans = Noto_Sans({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans",
+  display: "swap",
+});
+const noto_serif = Eczar({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-eczar",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${noto_sans.variable} ${noto_serif.variable}`}>
         <ThemeClientProvider>{children}</ThemeClientProvider>
       </body>
     </html>

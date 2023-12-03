@@ -3,6 +3,21 @@
 @tailwind utilities;
 
 @layer base {
+  h1 {
+    @apply text-3xl font-semibold text-text;
+    font-family: var(--font-eczar);
+  }
+
+  h2 {
+    @apply text-2xl text-text;
+    font-family: var(--font-eczar);
+  }
+
+  p {
+    @apply text-base text-text;
+    font-family: var(--font-noto-sans);
+  }
+
   html,
   body {
     @apply bg-background;
@@ -13,7 +28,6 @@
     --accent-color: 88.6% 0.06 15.82;
     --accent-color-2: 85.35% 0.065 308.58;
     --text-color: 5% 0 0;
-    --header-color: 5% 0 0;
     --background-color: 96.87% 0.009 44.89;
     --content-bg-color: 100% 0 0;
   }
@@ -24,7 +38,6 @@
       --accent-color: 88.6% 0.06 15.82;
       --accent-color-2: 85.35% 0.065 308.58;
       --text-color: 5% 0 0;
-      --header-color: 5% 0 0;
       --background-color: 96.87% 0.009 44.89;
       --content-bg-color: 100% 0 0;
     }
@@ -38,6 +51,7 @@
       --background-color: 15.29% 0.01 255.44;
       --content-bg-color: 17.63% 0.014 258.36;
       --border-color: 33% 0.015 252.31;
+      --text-color: 100% 0 0;
     }
   }
 
@@ -45,11 +59,10 @@
     --primary-color: 89.83% 0.024 145.37;
     --accent-color: 88.6% 0.06 15.82;
     --accent-color-2: 85.35% 0.065 308.58;
-    --text-color: 5% 0 0;
-    --header-color: 5% 0 0;
     --background-color: 96.87% 0.009 44.89;
     --content-bg-color: 100% 0 0;
     --border-color: 100% 0 0;
+    --text-color: 5% 0 0;
   }
 
   :root[data-theme="dark"] {
@@ -68,6 +81,7 @@
     --background-color: 96.87% 0.009 44.89;
     --content-bg-color: 100% 0 0;
     --border-color: 80.47% 0.157 88.1;
+    --text-color: 5% 0 0;
   }
 
   :root[data-theme="neon"] {

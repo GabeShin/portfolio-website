@@ -39,7 +39,11 @@
     );
   }
 
-  .chatgpt-theme {
+  :root[data-theme="light"] .chatgpt-theme {
+    background: oklch(63.68% 0.106 178.71);
+  }
+
+  :root[data-theme="retro"] .chatgpt-theme {
     background: oklch(63.68% 0.106 178.71);
   }
 

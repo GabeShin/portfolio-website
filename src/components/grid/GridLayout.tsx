@@ -1,6 +1,5 @@
 "use client";
 import "./grid-layout.css";
-
 import { useEffect, useState } from "react";
 import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
 import { layouts } from "./layouts";
@@ -9,6 +8,9 @@ import ThemeGridCell from "../theme-cell/ThemeGridCell";
 import { motion } from "framer-motion";
 import InstaGridCell from "../instagram-cell/InstaGridCell";
 import LinkedInGridCell from "../linkedin-cell/LinkedInGridCell";
+import AboutMeGridCell from "../aboutme-cell/AboutMeGridCell";
+import ProfileGridCell from "@/app/profile-cell/ProfileGridCell";
+import ChatGridCell from "../chat-cell/ChatGridCell";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -65,12 +67,12 @@ export default function GridComponent() {
         draggableCancel=".clickable-button"
       >
         <div
-          className={`grid-cell ${
+          className={`${
             selectedKey === "profile" ? "selected-grid-cell" : ""
           }]`}
           key="profile"
         >
-          profile
+          <ProfileGridCell />
         </div>
         <div
           className={`grid-cell ${
@@ -121,19 +123,17 @@ export default function GridComponent() {
           <LinkedInGridCell />
         </div>
         <div
-          className={`grid-cell ${
-            selectedKey === "aboutme" ? "selected-grid-cell" : ""
-          }`}
+          className={`${selectedKey === "aboutme" ? "selected-grid-cell" : ""}`}
           key="aboutme"
         >
-          about me
+          <AboutMeGridCell />
         </div>
         <div
-          className={`grid-cell ${
-            selectedKey === "chat" ? "selected-grid-cell" : ""
-          } chatgpt-theme`}
+          className={`${selectedKey === "chat" ? "selected-grid-cell" : ""} `}
           key="chat"
-        ></div>
+        >
+          <ChatGridCell />
+        </div>
       </ResponsiveGridLayout>
     </motion.div>
   );
