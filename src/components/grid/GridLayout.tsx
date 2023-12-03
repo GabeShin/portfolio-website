@@ -46,9 +46,10 @@ export default function GridComponent() {
     <motion.div
       initial={{ opacity: 0, scale: 1 }}
       animate={{
-        opacity: [0, 0, 0, 1],
-        translateY: [10, 10, 20, 0],
+        opacity: [0, 1],
+        translateY: [20, 0],
       }}
+      transition={{ delay: 0.5 }}
     >
       <ResponsiveGridLayout
         className="grid-container max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"

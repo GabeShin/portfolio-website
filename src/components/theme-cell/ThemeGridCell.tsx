@@ -1,13 +1,20 @@
 "use client";
 import "./theme-grid-cell.css";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 export default function ThemeGridCell() {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-
+  const [currentTheme, setCurrentTheme] = useState(theme);
   const handleClick = (inputTheme: string) => {
     setTheme(inputTheme);
+    setCurrentTheme(inputTheme);
   };
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
 
   return (
     <div className="flex h-full w-full items-center justify-center ">
@@ -16,7 +23,7 @@ export default function ThemeGridCell() {
           <button
             key={themeName}
             className={`clickable-button theme-button ${themeName}-color-wheel ${
-              theme === themeName ? "active-theme" : ""
+              currentTheme === themeName ? "active-theme" : ""
             }`}
             onClick={() => handleClick(themeName)}
           />
