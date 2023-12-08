@@ -11,6 +11,10 @@ import LinkedInGridCell from "../linkedin-cell/LinkedInGridCell";
 import AboutMeGridCell from "../aboutme-cell/AboutMeGridCell";
 import ProfileGridCell from "@/app/profile-cell/ProfileGridCell";
 import ChatGridCell from "../chat-cell/ChatGridCell";
+import dynamic from "next/dynamic";
+const MapGridCell = dynamic(() => import("../mapgrid-cell/MapGridCell"), {
+  ssr: false,
+});
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -80,7 +84,7 @@ export default function GridComponent() {
           }`}
           key="google-map"
         >
-          google map
+          <MapGridCell />
         </div>
         <div
           className={`grid-cell ${
