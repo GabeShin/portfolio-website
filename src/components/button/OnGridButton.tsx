@@ -1,6 +1,6 @@
 import ArrowLogo from "./ArrowIcon";
 
-type PropsType = { text: string; onClick: () => void };
+type PropsType = { text: string; onClick: () => void; invert?: boolean };
 
 export default function OnGridButton({ text, onClick }: PropsType) {
   return (

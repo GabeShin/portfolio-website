@@ -67,7 +67,7 @@ export default function MapGridCell({}: PropsType) {
   return (
     <div className="grid-cell relative h-full w-full overflow-hidden">
       <div ref={mapRef} className="h-full w-full" />
-      <div className="absolute bottom-2 left-2 rounded-3xl bg-primary opacity-80">
+      <div className="absolute bottom-2 left-2 rounded-3xl">
         <OnGridButton text="To me!" onClick={moveCenterToMe} />
       </div>
     </div>

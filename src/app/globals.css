@@ -24,9 +24,9 @@
   }
 
   :root {
-    --primary-color: 89.83% 0.024 145.37;
-    --accent-color: 88.6% 0.06 15.82;
-    --accent-color-2: 85.35% 0.065 308.58;
+    --primary-color: 85.35% 0.065 308.58;
+    --accent-color: 89.83% 0.024 145.37;
+    --accent-color-2: 88.6% 0.06 15.82;
     --text-color: 5% 0 0;
     --background-color: 96.87% 0.009 44.89;
     --content-bg-color: 100% 0 0;
@@ -36,13 +36,14 @@
 
   @media (prefers-color-scheme: light) {
     :root {
-      --primary-color: 89.83% 0.024 145.37;
-      --accent-color: 88.6% 0.06 15.82;
-      --accent-color-2: 85.35% 0.065 308.58;
+      --primary-color: 85.35% 0.065 308.58;
+      --accent-color: 89.83% 0.024 145.37;
+      --accent-color-2: 88.6% 0.06 15.82;
       --text-color: 5% 0 0;
       --background-color: 96.87% 0.009 44.89;
       --content-bg-color: 100% 0 0;
-      --button-border-color: 5% 0 0;
+      --border-color: 33% 0.015 252.31;
+      --invert-border-color: 5% 0 0;
     }
   }
 
@@ -59,9 +60,9 @@
   }
 
   :root[data-theme="light"] {
-    --primary-color: 89.83% 0.024 145.37;
-    --accent-color: 88.6% 0.06 15.82;
-    --accent-color-2: 85.35% 0.065 308.58;
+    --primary-color: 85.35% 0.065 308.58;
+    --accent-color: 89.83% 0.024 145.37;
+    --accent-color-2: 88.6% 0.06 15.82;
     --background-color: 96.87% 0.009 44.89;
     --content-bg-color: 100% 0 0;
     --border-color: 100% 0 0;
