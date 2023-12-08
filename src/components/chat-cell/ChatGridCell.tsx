@@ -44,7 +44,7 @@ export default function ChatGridCell() {
         <OpenAILogo width={size} height={size} color={logoColor} />
       </div>
       <div className="absolute bottom-2 left-2">
-        <OnGridButton text={"Hello!"} onClick={goToChat} />
+        <OnGridButton text={"Chat with me!"} onClick={goToChat} />
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ export default function InstaGridCell() {
         <InstagramLogo width={75} height={75} color={logoColor} />
       </div>
       <div className="absolute bottom-2 left-2">
-        <OnGridButton text={"Go to"} onClick={goToInstagramProfile} />
+        <OnGridButton text={"To Instagram"} onClick={goToInstagramProfile} />
       </div>
     </div>
   );
