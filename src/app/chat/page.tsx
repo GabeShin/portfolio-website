@@ -1,20 +1,18 @@
 "use client";
 
-import GridComponent from "@/components/grid/GridLayout";
 import { motion } from "framer-motion";
 
-export default function Home() {
+export default function ChatPage() {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 1 }}
       animate={{
         opacity: [0, 1],
-        translateY: [40, 0],
+        translateY: [20, 0],
       }}
       transition={{ delay: 0.5 }}
-      exit={{ opacity: 0 }}
     >
-      <GridComponent />
+      <h1>Chat</h1>
     </motion.div>
   );
 }

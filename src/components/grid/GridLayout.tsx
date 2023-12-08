@@ -9,7 +9,6 @@ import ProfileGridCell from "../profile-cell/ProfileGridCell";
 import ThemeGridCell from "../theme-cell/ThemeGridCell";
 import "./grid-layout.css";
 import { layouts } from "./layouts";
-import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
@@ -53,94 +52,81 @@ export default function GridComponent() {
   }, [windowSize]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 1 }}
-      animate={{
-        opacity: [0, 1],
-        translateY: [20, 0],
-      }}
-      transition={{ delay: 0.5 }}
+    <ResponsiveGridLayout
+      className="grid-container m-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
+      layouts={layouts}
+      breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
+      cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
+      margin={[16, 16]}
+      onDragStart={handleDragStart}
+      onDragStop={handleDragStop}
+      rowHeight={rowHeight}
+      draggableCancel=".clickable-button"
     >
-      <ResponsiveGridLayout
-        className="grid-container m-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
-        layouts={layouts}
-        breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
-        cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
-        margin={[16, 16]}
-        onDragStart={handleDragStart}
-        onDragStop={handleDragStop}
-        rowHeight={rowHeight}
-        draggableCancel=".clickable-button"
+      <div
+        className={`${selectedKey === "profile" ? "selected-grid-cell" : ""}]`}
+        key="profile"
       >
-        <div
-          className={`${
-            selectedKey === "profile" ? "selected-grid-cell" : ""
-          }]`}
-          key="profile"
-        >
-          <ProfileGridCell />
-        </div>
-        <div
-          className={`grid-cell ${
-            selectedKey === "google-map" ? "selected-grid-cell" : ""
-          }`}
-          key="google-map"
-        >
-          <MapGridCell />
-        </div>
-        <div
-          className={`grid-cell ${
-            selectedKey === "seeso-sdk" ? "selected-grid-cell" : ""
-          } seeso-sdk-theme`}
-          key="seeso-sdk"
-        >
-          seeso sdk
-        </div>
-        <div
-          className={`grid-cell ${
-            selectedKey === "seeso-labs" ? "selected-grid-cell" : ""
-          } seesolabs-theme `}
-          key="seeso-labs"
-        >
-          seesolabs
-        </div>
-        <div
-          className={`grid-cell ${
-            selectedKey === "theme-toggle" ? "selected-grid-cell" : ""
-          }`}
-          key="theme-toggle"
-        >
-          <ThemeGridCell />
-        </div>
-        <div
-          className={`${
-            selectedKey === "instagram" ? "selected-grid-cell" : ""
-          } `}
-          key="instagram"
-        >
-          <InstaGridCell />
-        </div>
-        <div
-          className={`${
-            selectedKey === "linkedin" ? "selected-grid-cell" : ""
-          } `}
-          key="linkedin"
-        >
-          <LinkedInGridCell />
-        </div>
-        <div
-          className={`${selectedKey === "aboutme" ? "selected-grid-cell" : ""}`}
-          key="aboutme"
-        >
-          <AboutMeGridCell />
-        </div>
-        <div
-          className={`${selectedKey === "chat" ? "selected-grid-cell" : ""} `}
-          key="chat"
-        >
-          <ChatGridCell />
-        </div>
-      </ResponsiveGridLayout>
-    </motion.div>
+        <ProfileGridCell />
+      </div>
+      <div
+        className={`grid-cell ${
+          selectedKey === "google-map" ? "selected-grid-cell" : ""
+        }`}
+        key="google-map"
+      >
+        <MapGridCell />
+      </div>
+      <div
+        className={`grid-cell ${
+          selectedKey === "seeso-sdk" ? "selected-grid-cell" : ""
+        } seeso-sdk-theme`}
+        key="seeso-sdk"
+      >
+        seeso sdk
+      </div>
+      <div
+        className={`grid-cell ${
+          selectedKey === "seeso-labs" ? "selected-grid-cell" : ""
+        } seesolabs-theme `}
+        key="seeso-labs"
+      >
+        seesolabs
+      </div>
+      <div
+        className={`grid-cell ${
+          selectedKey === "theme-toggle" ? "selected-grid-cell" : ""
+        }`}
+        key="theme-toggle"
+      >
+        <ThemeGridCell />
+      </div>
+      <div
+        className={`${
+          selectedKey === "instagram" ? "selected-grid-cell" : ""
+        } `}
+        key="instagram"
+      >
+        <InstaGridCell />
+      </div>
+      <div
+        className={`${selectedKey === "linkedin" ? "selected-grid-cell" : ""} `}
+        key="linkedin"
+      >
+        <LinkedInGridCell />
+      </div>
+      <div
+        className={`${selectedKey === "aboutme" ? "selected-grid-cell" : ""}`}
+        key="aboutme"
+      >
+        <AboutMeGridCell />
+      </div>
+      <div
+        className={`${selectedKey === "chat" ? "selected-grid-cell" : ""} `}
+        key="chat"
+      >
+        <ChatGridCell />
+      </div>
+    </ResponsiveGridLayout>
   );
 }
