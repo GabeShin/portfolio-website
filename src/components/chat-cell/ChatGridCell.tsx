@@ -3,6 +3,7 @@ import OpenAILogo from "./OpenAILogo";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import useWindowSize from "@/app/hooks/on-window-size";
+import OnGridButton from "../button/OnGridButton";
 
 export default function ChatGridCell() {
   const { theme, resolvedTheme } = useTheme();
@@ -29,6 +30,11 @@ export default function ChatGridCell() {
     }
   }, [windowSize]);
 
+  const goToChat = () => {
+    // todo: implement
+    console.log("go to chat");
+  };
+
   return (
     <div className="chatgpt-theme grid-cell relative h-full w-full overflow-hidden">
       <h1 className="absolute left-0 top-0 z-50 p-6 text-white">
@@ -36,6 +42,9 @@ export default function ChatGridCell() {
       </h1>
       <div className="absolute left-[50%] top-[25%] transition-transform duration-500 ease-in-out">
         <OpenAILogo width={size} height={size} color={logoColor} />
+      </div>
+      <div className="absolute bottom-0 left-0 p-2">
+        <OnGridButton text={"Hello!"} onClick={goToChat} />
       </div>
     </div>
   );

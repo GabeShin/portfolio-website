@@ -64,7 +64,7 @@
       radial-gradient(
         10rem circle at 95% 105%,
         oklch(var(--accent-color)) 50%,
-        transparent 51%
+        transparent 50%
       );
     background-color: oklch(var(--content-bg-color));
   }

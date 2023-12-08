@@ -16,6 +16,7 @@ const config: Config = {
         background: "oklch(var(--background-color) / <alpha-value>)",
         content: "oklch(var(--content-bg-color) / <alpha-value>)",
         border: "oklch(var(--border-color) / <alpha-value>)",
+        invertborder: "oklch(var(--invert-border-color) / <alpha-value>)",
       },
     },
     screens: {

@@ -1,10 +1,15 @@
 import InstagramLogo from "./InstagramLogo";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
+import OnGridButton from "../button/OnGridButton";
 
 export default function InstaGridCell() {
   const { theme } = useTheme();
   const [logoColor, setLogoColor] = useState("#ffffff");
+
+  const goToInstagramProfile = () => {
+    window.open("https://www.instagram.com/im.gabe.shin/");
+  };
 
   useEffect(() => {
     if (theme === "light" || theme === "retro") {
@@ -15,8 +20,13 @@ export default function InstaGridCell() {
   }, [theme]);
 
   return (
-    <div className="grid-cell instagram-theme flex h-full w-full items-center justify-center justify-items-center">
-      <InstagramLogo width={75} height={75} color={logoColor} />
+    <div className="instagram-theme grid-cell relative  h-full w-full">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <InstagramLogo width={75} height={75} color={logoColor} />
+      </div>
+      <div className="absolute bottom-0 left-0 p-2">
+        <OnGridButton text={"Go to"} onClick={goToInstagramProfile} />
+      </div>
     </div>
   );
 }
