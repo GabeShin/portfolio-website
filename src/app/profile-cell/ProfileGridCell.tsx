@@ -1,7 +1,16 @@
+import Image from "next/image";
+
 export default function ProfileGridCell() {
   return (
-    <div className="grid-cell h-full w-full p-6" style={{ display: "flex" }}>
-      <div>
+    <div className="grid-cell h-full w-full p-6">
+      <Image
+        src="/profile-picture-small.jpeg"
+        width={125}
+        height={125}
+        className="rounded-full"
+        alt="Profile Picture"
+      />
+      <div className="mt-8 flex-col">
         <p className="inline">Hello, I am </p>
         <h1 className="inline"> Gabe Shin</h1>
         <p className="inline">
