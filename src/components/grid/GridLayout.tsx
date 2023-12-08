@@ -1,17 +1,19 @@
 "use client";
-import "./grid-layout.css";
-import { useEffect, useState } from "react";
-import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
-import { layouts } from "./layouts";
-import useWindowSize from "@/app/hooks/on-window-size";
-import ThemeGridCell from "../theme-cell/ThemeGridCell";
-import { motion } from "framer-motion";
+
+import AboutMeGridCell from "../aboutme-cell/AboutMeGridCell";
+import ChatGridCell from "../chat-cell/ChatGridCell";
 import InstaGridCell from "../instagram-cell/InstaGridCell";
 import LinkedInGridCell from "../linkedin-cell/LinkedInGridCell";
-import AboutMeGridCell from "../aboutme-cell/AboutMeGridCell";
+import ThemeGridCell from "../theme-cell/ThemeGridCell";
+import "./grid-layout.css";
+import { layouts } from "./layouts";
+import useWindowSize from "@/app/hooks/on-window-size";
 import ProfileGridCell from "@/app/profile-cell/ProfileGridCell";
-import ChatGridCell from "../chat-cell/ChatGridCell";
+import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
+
 const MapGridCell = dynamic(() => import("../mapgrid-cell/MapGridCell"), {
   ssr: false,
 });
