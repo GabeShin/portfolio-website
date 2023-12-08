@@ -1,9 +1,10 @@
 "use client";
+
+import OnGridButton from "../button/OnGridButton";
+import useWindowSize from "../hooks/on-window-size";
 import OpenAILogo from "./OpenAILogo";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import useWindowSize from "@/app/hooks/on-window-size";
-import OnGridButton from "../button/OnGridButton";
 
 export default function ChatGridCell() {
   const { theme, resolvedTheme } = useTheme();

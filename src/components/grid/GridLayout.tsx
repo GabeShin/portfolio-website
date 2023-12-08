@@ -2,13 +2,13 @@
 
 import AboutMeGridCell from "../aboutme-cell/AboutMeGridCell";
 import ChatGridCell from "../chat-cell/ChatGridCell";
+import useWindowSize from "../hooks/on-window-size";
 import InstaGridCell from "../instagram-cell/InstaGridCell";
 import LinkedInGridCell from "../linkedin-cell/LinkedInGridCell";
+import ProfileGridCell from "../profile-cell/ProfileGridCell";
 import ThemeGridCell from "../theme-cell/ThemeGridCell";
 import "./grid-layout.css";
 import { layouts } from "./layouts";
-import useWindowSize from "@/app/hooks/on-window-size";
-import ProfileGridCell from "@/app/profile-cell/ProfileGridCell";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
@@ -62,7 +62,7 @@ export default function GridComponent() {
       transition={{ delay: 0.5 }}
     >
       <ResponsiveGridLayout
-        className="grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
+        className="grid-container m-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
         layouts={layouts}
         breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
         cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
