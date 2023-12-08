@@ -4,10 +4,12 @@ import OnGridButton from "../button/OnGridButton";
 import useWindowSize from "../hooks/on-window-size";
 import OpenAILogo from "./OpenAILogo";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function ChatGridCell() {
-  const { theme, resolvedTheme } = useTheme();
+  const { theme } = useTheme();
+  const router = useRouter();
   const windowSize = useWindowSize();
 
   const [size, setSize] = useState(0);
@@ -32,8 +34,7 @@ export default function ChatGridCell() {
   }, [windowSize]);
 
   const goToChat = () => {
-    // todo: implement
-    console.log("go to chat");
+    router.push("/chat");
   };
 
   return (
