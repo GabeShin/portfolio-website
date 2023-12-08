@@ -25,7 +25,7 @@ export default function LinkedInGridCell() {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <LinkedInLogo width={75} height={75} color={logoColor} />
       </div>
-      <div className="absolute bottom-0 left-0 p-2">
+      <div className="absolute bottom-2 left-2">
         <OnGridButton text={"Go to"} onClick={goToLinkedInProfile} />
       </div>
     </div>
