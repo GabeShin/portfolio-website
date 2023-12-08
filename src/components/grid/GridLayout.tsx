@@ -62,7 +62,7 @@ export default function GridComponent() {
       transition={{ delay: 0.5 }}
     >
       <ResponsiveGridLayout
-        className="grid-container max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
+        className="grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px]"
         layouts={layouts}
         breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
         cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
