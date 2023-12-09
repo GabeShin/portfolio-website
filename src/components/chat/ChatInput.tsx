@@ -24,11 +24,11 @@ const ChatInput = ({ send, disabled }: ChatInputProperties) => {
   };
 
   return (
-    <div className="w-full max-w-xl flex items-center justify-between rounded-md p-2 bg-white shadow-md border-2 border-gray-100">
+    <div className="w-full max-w-xl flex items-center justify-between rounded-md p-2 shadow-md border-2 border-border text-text">
       <input
         type="text"
         aria-label="Chat input"
-        className="flex-grow rounded-md p-2"
+        className="flex-grow rounded-md p-2 bg-background"
         placeholder="Ask me any question"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
