@@ -70,7 +70,7 @@ export default function GridComponent() {
         <ProfileGridCell />
       </div>
       <div
-        className={`grid-cell ${
+        className={`${
           selectedKey === "google-map" ? "selected-grid-cell" : ""
         }`}
         key="google-map"
@@ -94,7 +94,7 @@ export default function GridComponent() {
         seesolabs
       </div>
       <div
-        className={`grid-cell ${
+        className={`${
           selectedKey === "theme-toggle" ? "selected-grid-cell" : ""
         }`}
         key="theme-toggle"

@@ -1,7 +1,8 @@
 "use client";
+
 import "./theme-grid-cell.css";
-import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function ThemeGridCell() {
   const [mounted, setMounted] = useState(false);
@@ -17,7 +18,7 @@ export default function ThemeGridCell() {
   if (!mounted) return null;
 
   return (
-    <div className="flex h-full w-full items-center justify-center ">
+    <div className="flex grid-cell h-full w-full items-center justify-center ">
       <div className="grid h-[120px] w-[120px] grid-cols-2 items-center justify-items-center gap-4">
         {["light", "dark", "retro", "neon"].map((themeName) => (
           <button
