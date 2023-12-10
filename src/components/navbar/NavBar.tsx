@@ -15,14 +15,14 @@ export default function NavBar() {
       initial={{ opacity: 0 }}
       animate={{ translateX: 0, opacity: 1 }}
     >
-      <div className="my-8 mx-4">
+      <button className="my-8 mx-4">
         <h1
           onClick={goToHome}
           className="navbar-title inline-block text-transparent bg-clip-text"
         >
           I am Gabe Shin
         </h1>
-      </div>
+      </button>
     </motion.div>
   );
 }

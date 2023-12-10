@@ -94,10 +94,9 @@ export default function ChatPage() {
         opacity: [0, 1],
         translateY: [20, 0],
       }}
-      transition={{ delay: 0.5 }}
     >
-      <section className="relative w-screen h-screen ">
-        <div className="w-full h-screen overflow-y-auto pb-2">
+      <section className="relative w-screen h-screen">
+        <div className="w-full overflow-y-auto pb-32">
           {messages.map((message) =>
             message.sender === "bot" ? (
               <BotMessage key={message.id} message={message} />
@@ -106,7 +105,7 @@ export default function ChatPage() {
             ),
           )}
         </div>
-        <div className="absolute bottom-0 w-full items-center flex flex-col my-4">
+        <div className="fixed bottom-0 w-full items-center flex flex-col my-4 z-50">
           <ChatInput disabled={isSending} send={sendMessage} />
           <button
             className="text-sm font-light hover:font-medium mt-2"

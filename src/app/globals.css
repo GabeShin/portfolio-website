@@ -21,6 +21,7 @@
   html,
   body {
     @apply bg-background;
+    @apply h-screen;
   }
 
   :root {

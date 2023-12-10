@@ -24,7 +24,7 @@ const ChatInput = ({ send, disabled }: ChatInputProperties) => {
   };
 
   return (
-    <div className="w-full max-w-xl flex items-center justify-between rounded-md p-2 shadow-md border-2 border-border text-text">
+    <div className="w-full max-w-2xl flex items-center justify-between rounded-md bg-background p-2 shadow-md border-2 border-border text-text">
       <input
         type="text"
         aria-label="Chat input"

@@ -9,7 +9,7 @@ export interface PropType {
 
 export default function BotMessage({ message }: PropType) {
   return (
-    <div className="relative flex max-w-xl mx-auto px-2">
+    <div className="relative flex max-w-2xl mx-auto px-2">
       <div className="absolute flex items-center justify-center ring-2 z-10 rounded-full bg-blue-500 ring-background w-10 h-10">
         <FaceIcon width={28} height={28} color="#fff" />
       </div>
