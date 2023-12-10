@@ -1,7 +1,8 @@
+import "./globals.css";
+import NavBar from "@/components/navbar/NavBar";
+import ThemeClientProvider from "@/components/providers/ThemeProvider";
 import type { Metadata } from "next";
 import { Eczar, Noto_Sans } from "next/font/google";
-import "./globals.css";
-import ThemeClientProvider from "@/components/providers/ThemeProvider";
 
 const noto_sans = Noto_Sans({
   weight: ["400", "700"],
@@ -29,7 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${noto_sans.variable} ${noto_serif.variable}`}>
-        <ThemeClientProvider>{children}</ThemeClientProvider>
+        <ThemeClientProvider>
+          <NavBar />
+          {children}
+        </ThemeClientProvider>
       </body>
     </html>
   );

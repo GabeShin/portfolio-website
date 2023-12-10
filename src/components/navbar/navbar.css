@@ -1,0 +1,7 @@
+.navbar-title {
+  background-image: linear-gradient(
+    to right,
+    oklch(var(--primary-color)),
+    oklch(var(--accent-color))
+  );
+}

@@ -1,11 +1,11 @@
 "use client";
 
-import "./map.css";
-import "@tomtom-international/web-sdk-maps/dist/maps.css";
-import tt from "@tomtom-international/web-sdk-maps";
-import { useEffect, useRef, useState } from "react";
 import OnGridButton from "../button/OnGridButton";
+import "./map.css";
+import tt from "@tomtom-international/web-sdk-maps";
+import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 
 type PropsType = {};
 
@@ -28,7 +28,7 @@ export default function MapGridCell({}: PropsType) {
       key: process.env.NEXT_PUBLIC_TOMTOM_API_KEY as string,
       container: mapRef.current as unknown as HTMLElement,
       center: location,
-      zoom: 12,
+      zoom: 9,
     });
 
     // TODO: add custom marker
