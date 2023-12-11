@@ -25,9 +25,9 @@
   }
 
   :root {
-    --primary-color: 85.35% 0.065 308.58;
-    --accent-color: 89.83% 0.024 145.37;
-    --accent-color-2: 88.6% 0.06 15.82;
+    --primary-color: 74.45% 0.15500952743196372 21.503538285117237;
+    --accent-color: 88.34% 0.09080831491816366 71.0205749867438;
+    --accent-color-2: 97.47% 0.075 113.39;
     --text-color: 5% 0 0;
     --subtext-color: 55% 0 0;
     --background-color: 96.87% 0.009 44.89;
@@ -40,9 +40,9 @@
 
   @media (prefers-color-scheme: light) {
     :root {
-      --primary-color: 85.35% 0.065 308.58;
-      --accent-color: 89.83% 0.024 145.37;
-      --accent-color-2: 88.6% 0.06 15.82;
+      --primary-color: 74.45% 0.15500952743196372 21.503538285117237;
+      --accent-color: 88.34% 0.09080831491816366 71.0205749867438;
+      --accent-color-2: 97.47% 0.075 113.39;
       --text-color: 5% 0 0;
       --subtext-color: 55% 0 0;
       --background-color: 96.87% 0.009 44.89;
@@ -56,9 +56,9 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --primary-color: 32.27% 0.044 321.59;
-      --accent-color: 46.74% 0.072 293.6;
-      --accent-color-2: 61.63% 0.074 263.42;
+      --primary-color: 65.31% 0.175 45.03;
+      --accent-color: 36.47% 0.135 18.46;
+      --accent-color-2: 83.52% 0.158 119.1;
       --background-color: 15.29% 0.01 255.44;
       --content-bg-color: 17.63% 0.014 258.36;
       --border-color: 33% 0.015 252.31;
@@ -70,9 +70,9 @@
   }
 
   :root[data-theme="light"] {
-    --primary-color: 85.35% 0.065 308.58;
-    --accent-color: 89.83% 0.024 145.37;
-    --accent-color-2: 88.6% 0.06 15.82;
+    --primary-color: 74.45% 0.15500952743196372 21.503538285117237;
+    --accent-color: 88.34% 0.09080831491816366 71.0205749867438;
+    --accent-color-2: 97.47% 0.075 113.39;
     --background-color: 96.87% 0.009 44.89;
     --content-bg-color: 100% 0 0;
     --border-color: 100% 0 0;
@@ -96,9 +96,9 @@
   }
 
   :root[data-theme="dark"] {
-    --primary-color: 32.27% 0.044 321.59;
-    --accent-color: 46.74% 0.072 293.6;
-    --accent-color-2: 61.63% 0.074 263.42;
+    --primary-color: 65.31% 0.175 45.03;
+    --accent-color: 36.47% 0.135 18.46;
+    --accent-color-2: 83.52% 0.158 119.1;
     --background-color: 15.29% 0.01 255.44;
     --content-bg-color: 17.63% 0.014 258.36;
     --border-color: 33% 0.015 252.31;
