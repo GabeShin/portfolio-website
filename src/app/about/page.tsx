@@ -48,15 +48,44 @@ export default function AboutPage() {
           <div>
             <h1 className="text-primary my-8"> Introduction </h1>
             <p>
-              I am a web developer with 5 years of experience in startup with
-              developing, deploying and maintaining services. I had mostly been
-              in charge of web development, but also bring leadership experience
-              in leading multi-platform SDK product. I initially joined the
+              I am a full stack developer with 5+ years of experience in startup
+              with developing, deploying and maintaining services. I had mostly
+              been in charge of web development, but also bring leadership
+              experience in leading a team of engineers. I initially joined a
               small team as a machine learning researcher, but expanded my
               skillsets and responsibilities as the product and the team grew. I
-              prioritizes features that bring business value. In order to bring
-              meaningful business value, I tried to deliver features frequently
-              and understand user&apos; behavior through data.
+              prioritizes features that bring business value and in order to
+              bring meaningful business value, I tried to deliver features
+              frequently and understand user&apos; behavior through data.
+            </p>
+          </div>
+          <div>
+            <h1 className="text-primary my-8"> Latest Interest</h1>
+            <p>
+              Lately, I had been very interested with LLM - of course, so is
+              everyone else in the world - and its applications. I made the
+              chatbot that answers questions about me, (please{" "}
+              <Link className="text-blue-500" href="/chat">
+                check it out
+              </Link>{" "}
+              if you hadn&apos;t already) and also small CLI tool
+              <Link
+                className="text-blue-500"
+                href="https://github.com/gabeshin/anote-cli.git"
+              >
+                {" "}
+                side project{" "}
+              </Link>
+              that allows me to take notes on the vim and summarizes it using
+              the LLM model locally without using the server.
+            </p>
+            <br />
+            <p>
+              {" "}
+              I had also been looking into HTMX and Golang, I think it solves
+              many problems and complexity that React is bringing to the web
+              development and makes DX most pleasureable. I will be doing a
+              small project soon.{" "}
             </p>
           </div>
           <div>
@@ -157,7 +186,9 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-4 my-4">
             <div className="col-start-1">
-              <p className="font-semibold">Shawniganlake Secondary School</p>
+              <p className="font-semibold">
+                Shawniganlake Secondary School - BC, Canada
+              </p>
               <p className="text-subtext"> 2005.09 - 2009.05</p>
             </div>
             <div className="col-start-2 col-end-5">

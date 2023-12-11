@@ -6,6 +6,8 @@ import useWindowSize from "../hooks/on-window-size";
 import InstaGridCell from "../instagram-cell/InstaGridCell";
 import LinkedInGridCell from "../linkedin-cell/LinkedInGridCell";
 import ProfileGridCell from "../profile-cell/ProfileGridCell";
+import SeesoLabsGridCell from "../seesolabs-cell/SeesoLabsGridCell";
+import SeesoSDKGridCell from "../seesosdk-cell/SeesoSDKGridCell";
 import ThemeGridCell from "../theme-cell/ThemeGridCell";
 import "./grid-layout.css";
 import { layouts } from "./layouts";
@@ -78,20 +80,20 @@ export default function GridComponent() {
         <MapGridCell />
       </div>
       <div
-        className={`grid-cell ${
+        className={` ${
           selectedKey === "seeso-sdk" ? "selected-grid-cell" : ""
-        } seeso-sdk-theme`}
+        } `}
         key="seeso-sdk"
       >
-        seeso sdk
+        <SeesoSDKGridCell />
       </div>
       <div
-        className={`grid-cell ${
+        className={`${
           selectedKey === "seeso-labs" ? "selected-grid-cell" : ""
-        } seesolabs-theme `}
+        }`}
         key="seeso-labs"
       >
-        seesolabs
+        <SeesoLabsGridCell />
       </div>
       <div
         className={`${
