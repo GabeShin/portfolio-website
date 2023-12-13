@@ -32,6 +32,7 @@ export default function ChatPage() {
     setMessages((prevMessages) => [...prevMessages, inputMessage]);
 
     try {
+      // todo: add server action to send message
       setTimeout(() => {
         const outputMessage: MessageType = {
           id: `${Date.now()}`,
@@ -40,6 +41,7 @@ export default function ChatPage() {
           date: new Date(),
         };
 
+        scrollToBottom();
         setMessages((prevMessages) => [...prevMessages, outputMessage]);
         setIsSending(false);
       }, 2000);

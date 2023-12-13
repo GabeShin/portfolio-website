@@ -34,13 +34,13 @@ export default function ChatGridCell() {
   }, [windowSize]);
 
   const goToChat = () => {
-    router.push("/chat");
+    // router.push("/chat");
   };
 
   return (
     <div className="chatgpt-theme grid-cell relative h-full w-full overflow-hidden">
       <h1 className="absolute left-0 top-0 z-50 p-6 text-white">
-        Chat with AI
+        Chat with AI (Under Construction)
       </h1>
       <div className="absolute left-[50%] top-[25%] transition-transform duration-500 ease-in-out">
         <OpenAILogo width={size} height={size} color={logoColor} />
