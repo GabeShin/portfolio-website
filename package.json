@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@huggingface/inference": "^2.6.4",
     "@tomtom-international/web-sdk-maps": "^6.25.0",
     "framer-motion": "^10.16.12",
     "langchain": "^0.0.206",

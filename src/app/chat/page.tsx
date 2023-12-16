@@ -4,6 +4,7 @@ import BotMessage from "@/components/chat/BotMessage";
 import ChatInput from "@/components/chat/ChatInput";
 import UserMessage from "@/components/chat/UserMessage";
 import InsertModal from "@/components/insert-modal";
+import { sendMessageToChatbot } from "@/lib/chat";
 import { MessageType } from "@/lib/types/message.type";
 import { motion } from "framer-motion";
 import { useRef } from "react";
@@ -39,19 +40,20 @@ export default function ChatPage() {
     setMessages((prevMessages) => [...prevMessages, inputMessage]);
 
     try {
-      // todo: add server action to send message
-      setTimeout(() => {
-        const outputMessage: MessageType = {
-          id: `${Date.now()}`,
-          sender: "bot",
-          content: "Hello from the other side!",
-          date: new Date(),
-        };
+      scrollToBottom();
 
-        scrollToBottom();
-        setMessages((prevMessages) => [...prevMessages, outputMessage]);
-        setIsSending(false);
-      }, 2000);
+      sendMessageToChatbot(messages);
+
+      // todo: add server action to send message
+      const outputMessage: MessageType = {
+        id: `${Date.now()}`,
+        sender: "bot",
+        content: "Hello from the other side!",
+        date: new Date(),
+      };
+      setMessages((prevMessages) => [...prevMessages, outputMessage]);
+      setIsSending(false);
+      scrollToBottom();
     } catch (error) {
       setIsSending(false);
       const outputMessage: MessageType = {
@@ -113,6 +115,7 @@ export default function ChatPage() {
               <UserMessage key={message.id} message={message} />
             ),
           )}
+          <div ref={messagesEndRef} />
         </div>
         <div className="fixed bottom-0 w-full items-center flex flex-col my-4 z-50">
           <ChatInput disabled={isSending} send={sendMessage} />

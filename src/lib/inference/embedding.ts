@@ -1,3 +1,5 @@
+"use server";
+
 import { HuggingFaceInferenceEmbeddings } from "langchain/embeddings/hf";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
@@ -22,8 +24,13 @@ const hf = new HuggingFaceInferenceEmbeddings({
 export async function getDocumentEmbeddings(
   text: string,
 ): Promise<{ vector: number[]; text: string }[]> {
+  console.log("inputText", text);
   const splitText = await textSplitter.splitText(text);
+
+  console.log(splitText);
   const embeddings = await hf.embedDocuments(splitText);
+
+  console.log(embeddings);
 
   return embeddings.map((vector, index) => ({
     vector,

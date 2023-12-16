@@ -8,7 +8,7 @@ class MongoDatabase {
   private constructor() {
     const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@iamgabe.alllehj.mongodb.net/?retryWrites=true&w=majority`;
     this.client = new MongoClient(uri);
-    this.database = this.client.db("YOUR_DB_NAME");
+    this.database = this.client.db("documents");
   }
 
   public static async getInstance(): Promise<MongoDatabase> {
@@ -22,7 +22,8 @@ class MongoDatabase {
   private async connect(): Promise<void> {
     try {
       await this.client.connect();
-      this.database = this.client.db(process.env.MONGODB_DB_NAME);
+      this.client.db("IamGabe");
+      this.database = this.client.db("documents");
       console.log("Connected successfully to MongoDB");
     } catch (e) {
       console.error("Failed to connect to MongoDB", e);
@@ -30,11 +31,7 @@ class MongoDatabase {
     }
   }
 
-<<<<<<< Updated upstream
-  public getDb(): Db {
-=======
   public getDatabase(): Db {
->>>>>>> Stashed changes
     return this.database;
   }
 
