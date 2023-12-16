@@ -3,6 +3,7 @@
 import BotMessage from "@/components/chat/BotMessage";
 import ChatInput from "@/components/chat/ChatInput";
 import UserMessage from "@/components/chat/UserMessage";
+import InsertModal from "@/components/insert-modal";
 import { MessageType } from "@/lib/types/message.type";
 import { motion } from "framer-motion";
 import { useRef } from "react";
@@ -18,6 +19,12 @@ export default function ChatPage() {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const openModal = () => {
+    const modal = document.getElementById("myModal");
+    if (!modal) return;
+    modal.classList.toggle("hidden");
   };
 
   const sendMessage = (message: string) => {
@@ -109,12 +116,21 @@ export default function ChatPage() {
         </div>
         <div className="fixed bottom-0 w-full items-center flex flex-col my-4 z-50">
           <ChatInput disabled={isSending} send={sendMessage} />
-          <button
-            className="text-sm font-light hover:font-medium mt-2"
-            onClick={deleteAllMessages}
-          >
-            Delete all messages
-          </button>
+          <div className="flex">
+            <button
+              className="text-sm font-light hover:font-medium m-2 text-text"
+              onClick={openModal}
+            >
+              Insert data
+            </button>
+            <button
+              className="text-sm font-light hover:font-medium m-2 text-text"
+              onClick={deleteAllMessages}
+            >
+              Delete all messages
+            </button>
+          </div>
+          <InsertModal />
         </div>
       </section>
     </motion.div>

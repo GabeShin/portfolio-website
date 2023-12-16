@@ -30,7 +30,11 @@ class MongoDatabase {
     }
   }
 
+<<<<<<< Updated upstream
   public getDb(): Db {
+=======
+  public getDatabase(): Db {
+>>>>>>> Stashed changes
     return this.database;
   }
 
