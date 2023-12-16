@@ -10,7 +10,7 @@ export type GetAnswerResponseDto = ReturnType<
 >;
 
 export async function getLLMResponse(
-  question: string,
+  question: string[],
   relatedDocuments: string[],
 ): Promise<GetAnswerResponseDto> {
   const input_documents = relatedDocuments.map(

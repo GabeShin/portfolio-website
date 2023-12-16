@@ -28,7 +28,7 @@ export default function ChatPage() {
     modal.classList.toggle("hidden");
   };
 
-  const sendMessage = (message: string) => {
+  const sendMessage = async (message: string) => {
     setIsSending(true);
     const inputMessage: MessageType = {
       id: `${Date.now()}`,
@@ -42,13 +42,11 @@ export default function ChatPage() {
     try {
       scrollToBottom();
 
-      sendMessageToChatbot(messages);
-
-      // todo: add server action to send message
+      const response = await sendMessageToChatbot(messages);
       const outputMessage: MessageType = {
         id: `${Date.now()}`,
         sender: "bot",
-        content: "Hello from the other side!",
+        content: response,
         date: new Date(),
       };
       setMessages((prevMessages) => [...prevMessages, outputMessage]);

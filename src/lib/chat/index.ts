@@ -1,6 +1,7 @@
 "use server";
 
 import MongoDatabase from "../database";
+import { getLLMResponse } from "../inference/chatgpt";
 import {
   getDocumentEmbeddings,
   getQueryEmbeddings,
@@ -41,7 +42,21 @@ export async function sendMessageToChatbot(messages: MessageType[]) {
   // Do a vector search
   const lastMessage = messages[messages.length - 1];
   const similarDocuments = await findSimilarDocuments(lastMessage);
-  console.log("results", similarDocuments);
+
+  // Get last four messages
+  const contents = [];
+  const lastFourMessages = messages.slice(-4);
+  for (const message of lastFourMessages) {
+    contents.push(message.content);
+  }
+
+  const response = await getLLMResponse(contents, similarDocuments);
+
+  const { text } = response;
+
+  // await sendSlackMessage(message, text);
+
+  return text;
 }
 
 export async function insertDocument(documentText: string, secret: string) {
