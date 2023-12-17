@@ -73,7 +73,7 @@ export default function GridComponent() {
         }`}
         key="google-map"
       >
-        Map
+        <MapGridCell />
       </div>
       <div
         className={` ${
