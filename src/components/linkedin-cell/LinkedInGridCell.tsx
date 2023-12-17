@@ -1,8 +1,9 @@
 "use client";
+
 import LinkedInLogo from "./LinkedInLogo";
+import OnGridButton from "@/components/button/OnGridButton";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
-import OnGridButton from "../button/OnGridButton";
 
 export default function LinkedInGridCell() {
   const { theme } = useTheme();

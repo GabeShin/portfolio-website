@@ -1,8 +1,8 @@
 "use client";
 
-import OnGridButton from "../button/OnGridButton";
-import useWindowSize from "../hooks/on-window-size";
 import OpenAILogo from "./OpenAILogo";
+import OnGridButton from "@/components/button/OnGridButton";
+import useWindowSize from "@/components/hooks/on-window-size";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

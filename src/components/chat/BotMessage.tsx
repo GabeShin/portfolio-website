@@ -3,7 +3,6 @@
 import FaceIcon from "./FaceIcon";
 import SpinnerIcon from "./SpinnerIcon";
 import { MessageType } from "@/lib/types/message.type";
-import { randomUUID } from "crypto";
 
 export interface PropType {
   message: MessageType;

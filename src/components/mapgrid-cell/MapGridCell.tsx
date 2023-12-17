@@ -1,7 +1,7 @@
 "use client";
 
-import OnGridButton from "../button/OnGridButton";
 import "./map.css";
+import OnGridButton from "@/components/button/OnGridButton";
 import tt from "@tomtom-international/web-sdk-maps";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import { useTheme } from "next-themes";
