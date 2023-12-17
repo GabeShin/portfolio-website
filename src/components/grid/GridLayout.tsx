@@ -1,16 +1,16 @@
 "use client";
 
-import AboutMeGridCell from "../aboutme-cell/AboutMeGridCell";
-import ChatGridCell from "../chat-cell/ChatGridCell";
-import useWindowSize from "../hooks/on-window-size";
-import InstaGridCell from "../instagram-cell/InstaGridCell";
-import LinkedInGridCell from "../linkedin-cell/LinkedInGridCell";
-import ProfileGridCell from "../profile-cell/ProfileGridCell";
-import SeesoLabsGridCell from "../seesolabs-cell/SeesoLabsGridCell";
-import SeesoSDKGridCell from "../seesosdk-cell/SeesoSDKGridCell";
-import ThemeGridCell from "../theme-cell/ThemeGridCell";
 import "./grid-layout.css";
 import { layouts } from "./layouts";
+import AboutMeGridCell from "@/components/aboutme-cell/AboutMeGridCell";
+import ChatGridCell from "@/components/chat-cell/ChatGridCell";
+import useWindowSize from "@/components/hooks/on-window-size";
+import InstaGridCell from "@/components/instagram-cell/InstaGridCell";
+import LinkedInGridCell from "@/components/linkedin-cell/LinkedInGridCell";
+import ProfileGridCell from "@/components/profile-cell/ProfileGridCell";
+import SeesoLabsGridCell from "@/components/seesolabs-cell/SeesoLabsGridCell";
+import SeesoSDKGridCell from "@/components/seesosdk-cell/SeesoSDKGridCell";
+import ThemeGridCell from "@/components/theme-cell/ThemeGridCell";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";

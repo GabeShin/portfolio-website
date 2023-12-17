@@ -1,4 +1,4 @@
-import LargeGridButton from "../button/LargeGridButton";
+import LargeGridButton from "@/components/button/LargeGridButton";
 import Image from "next/image";
 
 export default function SeesoSDKGridCell() {

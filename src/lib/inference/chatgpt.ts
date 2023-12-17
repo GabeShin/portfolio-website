@@ -1,4 +1,4 @@
-import { MessageType } from "../types/message.type";
+import { MessageType } from "@/lib/types/message.type";
 import { Document } from "langchain/document";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";

@@ -1,4 +1,4 @@
-import SendButton from "../button/SendButton";
+import SendButton from "@/components/button/SendButton";
 import React, { useState } from "react";
 
 export interface ChatInputProperties {

@@ -1,4 +1,4 @@
-import LargeGridButton from "../button/LargeGridButton";
+import LargeGridButton from "@/components/button/LargeGridButton";
 import { useRouter } from "next/navigation";
 
 export default function AboutMeGridCell() {
