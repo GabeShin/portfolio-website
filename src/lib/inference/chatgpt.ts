@@ -7,6 +7,7 @@ import { PromptTemplate } from "langchain/prompts";
 import { RunnableSequence } from "langchain/runnables";
 import { StringOutputParser } from "langchain/schema/output_parser";
 import { formatDocumentsAsString } from "langchain/util/document";
+import { revalidatePath } from "next/cache";
 
 function formatMessageTypeAsString(message: MessageType) {
   return `${message.sender}: ${message.content}\n`;
@@ -65,6 +66,8 @@ export async function getLLMResponse(
     chatHistory,
     context,
   });
+
+  revalidatePath("/chat");
 
   return response;
 }
