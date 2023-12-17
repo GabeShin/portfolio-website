@@ -148,8 +148,8 @@ export default function ChatPage() {
         translateY: [20, 0],
       }}
     >
-      <section className="relative w-screen h-screen">
-        <div className="w-full h-full overflow-y-auto pb-32">
+      <section className="relative w-screen">
+        <div className="w-full overflow-y-auto pb-32">
           {messages.map((message) =>
             message.sender === "bot" ? (
               <BotMessage key={message.id} message={message} />
