@@ -1,7 +1,9 @@
 "use client";
 
 import FaceIcon from "./FaceIcon";
+import SpinnerIcon from "./SpinnerIcon";
 import { MessageType } from "@/lib/types/message.type";
+import { randomUUID } from "crypto";
 
 export interface PropType {
   message: MessageType;
@@ -14,7 +16,13 @@ export default function BotMessage({ message }: PropType) {
         <FaceIcon width={28} height={28} color="#fff" />
       </div>
       <div className="break-words ml-6 mt-4 max-w-lg p-4 bg-gray-50 text-black border-border border-2 rounded-3xl">
-        {message.content}
+        {message.content === "Invalid response" ? (
+          <div className="animate-spin">
+            <SpinnerIcon key={message.id} height={20} width={20} color="#333" />
+          </div>
+        ) : (
+          message.content
+        )}
       </div>
     </div>
   );

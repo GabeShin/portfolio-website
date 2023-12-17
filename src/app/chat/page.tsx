@@ -31,41 +31,54 @@ export default function ChatPage() {
   const sendMessage = async (message: string) => {
     setIsSending(true);
     const inputMessage: MessageType = {
-      id: `${Date.now()}`,
+      id: `${Date.now()}-user`,
       sender: "user",
       content: message,
       date: new Date(),
     };
 
-    setMessages((prevMessages) => [...prevMessages, inputMessage]);
+    const placeholderMessage: MessageType = {
+      id: `${Date.now()}-bot`,
+      sender: "bot",
+      content: "Invalid response",
+      date: new Date(),
+    };
+
+    const prevMessages = messages;
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      inputMessage,
+      placeholderMessage,
+    ]);
 
     try {
-      scrollToBottom();
+      const response = await sendMessageToChatbot(message, prevMessages);
+      setMessages((prevMessages) => {
+        const newMessages = [...prevMessages];
+        newMessages[newMessages.length - 1] = {
+          ...newMessages[newMessages.length - 1],
+          content: response,
+        };
+        return newMessages;
+      });
 
-      const response = await sendMessageToChatbot(messages);
-      const outputMessage: MessageType = {
-        id: `${Date.now()}`,
-        sender: "bot",
-        content: response,
-        date: new Date(),
-      };
-      setMessages((prevMessages) => [...prevMessages, outputMessage]);
       setIsSending(false);
-      scrollToBottom();
     } catch (error) {
+      setMessages((prevMessages) => {
+        const newMessages = [...prevMessages];
+        newMessages[newMessages.length - 1] = {
+          ...newMessages[newMessages.length - 1],
+          content: "Sorry, something went wrong. Please try again later.",
+        };
+        return newMessages;
+      });
       setIsSending(false);
-      const outputMessage: MessageType = {
-        id: `${Date.now()}`,
-        sender: "bot",
-        content: "Something went wrong! Please try again later.",
-        date: new Date(),
-      };
-      setMessages((prevMessages) => [...prevMessages, outputMessage]);
     }
   };
 
   const deleteAllMessages = () => {
     localStorage.removeItem("messages");
+    setMessages([]);
   };
 
   useEffect(() => {
@@ -79,7 +92,7 @@ export default function ChatPage() {
     const hasVisit = localStorage.getItem("hasVisit");
     if (!hasVisit) {
       const greetings: MessageType = {
-        id: `${Date.now()}`,
+        id: `${Date.now()}-bot`,
         sender: "bot",
         content:
           "Hi there! I am a chatbot trained to answer questions about Gabe. Please ask me anything about Gabe! (Professional interview questions only please)",
@@ -94,6 +107,7 @@ export default function ChatPage() {
     if (messages.length > 0) {
       localStorage.setItem("messages", JSON.stringify(messages));
     }
+    scrollToBottom();
   }, [messages]);
 
   return (
@@ -105,7 +119,7 @@ export default function ChatPage() {
       }}
     >
       <section className="relative w-screen h-screen">
-        <div className="w-full overflow-y-auto pb-32">
+        <div className="w-full h-full overflow-y-auto pb-32">
           {messages.map((message) =>
             message.sender === "bot" ? (
               <BotMessage key={message.id} message={message} />
@@ -113,7 +127,7 @@ export default function ChatPage() {
               <UserMessage key={message.id} message={message} />
             ),
           )}
-          <div ref={messagesEndRef} />
+          <div key="endRef" ref={messagesEndRef} />
         </div>
         <div className="fixed bottom-0 w-full items-center flex flex-col my-4 z-50">
           <ChatInput disabled={isSending} send={sendMessage} />

@@ -7,13 +7,16 @@ import {
   getQueryEmbeddings,
 } from "../inference/embedding";
 import { MessageType } from "../types/message.type";
+import { Document } from "langchain/document";
 
-export async function findSimilarDocuments(message: MessageType) {
+export async function findSimilarDocuments(
+  message: string,
+): Promise<Document[]> {
   const dbInstance = await MongoDatabase.getInstance();
   const database = dbInstance.getDatabase();
 
   // Do a vector search
-  const queryEmbeddings = await getQueryEmbeddings(message.content);
+  const queryEmbeddings = await getQueryEmbeddings(message);
 
   const result = database.collection("iamgabe").aggregate([
     {
@@ -32,35 +35,28 @@ export async function findSimilarDocuments(message: MessageType) {
     if (!doc.text) {
       continue;
     }
-    documents.push(doc.text);
+    documents.push(new Document({ pageContent: doc.text }));
   }
 
   return documents;
 }
 
-export async function sendMessageToChatbot(messages: MessageType[]) {
-  // Do a vector search
-  const lastMessage = messages[messages.length - 1];
-  const similarDocuments = await findSimilarDocuments(lastMessage);
-
-  // Get last four messages
-  const contents = [];
-  const lastFourMessages = messages.slice(-4);
-  for (const message of lastFourMessages) {
-    contents.push(message.content);
-  }
-
-  const response = await getLLMResponse(contents, similarDocuments);
-
-  const { text } = response;
-
+export async function sendMessageToChatbot(
+  question: string,
+  chatHistory: MessageType[],
+) {
+  const relevantDocuments = await findSimilarDocuments(question);
+  const response = await getLLMResponse(
+    question,
+    chatHistory,
+    relevantDocuments,
+  );
   // await sendSlackMessage(message, text);
 
-  return text;
+  return response;
 }
 
 export async function insertDocument(documentText: string, secret: string) {
-  console.log("insert document server action");
   if (secret !== process.env.SECRET_MAGIC_WORD) {
     return;
   }
