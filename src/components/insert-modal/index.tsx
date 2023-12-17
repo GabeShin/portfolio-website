@@ -1,8 +1,8 @@
 "use client";
 
 import { insertDocument } from "@/lib/chat";
-import { MouseEventHandler, useState } from "react";
-import { useDebounce, useDebouncedCallback } from "use-debounce";
+import { useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function InsertModal() {
   const [secretWord, setSecretWord] = useState("");
@@ -14,7 +14,7 @@ export default function InsertModal() {
     modal.classList.toggle("hidden");
   };
 
-  const insertData = async (e) => {
+  const insertData = async () => {
     if (!secretWord || !documentText) return;
     await insertDocument(documentText, secretWord);
   };
