@@ -1,6 +1,5 @@
 "use client";
 
-import MapGridCell from "../mapgrid-cell/MapGridCell";
 import "./grid-layout.css";
 import { layouts } from "./layouts";
 import AboutMeGridCell from "@/components/aboutme-cell/AboutMeGridCell";
@@ -12,8 +11,13 @@ import ProfileGridCell from "@/components/profile-cell/ProfileGridCell";
 import SeesoLabsGridCell from "@/components/seesolabs-cell/SeesoLabsGridCell";
 import SeesoSDKGridCell from "@/components/seesosdk-cell/SeesoSDKGridCell";
 import ThemeGridCell from "@/components/theme-cell/ThemeGridCell";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { ItemCallback, Responsive, WidthProvider } from "react-grid-layout";
+
+const MapGridCell = dynamic(() => import("../mapgrid-cell/MapGridCell"), {
+  ssr: false,
+});
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
