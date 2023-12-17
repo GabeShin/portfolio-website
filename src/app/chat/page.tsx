@@ -61,6 +61,7 @@ export default function ChatPage() {
       console.time("getReleventDocuments");
       const relevantDocumentsText = await findSimilarDocuments(message);
       console.timeEnd("getReleventDocuments");
+      console.log(relevantDocumentsText);
 
       // serialize inputs
       const serializedDocuments = relevantDocumentsText
