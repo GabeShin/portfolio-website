@@ -1,3 +1,5 @@
+"use server";
+
 import { MessageType } from "@/lib/types/message.type";
 import { Document } from "langchain/document";
 import { OpenAI } from "langchain/llms/openai";
@@ -28,34 +30,19 @@ class SingletonChain {
         {
           question: (input: {
             question: string;
-            chatHistory?: MessageType[];
-            context?: Document[];
+            chatHistory: string;
+            context: string;
           }) => input.question,
           chatHistory: (input: {
             question: string;
-            chatHistory?: MessageType[];
-            context?: Document[];
-          }) => {
-            if (!input.chatHistory) {
-              return "";
-            }
-
-            let serialized = "";
-            for (const message of input.chatHistory) {
-              serialized += formatMessageTypeAsString(message);
-            }
-            return serialized;
-          },
+            chatHistory: string;
+            context: string;
+          }) => input.chatHistory,
           context: async (input: {
             question: string;
-            chatHistory?: MessageType[];
-            context?: Document[];
-          }) => {
-            const serialized = input.context
-              ? formatDocumentsAsString(input.context)
-              : "";
-            return serialized;
-          },
+            chatHistory: string;
+            context: string;
+          }) => input.context,
         },
         customPrompt,
         model,
@@ -69,8 +56,8 @@ class SingletonChain {
 
 export async function getLLMResponse(
   question: string,
-  chatHistory: MessageType[],
-  context: Document[],
+  chatHistory: string,
+  context: string,
 ) {
   const chain = SingletonChain.getInstance();
   const response = await chain.invoke({

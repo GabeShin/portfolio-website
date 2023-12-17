@@ -4,12 +4,17 @@ import BotMessage from "@/components/chat/BotMessage";
 import ChatInput from "@/components/chat/ChatInput";
 import UserMessage from "@/components/chat/UserMessage";
 import InsertModal from "@/components/insert-modal";
-import { sendMessageToChatbot } from "@/lib/chat";
+import { findSimilarDocuments } from "@/lib/chat";
+import { getLLMResponse } from "@/lib/inference/chatgpt";
 import { MessageType } from "@/lib/types/message.type";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+
+function formatMessageTypeAsString(message: MessageType) {
+  return `${message.sender}: ${message.content}\n`;
+}
 
 export default function ChatPage() {
   const [isSending, setIsSending] = useState(false);
@@ -52,7 +57,25 @@ export default function ChatPage() {
     ]);
 
     try {
-      const response = await sendMessageToChatbot(message, prevMessages);
+      // Vercel's timeout sucks
+      console.time("sendMessageToChatbot");
+      const relevantDocumentsText = await findSimilarDocuments(message);
+      console.timeEnd("sendMessageToChatbot");
+
+      // serialize inputs
+      const serializedDocuments = relevantDocumentsText.join("\n");
+      let serializedChatHistory = "";
+      for (const message of prevMessages) {
+        serializedChatHistory += formatMessageTypeAsString(message);
+      }
+
+      const response = await getLLMResponse(
+        message,
+        serializedChatHistory,
+        serializedDocuments,
+      );
+      console.timeEnd("getLLMResponse");
+
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
         newMessages[newMessages.length - 1] = {
@@ -64,6 +87,8 @@ export default function ChatPage() {
 
       setIsSending(false);
     } catch (error) {
+      console.log(error);
+      console.error(error);
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
         newMessages[newMessages.length - 1] = {

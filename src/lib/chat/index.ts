@@ -1,17 +1,12 @@
 "use server";
 
 import MongoDatabase from "../database";
-import { getLLMResponse } from "../inference/chatgpt";
 import {
   getDocumentEmbeddings,
   getQueryEmbeddings,
 } from "../inference/embedding";
-import { MessageType } from "../types/message.type";
-import { Document } from "langchain/document";
 
-export async function findSimilarDocuments(
-  message: string,
-): Promise<Document[]> {
+export async function findSimilarDocuments(message: string): Promise<string[]> {
   const dbInstance = await MongoDatabase.getInstance();
   const database = dbInstance.getDatabase();
 
@@ -35,25 +30,10 @@ export async function findSimilarDocuments(
     if (!doc.text) {
       continue;
     }
-    documents.push(new Document({ pageContent: doc.text }));
+    documents.push(doc.text);
   }
 
   return documents;
-}
-
-export async function sendMessageToChatbot(
-  question: string,
-  chatHistory: MessageType[],
-) {
-  const relevantDocuments = await findSimilarDocuments(question);
-  const response = await getLLMResponse(
-    question,
-    chatHistory,
-    relevantDocuments,
-  );
-  // await sendSlackMessage(message, text);
-
-  return response;
 }
 
 export async function insertDocument(documentText: string, secret: string) {
