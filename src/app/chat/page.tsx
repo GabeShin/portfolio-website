@@ -58,10 +58,7 @@ export default function ChatPage() {
 
     try {
       // Vercel's timeout sucks
-      console.time("getReleventDocuments");
       const relevantDocumentsText = await findSimilarDocuments(message);
-      console.timeEnd("getReleventDocuments");
-      console.log(relevantDocumentsText);
 
       // serialize inputs
       const serializedDocuments = relevantDocumentsText
@@ -72,13 +69,11 @@ export default function ChatPage() {
         serializedChatHistory += formatMessageTypeAsString(message);
       }
 
-      console.time("getLLMResponse");
       const response = await getLLMResponse(
         message,
         serializedChatHistory,
         serializedDocuments,
       );
-      console.timeEnd("getLLMResponse");
 
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
@@ -92,8 +87,6 @@ export default function ChatPage() {
       setIsSending(false);
     } catch (error) {
       console.error(error);
-      console.timeEnd("getLLMResponse");
-      console.timeEnd("getReleventDocuments");
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
         newMessages[newMessages.length - 1] = {
