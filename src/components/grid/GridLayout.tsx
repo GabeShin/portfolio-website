@@ -55,10 +55,10 @@ export default function GridComponent() {
 
   return (
     <ResponsiveGridLayout
-      className="grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1200px] "
+      className="grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px]"
       layouts={layouts}
-      breakpoints={{ xl: 1199, lg: 799, md: 599, xxs: 0 }}
-      cols={{ xl: 4, lg: 4, md: 3, xxs: 2 }}
+      breakpoints={{ lg: 799, md: 599, xxs: 0 }}
+      cols={{ lg: 4, md: 3, xxs: 2 }}
       margin={[16, 16]}
       onDragStart={handleDragStart}
       onDragStop={handleDragStop}
