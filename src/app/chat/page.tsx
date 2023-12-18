@@ -91,9 +91,9 @@ export default function ChatPage() {
 
       setIsSending(false);
     } catch (error) {
+      console.error(error);
       console.timeEnd("getLLMResponse");
       console.timeEnd("getReleventDocuments");
-      console.error(error);
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
         newMessages[newMessages.length - 1] = {
