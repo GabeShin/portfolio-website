@@ -7,33 +7,38 @@ import {
 } from "../inference/embedding";
 
 export async function findSimilarDocuments(message: string): Promise<string[]> {
-  const dbInstance = await MongoDatabase.getInstance();
-  const database = dbInstance.getDatabase();
+  try {
+    const dbInstance = await MongoDatabase.getInstance();
+    const database = dbInstance.getDatabase();
 
-  // Do a vector search
-  const queryEmbeddings = await getQueryEmbeddings(message);
+    // Do a vector search
+    const queryEmbeddings = await getQueryEmbeddings(message);
 
-  const result = database.collection("iamgabe").aggregate([
-    {
-      $vectorSearch: {
-        index: "vectorIndex",
-        path: "vector_index",
-        queryVector: queryEmbeddings,
-        numCandidates: 100,
-        limit: 10,
+    const result = database.collection("iamgabe").aggregate([
+      {
+        $vectorSearch: {
+          index: "vectorIndex",
+          path: "vector_index",
+          queryVector: queryEmbeddings,
+          numCandidates: 100,
+          limit: 10,
+        },
       },
-    },
-  ]);
+    ]);
 
-  const documents = [];
-  for await (const doc of result) {
-    if (!doc.text) {
-      continue;
+    const documents = [];
+    for await (const doc of result) {
+      if (!doc.text) {
+        continue;
+      }
+      documents.push(doc.text);
     }
-    documents.push(doc.text);
-  }
 
-  return documents;
+    return documents;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
 }
 
 export async function insertDocument(documentText: string, secret: string) {
