@@ -55,9 +55,9 @@ export default function GridComponent() {
 
   return (
     <ResponsiveGridLayout
-      className="grid-container mx-auto max-w-[400px] md:max-w-[600px] lg:max-w-[800px]"
+      className="grid-container mx-auto max-w-[801px]"
       layouts={layouts}
-      breakpoints={{ lg: 799, md: 599, xxs: 0 }}
+      breakpoints={{ lg: 800, md: 600, xxs: 0 }}
       cols={{ lg: 4, md: 3, xxs: 2 }}
       margin={[16, 16]}
       onDragStart={handleDragStart}
@@ -65,6 +65,7 @@ export default function GridComponent() {
       rowHeight={rowHeight}
       draggableCancel=".clickable-button"
       useCSSTransforms={true}
+      isDraggable={false}
     >
       <div
         className={`${selectedKey === "profile" ? "selected-grid-cell" : ""}]`}
