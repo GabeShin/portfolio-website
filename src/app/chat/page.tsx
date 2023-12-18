@@ -58,9 +58,7 @@ export default function ChatPage() {
 
     try {
       // Vercel's timeout sucks
-      console.time("getReleventDocuments");
       const relevantDocumentsText = await findSimilarDocuments(message);
-      console.timeEnd("getReleventDocuments");
 
       // serialize inputs
       const serializedDocuments = relevantDocumentsText
@@ -71,13 +69,11 @@ export default function ChatPage() {
         serializedChatHistory += formatMessageTypeAsString(message);
       }
 
-      console.time("getLLMResponse");
       const response = await getLLMResponse(
         message,
         serializedChatHistory,
         serializedDocuments,
       );
-      console.timeEnd("getLLMResponse");
 
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
@@ -90,8 +86,6 @@ export default function ChatPage() {
 
       setIsSending(false);
     } catch (error) {
-      console.timeEnd("getLLMResponse");
-      console.timeEnd("getReleventDocuments");
       console.error(error);
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
@@ -147,8 +141,8 @@ export default function ChatPage() {
         translateY: [20, 0],
       }}
     >
-      <section className="relative w-screen h-screen">
-        <div className="w-full h-full overflow-y-auto pb-32">
+      <section className="relative w-screen">
+        <div className="w-full overflow-y-auto pb-32">
           {messages.map((message) =>
             message.sender === "bot" ? (
               <BotMessage key={message.id} message={message} />

@@ -22,8 +22,6 @@ class MongoDatabase {
   private async connect(): Promise<void> {
     try {
       await this.client.connect();
-      this.client.db("IamGabe");
-      this.database = this.client.db("documents");
       console.log("Connected successfully to MongoDB");
     } catch (e) {
       console.error("Failed to connect to MongoDB", e);
