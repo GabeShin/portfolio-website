@@ -7,8 +7,11 @@ class MongoDatabase {
 
   private constructor() {
     const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@iamgabe.alllehj.mongodb.net/?retryWrites=true&w=majority`;
+    console.log({ uri });
     this.client = new MongoClient(uri);
+    console.log("MongoDB client created");
     this.database = this.client.db("documents");
+    console.log("MongoDB database created");
   }
 
   public static async getInstance(): Promise<MongoDatabase> {
@@ -22,7 +25,6 @@ class MongoDatabase {
   private async connect(): Promise<void> {
     try {
       await this.client.connect();
-      this.database = this.client.db("documents");
       console.log("Connected successfully to MongoDB");
     } catch (e) {
       console.error("Failed to connect to MongoDB", e);
