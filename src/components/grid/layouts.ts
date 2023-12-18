@@ -37,7 +37,6 @@ const xxsLayout: Layout[] = [
 ];
 
 export const layouts = {
-  xl: lgLayout,
   lg: lgLayout,
   md: mdLayout,
   xxs: xxsLayout,
