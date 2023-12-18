@@ -1,0 +1,8 @@
+{
+  "buildCommand": "next build",
+  "functions": {
+    "lib/chat/*.ts": {
+      "maxDuration": 30
+    }
+  }
+}
