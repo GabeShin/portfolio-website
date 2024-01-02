@@ -1,17 +1,10 @@
 "use server";
 
-import { MessageType } from "@/lib/types/message.type";
-import { Document } from "langchain/document";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
 import { RunnableSequence } from "langchain/runnables";
 import { StringOutputParser } from "langchain/schema/output_parser";
-import { formatDocumentsAsString } from "langchain/util/document";
 import { revalidatePath } from "next/cache";
-
-function formatMessageTypeAsString(message: MessageType) {
-  return `${message.sender}: ${message.content}\n`;
-}
 
 class SingletonChain {
   private static instance: RunnableSequence;

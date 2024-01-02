@@ -59,6 +59,7 @@ export default function ChatPage() {
     try {
       // Vercel's timeout sucks
       const relevantDocumentsText = await findSimilarDocuments(message);
+      console.log(relevantDocumentsText);
 
       // serialize inputs
       const serializedDocuments = relevantDocumentsText
@@ -74,6 +75,8 @@ export default function ChatPage() {
         serializedChatHistory,
         serializedDocuments,
       );
+
+      console.log(response);
 
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
