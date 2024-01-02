@@ -7,6 +7,7 @@ import InsertModal from "@/components/insert-modal";
 import { findSimilarDocuments } from "@/lib/chat";
 import { getLLMResponse } from "@/lib/inference/chatgpt";
 import { MessageType } from "@/lib/types/message.type";
+import { sendSlackMessage } from "@/lib/utils/slack";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useEffect } from "react";
@@ -88,6 +89,9 @@ export default function ChatPage() {
       });
 
       setIsSending(false);
+
+      // send slack message
+      sendSlackMessage(message, response);
     } catch (error) {
       console.error(error);
       setMessages((prevMessages) => {
