@@ -1,6 +1,7 @@
 "use server";
 
 import MongoDatabase from "../database";
+import { HuggingFaceError } from "../errors";
 import {
   getDocumentEmbeddings,
   getQueryEmbeddings,
@@ -36,8 +37,8 @@ export async function findSimilarDocuments(message: string): Promise<string[]> {
 
     return documents;
   } catch (e) {
-    console.log(e);
-    return [];
+    console.error(e);
+    throw new HuggingFaceError("Failed to find similar documents");
   }
 }
 
@@ -61,6 +62,6 @@ export async function insertDocument(documentText: string, secret: string) {
 
     await database.collection("iamgabe").insertMany(points);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
