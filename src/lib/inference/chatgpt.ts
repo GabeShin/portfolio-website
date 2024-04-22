@@ -1,5 +1,6 @@
 "use server";
 
+import { ChatGPTError } from "../errors";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
 import { RunnableSequence } from "langchain/runnables";
@@ -53,14 +54,19 @@ export async function getLLMResponse(
   chatHistory: string,
   context: string,
 ) {
-  const chain = SingletonChain.getInstance();
-  const response = await chain.invoke({
-    question,
-    chatHistory,
-    context,
-  });
+  try {
+    const chain = SingletonChain.getInstance();
+    const response = await chain.invoke({
+      question,
+      chatHistory,
+      context,
+    });
 
-  revalidatePath("/chat");
+    revalidatePath("/chat");
 
-  return response;
+    return response;
+  } catch (e) {
+    console.error(e);
+    throw new ChatGPTError("Failed to get response");
+  }
 }

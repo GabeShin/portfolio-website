@@ -5,6 +5,7 @@ import ChatInput from "@/components/chat/ChatInput";
 import UserMessage from "@/components/chat/UserMessage";
 import InsertModal from "@/components/insert-modal";
 import { findSimilarDocuments } from "@/lib/chat";
+import { ChatGPTError, HuggingFaceError } from "@/lib/errors";
 import { getLLMResponse } from "@/lib/inference/chatgpt";
 import { MessageType } from "@/lib/types/message.type";
 import { sendSlackMessage } from "@/lib/utils/slack";
@@ -60,7 +61,6 @@ export default function ChatPage() {
     try {
       // Vercel's timeout sucks
       const relevantDocumentsText = await findSimilarDocuments(message);
-      console.log(relevantDocumentsText);
 
       // serialize inputs
       const serializedDocuments = relevantDocumentsText
@@ -77,8 +77,6 @@ export default function ChatPage() {
         serializedDocuments,
       );
 
-      console.log(response);
-
       setMessages((prevMessages) => {
         const newMessages = [...prevMessages];
         newMessages[newMessages.length - 1] = {
@@ -94,14 +92,37 @@ export default function ChatPage() {
       sendSlackMessage(message, response);
     } catch (error) {
       console.error(error);
-      setMessages((prevMessages) => {
-        const newMessages = [...prevMessages];
-        newMessages[newMessages.length - 1] = {
-          ...newMessages[newMessages.length - 1],
-          content: "Sorry, something went wrong. Please try again later.",
-        };
-        return newMessages;
-      });
+
+      if (error instanceof HuggingFaceError) {
+        setMessages((prevMessages) => {
+          const newMessages = [...prevMessages];
+          newMessages[newMessages.length - 1] = {
+            ...newMessages[newMessages.length - 1],
+            content:
+              "Sorry, there seems to be an issue retrieving related documents.",
+          };
+          return newMessages;
+        });
+      } else if (error instanceof ChatGPTError) {
+        setMessages((prevMessages) => {
+          const newMessages = [...prevMessages];
+          newMessages[newMessages.length - 1] = {
+            ...newMessages[newMessages.length - 1],
+            content: "Sorry, there seems to be an issue with ChatGPT API.",
+          };
+          return newMessages;
+        });
+      } else {
+        setMessages((prevMessages) => {
+          const newMessages = [...prevMessages];
+          newMessages[newMessages.length - 1] = {
+            ...newMessages[newMessages.length - 1],
+            content: "Sorry, something went wrong. Please try again later.",
+          };
+          return newMessages;
+        });
+      }
+
       setIsSending(false);
     }
   };
