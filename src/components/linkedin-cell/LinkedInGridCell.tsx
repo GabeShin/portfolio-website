@@ -23,7 +23,7 @@ export default function LinkedInGridCell() {
 
   return (
     <div className="linkedin-theme grid-cell relative  h-full w-full">
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-3/4">
         <LinkedInLogo width={75} height={75} color={logoColor} />
       </div>
       <div className="absolute bottom-2 left-2">

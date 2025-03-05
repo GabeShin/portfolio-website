@@ -14,13 +14,11 @@ export default function MapGridCell({}: PropsType) {
   const [map, setMap] = useState<tt.Map>();
   const { theme } = useTheme();
 
-  const BerlinLocation: [number, number] = [
-    13.441667543597818, 52.4691916188504,
-  ];
-  const [location, setLocation] = useState<[number, number]>(BerlinLocation);
+  const HomeLocation: [number, number] = [127, 37.5];
+  const [location, setLocation] = useState<[number, number]>(HomeLocation);
 
   const moveCenterToMe = () => {
-    setLocation(BerlinLocation);
+    setLocation(HomeLocation);
   };
 
   useEffect(() => {
@@ -28,7 +26,7 @@ export default function MapGridCell({}: PropsType) {
       key: process.env.NEXT_PUBLIC_TOMTOM_API_KEY as string,
       container: mapRef.current as unknown as HTMLElement,
       center: location,
-      zoom: 9,
+      zoom: 10,
     });
 
     // TODO: add custom marker
@@ -37,7 +35,7 @@ export default function MapGridCell({}: PropsType) {
         className: "popup",
         closeButton: false,
         anchor: "top",
-      }).setHTML("<p>I'm in Berlin now!</p>");
+      }).setHTML("<p>I'm in Seoul now!</p>");
 
       const marker = new tt.Marker().setLngLat(location).setPopup(popup);
       marker.addTo(map);

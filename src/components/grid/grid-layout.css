@@ -82,4 +82,17 @@
       );
     background-color: oklch(var(--content-bg-color));
   }
+
+  .fomo-theme {
+    background: radial-gradient(
+        30rem circle at 120% 10%,
+        oklch(var(--primary-color)) 50%,
+        transparent 50%
+      ),
+      radial-gradient(
+        20rem circle at 95% 105%,
+        oklch(var(--accent-color-2)) 50%,
+        transparent 50%
+      );
+  }
 }

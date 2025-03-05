@@ -14,7 +14,7 @@ export default function ProfileGridCell() {
         <p className="inline">Hello, I am </p>
         <h1 className="inline"> Gabe Shin</h1>
         <p className="inline">
-          , a web developer from South Korea currently based in Berlin.{" "}
+          , a web developer from South Korea currently based in Seoul.{" "}
         </p>
         <br />
         <br />

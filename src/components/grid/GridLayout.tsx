@@ -1,5 +1,6 @@
 "use client";
 
+import FomoGridCell from "../fomo-cell/FomoGridCell";
 import "./grid-layout.css";
 import { layouts } from "./layouts";
 import AboutMeGridCell from "@/components/aboutme-cell/AboutMeGridCell";
@@ -106,12 +107,10 @@ export default function GridComponent() {
         <ThemeGridCell />
       </div>
       <div
-        className={`${
-          selectedKey === "instagram" ? "selected-grid-cell" : ""
-        } `}
-        key="instagram"
+        className={`${selectedKey === "fomo" ? "selected-grid-cell" : ""}`}
+        key="fomo"
       >
-        <InstaGridCell />
+        <FomoGridCell />
       </div>
       <div
         className={`${selectedKey === "linkedin" ? "selected-grid-cell" : ""} `}
