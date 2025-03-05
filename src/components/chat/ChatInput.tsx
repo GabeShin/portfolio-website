@@ -19,7 +19,7 @@ const ChatInput = ({ send, disabled }: ChatInputProperties) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSend();
+      //      handleSend();
     }
   };
 
@@ -33,7 +33,7 @@ const ChatInput = ({ send, disabled }: ChatInputProperties) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyDown}
-        disabled={disabled}
+        disabled={true}
       />
       <SendButton onClick={handleSend} aria-label="Send message" />
     </div>

@@ -135,7 +135,7 @@ export default function ChatPage() {
   useEffect(() => {
     const cachedMessages = localStorage.getItem("messages");
     if (cachedMessages) {
-      setMessages(JSON.parse(cachedMessages));
+      // setMessages(JSON.parse(cachedMessages));
     }
   }, []);
 
@@ -171,6 +171,16 @@ export default function ChatPage() {
     >
       <section className="relative w-screen">
         <div className="w-full overflow-y-auto pb-32">
+          <BotMessage
+            key="unavailable"
+            message={{
+              id: "unavailable",
+              sender: "bot",
+              content:
+                "Hi there! Currently, I am not available. Please check back later. (Updated March 2025)",
+              date: new Date(),
+            }}
+          />
           {messages.map((message) =>
             message.sender === "bot" ? (
               <BotMessage key={message.id} message={message} />
