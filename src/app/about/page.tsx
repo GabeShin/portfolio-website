@@ -66,15 +66,15 @@ export default function AboutPage() {
                 FOMO app
               </Link>
               , a web application that summarizes various stock reports from
-              different sources and provide ai summary. It's composed of many
-              different parts and required learning more about prompt
+              different sources and provide ai summary. It&apos;s composed of
+              many different parts and required learning more about prompt
               engineering and properly calibrating the LLM to provide the
               required output. If you are interested, I would be happy to share
               more about it. the LLM model locally without using the server.
             </p>
             <br />
             <p>
-              Also there's chatbot that answers questions about me, (please{" "}
+              Also there&apos;s chatbot that answers questions about me, (please{" "}
               <Link className="text-blue-500" href="/chat">
                 check it out
               </Link>{" "}
