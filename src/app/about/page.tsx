@@ -17,7 +17,7 @@ export default function AboutPage() {
           </h1>
           <p>
             I am a full stack developer with 5+ years of experience from Seoul,
-            Korea. I am currently based in Berlin - actively looking for a new
+            Korea. I am currently based in Seoul - actively looking for a new
             opportunity.
           </p>
           <div className="grid grid-cols-3 my-8">
@@ -30,7 +30,6 @@ export default function AboutPage() {
             <div className="col-start-2 col-end-4">
               <h2 className="text-primary font-semibold mb-2">Contacts</h2>
               <p> ✉️ gabeshin.ts@gmail.com</p>
-              <p>🇩🇪 (+49) 152-****-****</p>
               <p>🇰🇷 (+82) 10-****-****</p>
               <h2 className="text-primary font-semibold my-2">Channels</h2>
               <a className="text-text" href="https://www.gabeshin.com/gabeshin">
@@ -62,22 +61,25 @@ export default function AboutPage() {
           <div>
             <h1 className="text-primary my-8"> Latest Interest</h1>
             <p>
-              Lately, I had been very interested with LLM - of course, so is
-              everyone else in the world - and its applications. I made the
-              chatbot that answers questions about me, (please{" "}
+              Lately, I had been working on{" "}
+              <Link className="text-blue-500" href="https://www.fomoapp.co.kr">
+                FOMO app
+              </Link>
+              , a web application that summarizes various stock reports from
+              different sources and provide ai summary. It&apos;s composed of
+              many different parts and required learning more about prompt
+              engineering and properly calibrating the LLM to provide the
+              required output. If you are interested, I would be happy to share
+              more about it. the LLM model locally without using the server.
+            </p>
+            <br />
+            <p>
+              Also there&apos;s chatbot that answers questions about me, (please{" "}
               <Link className="text-blue-500" href="/chat">
                 check it out
               </Link>{" "}
-              if you hadn&apos;t already) and also small CLI tool
-              <Link
-                className="text-blue-500"
-                href="https://github.com/gabeshin/anote-cli.git"
-              >
-                {" "}
-                side project{" "}
-              </Link>
-              that allows me to take notes on the vim and summarizes it using
-              the LLM model locally without using the server.
+              if you hadn&apos;t already). (as of 2025.03 the vector database
+              stopped working, so the chatbot is not working)
             </p>
             <br />
             <p>
@@ -100,7 +102,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-4 my-4">
               <div className="col-start-1">
                 <p className="font-semibold"> Backend Engineer</p>
-                <p className="text-subtext"> 2022.09 - Present</p>
+                <p className="text-subtext"> 2022.09 - 2024.04</p>
               </div>
               <div className="col-start-2 col-end-5">
                 <p>

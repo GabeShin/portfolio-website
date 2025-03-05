@@ -15,7 +15,7 @@ export default function AboutMeGridCell() {
         <LargeGridButton text="Read More" onClick={goToAboutMe} />
       </div>
       <p className="bottom-0 right-0 text-sm text-subtext absolute m-4 p-2">
-        December 10th, 2023
+        March 1th, 2025
       </p>
     </div>
   );
