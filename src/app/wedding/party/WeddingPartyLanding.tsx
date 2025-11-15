@@ -222,12 +222,12 @@ export default function WeddingPartyLanding() {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-[#140103]/60 to-transparent" />
             </div>
-            <div className="relative z-10 flex h-full flex-col justify-end px-6 py-16 text-center text-white sm:text-left">
+            <div className="relative z-10 flex h-full flex-col justify-end px-6 py-16 text-left text-white">
               <div className="space-y-5 sm:max-w-3xl">
                 <p className="text-xs uppercase tracking-[0.6em] text-[#FF6B81]">
                   PRE-WEDDING INVITATION
                 </p>
-                <h1 className="text-3xl font-semibold leading-tight md:text-5xl">
+                <h1 className="text-3xl font-semibold leading-tight text-white md:text-5xl">
                   신태섭 · 노한솔의
                   <br />
                   청첩파티에 초대합니다
@@ -278,7 +278,7 @@ export default function WeddingPartyLanding() {
                   <p className="text-xs uppercase tracking-[0.4em] text-[#FF8CB0]">
                     {item.time}
                   </p>
-                  <h3 className="mt-4 text-2xl font-semibold">{item.title}</h3>
+                  <h3 className="mt-4 text-2xl font-semibold text-white">{item.title}</h3>
                   <p className="mt-3 text-base text-[#E6C6CF]">
                     {item.description}
                   </p>
@@ -292,7 +292,7 @@ export default function WeddingPartyLanding() {
               <p className="text-sm uppercase tracking-[0.4em] text-[#FF6B81]">
                 장소 안내
               </p>
-              <h2 className="mt-3 text-3xl font-semibold">
+              <h2 className="mt-3 text-3xl font-semibold text-white">
                 인핸스 Drift 라운지
               </h2>
               <div className="mt-6 grid gap-6 md:grid-cols-2">
@@ -329,7 +329,7 @@ export default function WeddingPartyLanding() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
-                      href="https://map.naver.com/v5/search/%EC%9D%B8%ED%95%B8%EC%8A%A4%20%EB%9D%BC%EC%9A%B4%EC%A7%80"
+                      href="https://naver.me/xdp3hNm5"
                       target="_blank"
                       rel="noreferrer"
                       className="rounded-full bg-[#FF6B81] px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-[#5fd4ff]"
@@ -347,7 +347,7 @@ export default function WeddingPartyLanding() {
               <p className="text-sm uppercase tracking-[0.4em] text-[#FF6B81]">
                 드레스 코드
               </p>
-              <h2 className="mt-3 text-3xl font-semibold">
+              <h2 className="mt-3 text-3xl font-semibold text-white">
                 Black & Red의 크리스마스 무드
               </h2>
               <div className="mt-6 space-y-4 text-lg text-[#F4DDE4]">
@@ -373,7 +373,7 @@ export default function WeddingPartyLanding() {
               <p className="text-sm uppercase tracking-[0.4em] text-[#FF6B81]">
                 FAQ
               </p>
-              <h2 className="text-3xl font-semibold">미리 궁금해하실 질문들</h2>
+              <h2 className="text-3xl font-semibold text-white">미리 궁금해하실 질문들</h2>
               <div className="rounded-[32px] border border-white/10 bg-[#1c050a]">
                 {faqItems.map((item, index) => (
                   <details
@@ -397,7 +397,7 @@ export default function WeddingPartyLanding() {
               <p className="text-sm uppercase tracking-[0.4em] text-[#FF6B81]">
                 RSVP
               </p>
-              <h2 className="mt-3 text-3xl font-semibold">
+              <h2 className="mt-3 text-3xl font-semibold text-white">
                 참석 여부를 알려 주세요
               </h2>
               <p className="mt-4 text-base text-[#F4DDE4]">
