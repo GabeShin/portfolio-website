@@ -278,7 +278,9 @@ export default function WeddingPartyLanding() {
                   <p className="text-xs uppercase tracking-[0.4em] text-[#FF8CB0]">
                     {item.time}
                   </p>
-                  <h3 className="mt-4 text-2xl font-semibold text-white">{item.title}</h3>
+                  <h3 className="mt-4 text-2xl font-semibold text-white">
+                    {item.title}
+                  </h3>
                   <p className="mt-3 text-base text-[#E6C6CF]">
                     {item.description}
                   </p>
@@ -301,7 +303,7 @@ export default function WeddingPartyLanding() {
                     <p className="text-xs uppercase tracking-[0.4em] text-[#FF8CB0]">
                       주소
                     </p>
-                    <p className="mt-2 text-lg">
+                    <p className="mt-2 text-lg text-white">
                       서울특별시 서초구 서초중앙로8길 89-17, B1
                     </p>
                   </div>
@@ -309,7 +311,7 @@ export default function WeddingPartyLanding() {
                     <p className="text-xs uppercase tracking-[0.4em] text-[#FF8CB0]">
                       가까운 역
                     </p>
-                    <p className="mt-2 text-lg">
+                    <p className="mt-2 text-lg text-white">
                       남부터미널역 2번 출구 도보 10분
                     </p>
                   </div>
@@ -351,7 +353,7 @@ export default function WeddingPartyLanding() {
                 Black & Red의 크리스마스 무드
               </h2>
               <div className="mt-6 space-y-4 text-lg text-[#F4DDE4]">
-                <p>
+                <p className="text-base text-[#E4C4CE]">
                   엄격한 드레스 코드는 아니지만, 크리스마스 느낌의 Black & Red
                   톤으로 맞춰 주시면 감사하겠습니다.
                 </p>
@@ -360,7 +362,7 @@ export default function WeddingPartyLanding() {
                   <li>포인트가 되는 간단한 아이템이면 충분합니다.</li>
                   <li>편한 신발, 운동화도 괜찮습니다.</li>
                 </ul>
-                <p>
+                <p className="text-base text-[#E4C4CE]">
                   본인이 봐도 기분 좋고 편안한 옷차림이면 가장 잘 어울릴 거예요
                   :)
                 </p>
@@ -373,7 +375,9 @@ export default function WeddingPartyLanding() {
               <p className="text-sm uppercase tracking-[0.4em] text-[#FF6B81]">
                 FAQ
               </p>
-              <h2 className="text-3xl font-semibold text-white">미리 궁금해하실 질문들</h2>
+              <h2 className="text-3xl font-semibold text-white">
+                미리 궁금해하실 질문들
+              </h2>
               <div className="rounded-[32px] border border-white/10 bg-[#1c050a]">
                 {faqItems.map((item, index) => (
                   <details
@@ -535,7 +539,7 @@ export default function WeddingPartyLanding() {
           </section>
 
           <footer className="border-t border-white/5 bg-[#080103]/80 py-12 text-center text-sm text-[#C98795]">
-            <p>
+            <p className="text-base text-[#E4C4CE]">
               궁금하신 점이 있거나 일정/참석 여부가 바뀌면 편하게 연락 주세요.
             </p>
             <p className="mt-4 text-xs uppercase tracking-[0.4em] text-[#7D3A44]">
