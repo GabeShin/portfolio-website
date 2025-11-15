@@ -2,13 +2,18 @@
 
 import "./navbar.css";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function NavBar() {
   const router = useRouter();
+  const pathname = usePathname();
   const goToHome = () => {
     router.push("/");
   };
+
+  if (pathname?.startsWith("/wedding")) {
+    return null;
+  }
 
   return (
     <motion.div
