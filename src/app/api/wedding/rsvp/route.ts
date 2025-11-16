@@ -4,6 +4,25 @@ import { NextResponse } from "next/server";
 const attendanceOptions = new Set(["attending", "maybe", "not_attending"]);
 const soloTableOptions = new Set(["yes", "no"]);
 
+export async function GET() {
+  try {
+    const dbInstance = await MongoDatabase.getInstance();
+    const database = dbInstance.getDatabase();
+
+    const messages = await database
+      .collection("wedding_rsvps")
+      .find({ message: { $exists: true, $ne: "" } }, { projection: { _id: 0, name: 1, message: 1 } })
+      .sort({ submittedAt: -1 })
+      .limit(20)
+      .toArray();
+
+    return NextResponse.json({ messages });
+  } catch (error) {
+    console.error("Failed to fetch RSVP messages", error);
+    return NextResponse.json({ messages: [] }, { status: 500 });
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => null);

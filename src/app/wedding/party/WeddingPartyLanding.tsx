@@ -96,7 +96,35 @@ const initialFormState = {
   message: "",
 };
 
-const heroSummary = "2025년 12월 13일 (토) 오후 12시";
+type RsvpMessage = {
+  name: string;
+  message: string;
+};
+
+const fallbackRsvpMessages: RsvpMessage[] = [
+  {
+    name: "김지영",
+    message: "두 분 너무 축하해요! 13일에 뵐게요 :)",
+  },
+  {
+    name: "박성준",
+    message: "솔로 테이블 신청했어요. 재밌는 자리 기대합니다!",
+  },
+  {
+    name: "이은지",
+    message: "드레스 코드 참고했습니다. 좋은 분위기 기대할게요",
+  },
+  {
+    name: "최민호",
+    message: "바로 참석합니다. 도와드릴 것 있으면 알려줘!",
+  },
+  {
+    name: "홍다희",
+    message: "아이와 함께 갈게요. 축하합니다!",
+  },
+];
+
+const heroSummary = "2025년 12월 13일 (토) · 오후 12시 ~ 19시";
 
 type FormState = typeof initialFormState;
 
@@ -107,6 +135,9 @@ export default function WeddingPartyLanding() {
   const [status, setStatus] = useState<SubmissionStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showNav, setShowNav] = useState(false);
+  const [rsvpMessages, setRsvpMessages] = useState<RsvpMessage[]>(fallbackRsvpMessages);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [isMessageFading, setIsMessageFading] = useState(false);
   const heroRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -129,6 +160,59 @@ export default function WeddingPartyLanding() {
       observer.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const fetchMessages = async () => {
+      try {
+        const res = await fetch("/api/wedding/rsvp");
+        if (!res.ok) {
+          return;
+        }
+        const data = await res.json();
+        if (!cancelled && Array.isArray(data.messages) && data.messages.length > 0) {
+          setRsvpMessages(data.messages);
+          setCurrentMessageIndex(0);
+        }
+      } catch (error) {
+        console.error("Failed to fetch RSVP messages", error);
+      }
+    };
+
+    fetchMessages();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let fadeTimeout: ReturnType<typeof setTimeout>;
+    if (rsvpMessages.length === 0) {
+      return;
+    }
+    const cycleMessage = () => {
+      setIsMessageFading(true);
+      fadeTimeout = setTimeout(() => {
+        setCurrentMessageIndex((prev) => {
+          if (rsvpMessages.length === 1) {
+            return 0;
+          }
+          let next = Math.floor(Math.random() * rsvpMessages.length);
+          if (next === prev) {
+            next = (next + 1) % rsvpMessages.length;
+          }
+          return next;
+        });
+        setIsMessageFading(false);
+      }, 350);
+    };
+
+    const interval = setInterval(cycleMessage, 5200);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(fadeTimeout);
+    };
+  }, [rsvpMessages]);
 
   const isSubmitDisabled = useMemo(() => {
     return status === "loading";
@@ -186,6 +270,12 @@ export default function WeddingPartyLanding() {
           : "잠시 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
       );
     }
+  };
+
+  const obfuscateName = (name: string) => {
+    if (!name) return "익명";
+    const firstChar = name.slice(0, 1);
+    return `${firstChar}${"*".repeat(2)}`;
   };
 
   return (
@@ -301,6 +391,29 @@ export default function WeddingPartyLanding() {
                   </p>
                 </div>
               ))}
+            </div>
+          </section>
+
+          <section id="voices" className="mx-auto max-w-4xl px-6 py-16">
+            <div className="rounded-[32px] border border-white/10 bg-[#1c050a] p-8">
+              <p className="text-sm uppercase tracking-[0.4em] text-[#FF6B81]">RSVP 메시지</p>
+              <h2 className="mt-3 text-3xl font-semibold text-white">도착하고 있는 마음들</h2>
+              <p className="mt-3 text-base text-[#F4DDE4]">
+                이미 RSVP를 보내 주신 분들의 따뜻한 메시지가 랜덤으로 소개됩니다.
+              </p>
+              <div
+                className={`mt-8 rounded-2xl border border-white/10 bg-black/30 p-6 text-left text-white shadow-[0_15px_40px_rgba(0,0,0,0.25)] transition-all duration-500 ${
+                  isMessageFading ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
+                }`}
+                aria-live="polite"
+              >
+                <p className="text-lg leading-relaxed text-[#FCE6EA]">
+                  “{rsvpMessages[currentMessageIndex]?.message}”
+                </p>
+                <p className="mt-4 text-sm text-[#E4C4CE]">
+                  — {obfuscateName(rsvpMessages[currentMessageIndex]?.name ?? "")}
+                </p>
+              </div>
             </div>
           </section>
 
@@ -566,3 +679,11 @@ export default function WeddingPartyLanding() {
     </main>
   );
 }
+  const obfuscateName = (name: string) => {
+    if (!name) return "익명";
+    const parts = name.split("");
+    if (parts.length <= 1) {
+      return name + "*";
+    }
+    return `${parts[0]}${"*".repeat(Math.min(parts.length - 1, 3))}`;
+  };
