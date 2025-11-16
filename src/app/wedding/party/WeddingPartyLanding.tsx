@@ -91,6 +91,8 @@ const initialFormState = {
   message: "",
 };
 
+const heroSummary = "2025년 12월 13일 (토) 오후 12시";
+
 type FormState = typeof initialFormState;
 
 type SubmissionStatus = "idle" | "loading" | "success" | "error";
@@ -224,9 +226,14 @@ export default function WeddingPartyLanding() {
             </div>
             <div className="relative z-10 flex h-full flex-col justify-end px-6 py-16 text-left text-white">
               <div className="space-y-5 sm:max-w-3xl">
-                <p className="text-xs uppercase tracking-[0.6em] text-[#FF6B81]">
-                  PRE-WEDDING INVITATION
-                </p>
+                <div className="flex flex-col gap-2">
+                  <p className="text-xs uppercase tracking-[0.6em] text-[#FF6B81]">
+                    PRE-WEDDING INVITATION
+                  </p>
+                  <span className="inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-medium text-white">
+                    {heroSummary}
+                  </span>
+                </div>
                 <h1 className="text-3xl font-semibold leading-tight text-white md:text-5xl">
                   신태섭 · 노한솔의
                   <br />
@@ -263,6 +270,9 @@ export default function WeddingPartyLanding() {
                 <h2 className="mt-2 text-3xl font-semibold text-white">
                   타임 테이블
                 </h2>
+                <p className="text-sm text-[#FF8CB0]">
+                  2025년 12월 13일 (토) · 12:00 ~ 19:00
+                </p>
                 <p className="mt-1 text-md text-[#E4C4CE]">
                   시간은 대략적인 계획이며, 현장에서 유동적으로 변동될 수
                   있습니다.
