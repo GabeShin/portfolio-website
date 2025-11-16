@@ -1,4 +1,4 @@
-export const ALLOWED_IPS = ["15.165.139.61", "127.0.0.1", "::1"];
+export const ALLOWED_IPS = ["127.0.0.1", "::1", "1.234.133.193"];
 
 export function getClientIpFromHeaders(requestHeaders: Headers) {
   const forwardedFor = requestHeaders.get("x-forwarded-for");
