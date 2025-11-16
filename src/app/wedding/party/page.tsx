@@ -9,8 +9,9 @@ export const metadata: Metadata = {
     canonical: "/wedding/party",
   },
   openGraph: {
-    title: "신태섭 & 노한솔 | 청첩 파티 초대",
-    description: "12월 청첩 파티 초대장. 일정과 RSVP를 간편하게 확인하세요.",
+    title: "12월 13일 신태섭 & 노한솔 | 청첩 파티 초대",
+    description:
+      "12월 13일 청첩 파티 초대장. 일정과 RSVP를 간편하게 확인하세요.",
     url: "https://iamgabeshin.com/wedding/party",
     siteName: "Gabe & Hansol Wedding",
     images: [
