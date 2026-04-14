@@ -11,7 +11,7 @@ export default function NavBar() {
     router.push("/");
   };
 
-  if (pathname?.startsWith("/wedding")) {
+  if (pathname?.startsWith("/wedding") || pathname?.startsWith("/jaksam")) {
     return null;
   }
 
