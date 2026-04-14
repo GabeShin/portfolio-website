@@ -3,9 +3,8 @@
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 
-const APP_STORE_URL = "https://apps.apple.com/app/id6759096853";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.jaksam.app";
+const APP_STORE_URL =
+  "https://apps.apple.com/kr/app/%EC%9E%91%EC%83%98/id6759096853";
 
 /* ------------------------------------------------------------------ */
 /* Animations                                                          */
@@ -56,12 +55,13 @@ function AppStoreBadge() {
 }
 
 function PlayStoreBadge() {
+  const handleClick = () => {
+    alert("Google Play 버전은 준비 중입니다. 조금만 기다려 주세요!");
+  };
   return (
-    <a
-      href={PLAY_STORE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group inline-flex h-14 items-center gap-3 rounded-2xl bg-[#1a1400] px-6 shadow-lg shadow-[#1a1400]/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#1a1400]/25"
+    <button
+      onClick={handleClick}
+      className="group inline-flex h-14 cursor-pointer items-center gap-3 rounded-2xl bg-[#1a1400] px-6 shadow-lg shadow-[#1a1400]/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#1a1400]/25"
     >
       <svg
         viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ function PlayStoreBadge() {
       >
         <path d="M3 22V2l18 10L3 22z" />
       </svg>
-      <div className="flex flex-col leading-tight">
+      <div className="flex flex-col leading-tight text-left">
         <span className="text-[10px] tracking-wide text-white/60">
           GET IT ON
         </span>
@@ -78,7 +78,7 @@ function PlayStoreBadge() {
           Google Play
         </span>
       </div>
-    </a>
+    </button>
   );
 }
 
@@ -490,11 +490,13 @@ export default function JaksamLanding() {
                   </span>
                 </div>
               </a>
-              <a
-                href={PLAY_STORE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-14 items-center gap-3 rounded-2xl border border-[#fffbed]/20 bg-[#fffbed]/10 px-6 backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#fffbed]/20"
+              <button
+                onClick={() =>
+                  alert(
+                    "Google Play 버전은 준비 중입니다. 조금만 기다려 주세요!",
+                  )
+                }
+                className="inline-flex h-14 cursor-pointer items-center gap-3 rounded-2xl border border-[#fffbed]/20 bg-[#fffbed]/10 px-6 backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#fffbed]/20"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -518,7 +520,7 @@ export default function JaksamLanding() {
                     Google Play
                   </span>
                 </div>
-              </a>
+              </button>
             </motion.div>
           </motion.div>
         </div>
