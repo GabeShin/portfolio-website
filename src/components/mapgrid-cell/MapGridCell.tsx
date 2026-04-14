@@ -22,8 +22,11 @@ export default function MapGridCell({}: PropsType) {
   };
 
   useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_TOMTOM_API_KEY;
+    if (!apiKey || !mapRef.current) return;
+
     const map = tt.map({
-      key: process.env.NEXT_PUBLIC_TOMTOM_API_KEY as string,
+      key: apiKey,
       container: mapRef.current as unknown as HTMLElement,
       center: location,
       zoom: 10,

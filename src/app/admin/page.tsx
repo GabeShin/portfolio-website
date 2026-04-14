@@ -5,8 +5,8 @@ import { notFound } from "next/navigation";
 
 const allowedDuringDev = process.env.NODE_ENV !== "production";
 
-export default function AdminPage() {
-  const headerList = headers();
+export default async function AdminPage() {
+  const headerList = await headers();
   const requestIp = getClientIpFromHeaders(headerList);
   if (!allowedDuringDev && !ALLOWED_IPS.includes(requestIp)) {
     notFound();
