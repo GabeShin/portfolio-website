@@ -33,8 +33,8 @@ export default function JaksamGridCell() {
       </div>
       <div className="absolute bottom-2 left-2">
         <button
-          className="clickable-button group relative h-10 w-10 rounded-full border-2 border-border transition-all duration-300 hover:w-36 hover:ring-4 hover:ring-opacity-50"
-          style={{ ["--tw-ring-color" as string]: btnColor }}
+          className="clickable-button group relative h-10 w-10 rounded-full border-2 border-border transition-all duration-300 hover:w-36 hover:ring-4"
+          style={{ ["--tw-ring-color" as string]: `${btnColor}80` }}
           onClick={goToJaksam}
         >
           <p

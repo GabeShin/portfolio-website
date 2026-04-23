@@ -77,6 +77,14 @@
     background: oklch(0.9874 0.0189 93.66);
   }
 
+  :root[data-theme="light"] .act2-theme {
+    background: #000000;
+  }
+
+  :root[data-theme="retro"] .act2-theme {
+    background: #000000;
+  }
+
   .seesolabs-theme {
     background: radial-gradient(
         20rem circle at 0% 90%,

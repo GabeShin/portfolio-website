@@ -10,6 +10,7 @@ const lgLayout: Layout[] = [
   { i: "linkedin", x: 1, y: 3, w: 1, h: 1 },
   { i: "aboutme", x: 0, y: 2, w: 2, h: 1 },
   { i: "chat", x: 2, y: 3, w: 1, h: 1 },
+  { i: "act2", x: 3, y: 3, w: 1, h: 1 },
 ];
 
 const mdLayout: Layout[] = [
@@ -22,6 +23,7 @@ const mdLayout: Layout[] = [
   { i: "linkedin", x: 0, y: 2, w: 1, h: 1 },
   { i: "aboutme", x: 0, y: 5, w: 3, h: 1 },
   { i: "chat", x: 1, y: 4, w: 2, h: 1 },
+  { i: "act2", x: 0, y: 4, w: 1, h: 1 },
 ];
 
 const xxsLayout: Layout[] = [
@@ -33,6 +35,7 @@ const xxsLayout: Layout[] = [
   { i: "linkedin", x: 1, y: 6, w: 1, h: 1 },
   { i: "aboutme", x: 0, y: 5, w: 2, h: 1 },
   { i: "chat", x: 0, y: 7, w: 2, h: 1 },
+  { i: "act2", x: 0, y: 6, w: 1, h: 1 },
 ];
 
 export const layouts = {

@@ -1,5 +1,6 @@
 "use client";
 
+import ACT2GridCell from "../act2-cell/ACT2GridCell";
 import JaksamGridCell from "../jaksam-cell/JaksamGridCell";
 import "./grid-layout.css";
 import { layouts } from "./layouts";
@@ -129,6 +130,12 @@ export default function GridComponent() {
         key="chat"
       >
         <ChatGridCell />
+      </div>
+      <div
+        className={`${selectedKey === "act2" ? "selected-grid-cell" : ""}`}
+        key="act2"
+      >
+        <ACT2GridCell />
       </div>
     </ResponsiveGridLayout>
   );
