@@ -19,11 +19,11 @@ last_updated: 2026-04-26
 
 # Jaksam (작샘)
 
-A cross-platform music-lesson app that helps students take more away from their lessons and practice independently. Co-founded with my wife — a professional pianist and classical-piano teacher. Her students are all serious classical-music students on a professional path: from elementary-age performers in specialized programs through college and masters performers. **"Jaksam" (작샘)** is short for **작은선생님** ("small teacher") — a familiar term in the Korean classical-music community. It names both the product and the in-app AI coach.
+A cross-platform music-lesson app that helps students take more away from their lessons and practice independently. Co-founded with my wife — a professional pianist and classical-piano teacher. Her students are all aspiring classical musicians on a professional path: from elementary-age performers in specialized programs through college and masters performers. **"Jaksam" (작샘)** is short for **작은선생님** ("small teacher") — a familiar term in the Korean classical-music community. It names both the product and the in-app AI coach.
 
 ## Problem
 
-The hardest moment for a serious music student isn't the lesson — it's the week between lessons. Students leave the studio with notes and good intentions, then sit at the instrument the next day without a clear plan: what to practice, how to practice it, what "good" sounds like. My wife sees this every week. Even motivated students plateau when their practice loops drift from what the teacher actually said.
+The hardest moment for an aspiring classical musician isn't the lesson — it's the week between lessons. Students leave the studio with notes and good intentions, then sit at the instrument the next day without a clear plan: what to practice, how to practice it, what "good" sounds like. My wife sees this every week. Even motivated students plateau when their practice loops drift from what the teacher actually said.
 
 The product is our attempt to close that loop: **capture the lesson, extract a structured plan, and give the student a coach in their pocket that knows the lesson, the methodology, and the student's history.** The product is early — we're iterating with my wife's actual students as the test audience.
 

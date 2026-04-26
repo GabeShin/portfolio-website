@@ -16,7 +16,6 @@ languages:
 status: Passively looking (2026)
 target_roles:
   - AI Engineer (impact-focused)
-  - Forward-Deployed Engineer with product depth (not pure systems integration)
   - Engineering leadership / impact-focused IC
 geographic: Korea + remote international
 last_updated: 2026-04-26
@@ -26,7 +25,7 @@ last_updated: 2026-04-26
 
 ## Headline
 
-AI Engineer | Forward-Deployed Engineer | Product-minded IC
+AI Engineer | Product-minded IC
 
 ## Summary
 
@@ -37,15 +36,11 @@ AI engineer with 7+ years of experience building production AI systems, distribu
 | Period               | What                                                                              |
 | -------------------- | --------------------------------------------------------------------------------- |
 | 2025-04 – Present    | Enhans, AI Engineer — see `experience/enhans.md`                                  |
-| 2024-05 – 2025-04    | Self-directed year in Berlin, Germany — engineering and AI side projects, philosophy and classical literature, travel |
 | 2018-09 – 2024-05    | VisualCamp — see `experience/visualcamp.md`                                       |
-
-The Berlin year is intentional and presented as such on the website. Phrasing on `/about`: "After eight years at one company, I took a year in Berlin to build side projects, read deeply, and travel — something I had wanted to do."
 
 ## Targeting
 
 - **Primary**: AI Engineer roles where I can own architecture and outcomes, ideally with product depth (not just integration plumbing).
-- **Secondary**: Forward-Deployed Engineer roles with explicit product depth, not pure systems integration.
-- **Tertiary**: Engineering leadership / tech lead with broader scope.
+- **Secondary**: Engineering leadership / tech lead with broader scope.
 
 Open to Korea-based and remote international roles.

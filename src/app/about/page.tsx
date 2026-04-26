@@ -19,7 +19,7 @@ export default function AboutPage() {
             AI engineer with 7+ years of experience building production AI
             systems, distributed backends, and developer-facing products in
             startup environments. Based in Seoul, passively looking for
-            impact-focused AI engineering or forward-deployed roles.
+            impact-focused AI engineering roles.
           </p>
           <div className="grid grid-cols-3 my-8">
             <Image
@@ -147,19 +147,6 @@ export default function AboutPage() {
                 <p>
                   ◦ Co-first author, &quot;Question-to-Knowledge (Q2K)&quot; —
                   IEEE BigData 2025 (95.62% accuracy).
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-4 my-4">
-              <div className="col-start-1">
-                <p className="font-semibold">Self-directed sabbatical</p>
-                <p className="text-subtext">2024.05 - 2025.04</p>
-              </div>
-              <div className="col-start-2 col-end-5">
-                <p>
-                  ◦ Took a year in Berlin to build engineering and AI side
-                  projects, read deeply, and travel after eight years at one
-                  company.
                 </p>
               </div>
             </div>
