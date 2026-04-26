@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; [ -z \"$f\" ] && exit 0; case \"$f\" in */node_modules/*|*/.git/*|*/dist/*|*/build/*|*/.next/*|*/target/*|*/vendor/*|*.lock|*package-lock.json|*yarn.lock|*pnpm-lock.yaml|*go.sum|*.log) exit 0 ;; esac; case \"$f\" in *docs/*|*.md|*.mdx) msg=\"You edited docs. Check other docs/specs that cross-reference this for drift; if implementation elsewhere reflects the old version, flag it.\" ;; *) msg=\"You edited code. If this changes behavior documented in docs/, specs/, README, or similar, update the corresponding doc in the same turn (Karpathy: docs are first-class). If no docs apply, ignore this.\" ;; esac; jq -n --arg m \"$msg\" '{hookSpecificOutput:{hookEventName:\"PostToolUse\",additionalContext:$m}}'; }",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

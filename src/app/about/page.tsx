@@ -16,9 +16,10 @@ export default function AboutPage() {
             Hello, I am <h1 className="text-primary inline">Gabe Shin</h1>
           </h1>
           <p>
-            I am a full stack developer with 5+ years of experience from Seoul,
-            Korea. I am currently based in Seoul - actively looking for a new
-            opportunity.
+            AI engineer with 7+ years of experience building production AI
+            systems, distributed backends, and developer-facing products in
+            startup environments. Based in Seoul, passively looking for
+            impact-focused AI engineering or forward-deployed roles.
           </p>
           <div className="grid grid-cols-3 my-8">
             <Image
@@ -29,10 +30,10 @@ export default function AboutPage() {
             />
             <div className="col-start-2 col-end-4">
               <h2 className="text-primary font-semibold mb-2">Contacts</h2>
-              <p> ✉️ gabeshin.ts@gmail.com</p>
-              <p>🇰🇷 (+82) 10-****-****</p>
+              <p>✉️ gabeshin.ts@gmail.com</p>
+              <p>🇰🇷 +82 10-3382-0650</p>
               <h2 className="text-primary font-semibold my-2">Channels</h2>
-              <a className="text-text" href="https://www.gabeshin.com/gabeshin">
+              <a className="text-text" href="https://github.com/gabeshin">
                 Github
               </a>
               <br />
@@ -45,133 +46,212 @@ export default function AboutPage() {
             </div>
           </div>
           <div>
-            <h1 className="text-primary my-8"> Introduction </h1>
+            <h1 className="text-primary my-8">Introduction</h1>
             <p>
-              I am a full stack developer with 5+ years of experience in startup
-              with developing, deploying and maintaining services. I had mostly
-              been in charge of web development, but also bring leadership
-              experience in leading a team of engineers. I initially joined a
-              small team as a machine learning researcher, but expanded my
-              skillsets and responsibilities as the product and the team grew. I
-              prioritizes features that bring business value and in order to
-              bring meaningful business value, I tried to deliver features
-              frequently and understand user&apos; behavior through data.
+              I work at the intersection of AI systems engineering and product.
+              Recent focus is agentic systems and browser automation,
+              production-scale data pipelines, and reusable evaluation harnesses
+              that compress agent iteration. I enjoy taking ambiguous customer
+              problems through to deployed software, and I think carefully
+              about when deterministic logic beats LLM calls based on cost,
+              accuracy, and latency tradeoffs.
             </p>
           </div>
           <div>
-            <h1 className="text-primary my-8"> Latest Interest</h1>
+            <h1 className="text-primary my-8">Recent Work</h1>
             <p>
-              Lately, I had been working on{" "}
-              <Link className="text-blue-500" href="https://www.fomoapp.co.kr">
-                FOMO app
+              At{" "}
+              <Link className="text-blue-500" href="https://enhans.ai">
+                Enhans
               </Link>
-              , a web application that summarizes various stock reports from
-              different sources and provide ai summary. It&apos;s composed of
-              many different parts and required learning more about prompt
-              engineering and properly calibrating the LLM to provide the
-              required output. If you are interested, I would be happy to share
-              more about it. the LLM model locally without using the server.
+              , I architect{" "}
+              <Link
+                className="text-blue-500"
+                href="https://act-2.enhans.ai/ko"
+              >
+                ACT-2
+              </Link>
+              , a browser automation platform organized as SDK → Runtime →
+              Brain. ACT-2 reached as high as 2nd on the Mind2Web web-agent
+              benchmark and currently sits at 3rd. Before that I designed the
+              AgentOS dynamic-pricing product-matching pipeline — a three-stage
+              funnel (cache → rule-based → selective LLM) sustaining 120K+
+              SKUs/hour with ~95% lower per-unit cost than the prior LLM-only
+              baseline.
             </p>
             <br />
             <p>
-              Also there&apos;s chatbot that answers questions about me, (please{" "}
-              <Link className="text-blue-500" href="/chat">
-                check it out
+              I co-first-authored{" "}
+              <Link
+                className="text-blue-500"
+                href="https://arxiv.org/abs/2509.01182"
+              >
+                Question-to-Knowledge (Q2K)
               </Link>{" "}
-              if you hadn&apos;t already). (as of 2025.03 the vector database
-              stopped working, so the chatbot is not working)
+              at IEEE BigData 2025 — an interpretable multi-agent framework for
+              product mapping (95.62% accuracy). Outside Enhans I co-founded{" "}
+              <Link className="text-blue-500" href="/jaksam">
+                Jaksam (작샘)
+              </Link>
+              , a cross-platform music-lesson app live on App Store and Google
+              Play.
             </p>
             <br />
             <p>
-              {" "}
-              I had also been looking into HTMX and Golang, I think it solves
-              many problems and complexity that React is bringing to the web
-              development and makes DX most pleasureable. I will be doing a
-              small project soon.{" "}
+              A topic I keep coming back to: agent harnesses. I built the AFK
+              Research Test Harness — inspired by Karpathy&apos;s autoresearch
+              — and applied it both to ACT-2&apos;s agentic loop and to growing
+              the Korean e-commerce rulebook (~6,400 regex rules) for AgentOS
+              matching. One conclusion worth sharing: fully automated agent
+              self-improvement loops aren&apos;t cost- or time-effective at the
+              current frontier; the strongest results come from human insight +
+              AI assistance.
             </p>
           </div>
           <div>
-            <h1 className="text-primary my-8"> Work Experience</h1>
+            <h1 className="text-primary my-8">Work Experience</h1>
             <h2 className="font-semibold">
-              <Link href="https://www.visual.camp">Visualcamp</Link>
+              <Link href="https://enhans.ai">Enhans</Link>
             </h2>
             <p>
-              Provides world leading mobile gaze tracking SDK to developers
-              world-wide.
+              South Korea-based AI startup building Large Action Model
+              (LAM)-based agents and AgentOS, a commerce automation operating
+              system.
             </p>
             <div className="grid grid-cols-4 my-4">
               <div className="col-start-1">
-                <p className="font-semibold"> Backend Engineer</p>
-                <p className="text-subtext"> 2022.09 - 2024.04</p>
+                <p className="font-semibold">AI Engineer</p>
+                <p className="text-subtext">2025.04 - Present</p>
               </div>
               <div className="col-start-2 col-end-5">
                 <p>
-                  ◦ Deployed scalable service with using Kubernetes. Created
-                  monitoring system utilizing Fluentd and Grafana.
+                  ◦ Architected ACT-2 (browser automation platform; SDK →
+                  Runtime → Brain). Reached as high as 2nd on the Mind2Web
+                  benchmark.
                 </p>
                 <p>
-                  ◦ Designed and developed event-driven architecture, handling
-                  asynchronous operations efficiently while maintaining data
-                  integrity.
+                  ◦ Designed the AgentOS product-matching pipeline — three-stage
+                  funnel sustaining 120K+ SKUs/hour and 300K+ requests/day; ~95%
+                  cost reduction and 5x throughput vs. the prior LLM-only
+                  baseline.
                 </p>
                 <p>
-                  ◦ Applied TDD methodology to create maintainable codebase.
+                  ◦ Built the Product Rulebook Extractor (~6,400 regex rules,
+                  ~11,000 tests) for Korean e-commerce. The rulebook is grown
+                  by an LLM agent harness rather than authored by hand.
+                </p>
+                <p>
+                  ◦ Built the AFK Research Test Harness for unattended agent
+                  iteration with budget-aware optimization and revert logic.
+                </p>
+                <p>
+                  ◦ Co-first author, &quot;Question-to-Knowledge (Q2K)&quot; —
+                  IEEE BigData 2025 (95.62% accuracy).
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-4 my-4">
+              <div className="col-start-1">
+                <p className="font-semibold">Self-directed sabbatical</p>
+                <p className="text-subtext">2024.05 - 2025.04</p>
+              </div>
+              <div className="col-start-2 col-end-5">
+                <p>
+                  ◦ Took a year in Berlin to build engineering and AI side
+                  projects, read deeply, and travel after eight years at one
+                  company.
+                </p>
+              </div>
+            </div>
+            <h2 className="font-semibold mt-8">
+              <Link href="https://www.visual.camp">Visualcamp</Link>
+            </h2>
+            <p>
+              Provides a mobile gaze-tracking SDK used by developers worldwide.
+            </p>
+            <div className="grid grid-cols-4 my-4">
+              <div className="col-start-1">
+                <p className="font-semibold">Backend Engineer</p>
+                <p className="text-subtext">2022.09 - 2024.05</p>
+              </div>
+              <div className="col-start-2 col-end-5">
+                <p>
+                  ◦ Built and operated scalable backend services on Kubernetes;
+                  introduced Fluentd / Grafana monitoring and event-driven
+                  workflows.
+                </p>
+                <p>
+                  ◦ Applied TDD across the team to improve maintainability.
                 </p>
               </div>
             </div>
             <div className="grid grid-cols-4 my-4">
               <div className="col-start-1">
                 <p className="font-semibold">Tech Lead</p>
-                <p className="text-subtext"> 2020.03 - 2022.09</p>
+                <p className="text-subtext">2020.03 - 2022.09</p>
               </div>
               <div className="col-start-2 col-end-5">
                 <p>
-                  ◦ Refactored legacy monolith authentication server to
-                  microservice architecture, resulting in reduced server cost
-                  approximately 70%.
+                  ◦ Owned the SeeSo SDK platform roadmap; expanded support to
+                  six platforms supporting 5M+ monthly authentications.
                 </p>
                 <p>
-                  ◦ Designed and deployed global support for SDK authentication
-                  utilizing CDN.
+                  ◦ Refactored a monolithic auth server to microservices (~70%
+                  server cost reduction); designed CDN-fronted global
+                  authentication; introduced AWS CDK as the team&apos;s IaC
+                  standard.
                 </p>
                 <p>
-                  ◦ Applied Infrastructure-as-Code principle to the team and
-                  deployed service using AWS CDK.
+                  ◦ Contributed to the C++ SDK core and TensorFlow integration
+                  for cross-platform inference.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-4 my-4">
+              <div className="col-start-1">
+                <p className="font-semibold">Machine Learning Researcher</p>
+                <p className="text-subtext">2018.09 - 2020.03</p>
+              </div>
+              <div className="col-start-2 col-end-5">
+                <p>
+                  ◦ Reproduced state-of-the-art gaze-tracking models; built
+                  crowdsourced data pipelines with engineering.
                 </p>
                 <p>
-                  ◦ Developed the SDK&apos;s core pipeline using C++ and
-                  integrated TensorFlow models, focused on a robust product that
-                  supports multi-platform.
-                </p>
-                <p>
-                  ◦ Managed the product development roadmap, successfully
-                  extending the SeeSo SDK support to six different platforms,
-                  currently handling over 5 million monthly authentications
-                  reliably.
+                  ◦ Improved model accuracy by 25%, reaching SotA on mobile
+                  gaze tracking.
                 </p>
               </div>
             </div>
           </div>
+          <h1 className="text-primary my-8">Awards & Publications</h1>
           <div className="grid grid-cols-4 my-4">
             <div className="col-start-1">
-              <p className="font-semibold">Machine Learning Researcher</p>
-              <p className="text-subtext"> 2018.09 - 2020.03</p>
+              <p className="font-semibold">IEEE BigData 2025</p>
+              <p className="text-subtext">Co-first author</p>
             </div>
             <div className="col-start-2 col-end-5">
               <p>
-                ◦ Conducted comprehensive research on state-of-the-art models
-                and replicated the results, infusing insights from these studies
-                to refine our model.
+                ◦{" "}
+                <Link
+                  className="text-blue-500"
+                  href="https://arxiv.org/abs/2509.01182"
+                >
+                  Question-to-Knowledge (Q2K): Multi-Agent Generation of
+                  Inspectable Facts for Product Mapping
+                </Link>
               </p>
-              <p>
-                ◦ Collaborated with the development team to crowdsourced data,
-                ensuring a steady supply of quality training data for the model.
-              </p>
-              <p>
-                ◦ Achieved 25% increase in model accuracy through continuous
-                optimization, marking a significant enhancement in accuracy and
-                reaching SotA accuracy in mobile gaze tracking.
-              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-4 my-4">
+            <div className="col-start-1">
+              <p className="font-semibold">SeeSo SDK</p>
+              <p className="text-subtext">Visualcamp</p>
+            </div>
+            <div className="col-start-2 col-end-5">
+              <p>◦ CES 2023 Innovation Award</p>
+              <p>◦ CES 2022 Innovation Award</p>
+              <p>◦ MWC 2021 GLOMO Award, Best Mobile Innovation</p>
             </div>
           </div>
           <h1 className="text-primary my-8">Education</h1>
@@ -180,7 +260,7 @@ export default function AboutPage() {
               <p className="font-semibold">
                 Washington University in St. Louis - Missouri, USA
               </p>
-              <p className="text-subtext"> 2009.09 - 2016.05</p>
+              <p className="text-subtext">2009.09 - 2016.05</p>
             </div>
             <div className="col-start-2 col-end-5">
               <p>◦ Bachelor of Business Administration (BSBA) in 2016</p>
@@ -191,7 +271,7 @@ export default function AboutPage() {
               <p className="font-semibold">
                 Shawniganlake Secondary School - BC, Canada
               </p>
-              <p className="text-subtext"> 2005.09 - 2009.05</p>
+              <p className="text-subtext">2005.09 - 2009.05</p>
             </div>
             <div className="col-start-2 col-end-5">
               <p>◦ Graduated with Academic Honors</p>
