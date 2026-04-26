@@ -22,6 +22,7 @@ projects:
   - agentos-matching
   - title-extractor
   - afk-harness
+  - batch-orchestrator
   - q2k
 last_updated: 2026-04-26
 ---
