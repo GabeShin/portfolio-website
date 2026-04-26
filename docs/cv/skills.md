@@ -11,8 +11,8 @@ Curated taxonomy. Ordering reflects current targeting (AI Engineer with impact /
 
 - **AI Systems** — agentic workflows, tool use, planning, browser agents, deterministic-vs-LLM routing, evaluation harnesses, multi-agent frameworks
 - **Backend & Data** — FastAPI, Node.js, Kafka, PostgreSQL, Redis, distributed systems, event-driven architecture, data pipelines
-- **LLM Providers** — OpenAI, Anthropic
-- **Cloud Infra** — AWS ECS, Kubernetes, AWS CDK, Docker
+- **LLM Providers** — OpenAI, Anthropic, Azure OpenAI (APIM)
+- **Cloud Infra** — AWS ECS, AWS CDK, Azure Kubernetes Service (AKS), Kubernetes, Docker
 
 ## Languages
 

@@ -16,8 +16,7 @@ inspirations:
   - Karpathy's autoresearch (https://github.com/karpathy/autoresearch)
   - Hyperagent paper
 applications:
-  - act-2 (improving the agentic loop)
-  - title-extractor (growing the Korean e-commerce rulebook to ~6,400 rules)
+  - act-2 (improving the brain agent / agentic loop)
 last_updated: 2026-04-26
 ---
 
@@ -42,14 +41,13 @@ The AFK Research Test Harness — a generic agent-harness framework into which a
 
 ### Applications
 
-- **ACT-2 agentic loop development** — used as the eval/iteration framework for ACT-2 itself (see `act-2.md`).
-- **Korean e-commerce rulebook expansion** — applied to grow the rule-based extractor's rulebook to ~6,400 rules, with the harness drafting and committing new rules under tight regression and budget control (see `title-extractor.md`). This is one of the most concrete production applications of the harness — agent-as-rule-author, with the human reviewing and merging.
+- **ACT-2 brain agent / agentic loop development** — used as the eval and iteration framework for ACT-2's brain agent (see `act-2.md`).
 
 ## Outcomes
 
 - Made agentic-loop iteration a measurable cycle rather than an ad-hoc one.
 - Enabled safer iteration on agent quality without on-call human review of every experiment.
-- **Research conclusion**: fully automated agent self-improvement loops aren't effective on cost or wall-time at the current frontier. The strongest results come from **human insight + AI assistance**, where the agent compresses execution time but the human supplies hypothesis quality.
+- **Research conclusion (from applying the harness to ACT-2's brain agent)**: fully automated agent self-improvement loops aren't cost- or time-effective at the current frontier. The strongest results come from **human insight + AI assistance**, where the agent compresses execution time but the human supplies hypothesis quality.
 
 ## Notes
 
