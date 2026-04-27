@@ -950,6 +950,105 @@ const styles = `
 .cv-page .doc.kr .meta { letter-spacing: .04em; }
 .cv-page .doc.kr .alt { letter-spacing: .04em; }
 
+/* Mobile — collapse multi-column sheet layout, drop fixed gutters,
+   shrink edge padding so content fits on phone screens (~375px wide). */
+@media (max-width: 720px) {
+  .cv-page {
+    --t-body: 12.5px;
+    --t-meta: 9.5px;
+    --t-h: 18px;
+    padding-bottom: 32px;
+  }
+
+  .cv-page .app-bar {
+    padding: 8px 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+    letter-spacing: .1em;
+  }
+  .cv-page .app-bar .spacer { display: none; }
+
+  .cv-page .picker-bar {
+    position: static;
+    padding: 8px 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+    letter-spacing: .08em;
+  }
+  .cv-page .picker-spacer { display: none; }
+  .cv-page .picker-btn.picker-print {
+    margin-left: auto;
+    padding: 4px 8px;
+  }
+
+  .cv-page .stack {
+    padding: 16px 12px;
+    gap: 16px;
+  }
+
+  .cv-page .sheet {
+    padding: 24px 20px 32px;
+    max-width: none;
+    box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 12px 28px -16px rgba(0,0,0,.3);
+  }
+
+  .cv-page .doc .row-bw {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cv-page .doc .head-meta {
+    text-align: left;
+    align-items: flex-start;
+  }
+  .cv-page .doc .name {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+  .cv-page .doc .rule { margin: 14px 0 18px; }
+
+  .cv-page .doc .proj {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px 0;
+  }
+  .cv-page .doc .proj-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    align-items: baseline;
+  }
+  .cv-page .doc .proj-meta .meta-stack {
+    flex-basis: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .cv-page .doc .role {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 14px 0;
+  }
+  .cv-page .doc .role-gutter {
+    border-left: 0;
+    border-top: 2px solid var(--accent);
+    padding-left: 0;
+    padding-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+  }
+  .cv-page .doc .role-gutter .meta { margin-top: 0 !important; }
+
+  .cv-page .doc .grid-3 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .cv-page .doc section { margin-bottom: 18px; }
+
+  .cv-page .diag-wrap { padding: 10px 8px; }
+}
+
 /* Print */
 @media print {
   /* Letter @ zero outer margin — sheet's own padding handles content margins.
