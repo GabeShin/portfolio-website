@@ -157,13 +157,22 @@ export const PROJECTS: Record<Lang, Project[]> = {
         ["~10×", "cost / latency on workflow path"],
         ["#3", "Mind2Web web-agent benchmark (peaked #2)"],
       ],
-      stack: ["TypeScript", "Python", "Kotlin", "Playwright", "CDP", "AWS ECS", "FastAPI", "OpenAI", "Anthropic"],
+      stack: [
+        "TypeScript",
+        "Python",
+        "Kotlin",
+        "Playwright",
+        "CDP",
+        "AWS ECS",
+        "FastAPI",
+        "OpenAI",
+        "Anthropic",
+      ],
       diag: "act2",
       narrative: {
         problem:
           "Enterprises rely on browser-based workflows that are too narrow to justify dedicated integrations but too costly to leave to people. Pure LLM-driven browser agents work but don't scale economically — every run pays for inference, and runs are non-deterministic. Hand-coded scrapers are cheap but break the moment the site changes.",
-        why:
-          "The interesting space was the middle: a system where the AI agent solves novel tasks, repeatable tasks compile down to deterministic playbacks, and the playbacks self-recover when the underlying site shifts. That's the only shape where the cost math works at scale, and it's the only design that makes the same task cheap and reliable when it runs millions of times.",
+        why: "The interesting space was the middle: a system where the AI agent solves novel tasks, repeatable tasks compile down to deterministic playbacks, and the playbacks self-recover when the underlying site shifts. That's the only shape where the cost math works at scale, and it's the only design that makes the same task cheap and reliable when it runs millions of times.",
         approach:
           "I architected the platform as three tiers: SDKs in multiple languages (Node / Python / JVM), a Playwright/CDP runtime that captures successful agent runs as YAML replay scripts, and an LLM-backed Brain. I designed the Workflow Healing Server as a thin coordination layer — state machine plus delegation pattern — that detects when scripts break, locks the affected workflow, and delegates patching to an external Building Agent rather than trying to be the patcher itself. The healing system stays small, observable, and testable because it doesn't try to do too much. ACT-2 also ships as an installable Agent Skill so other AI agents (Claude Code, Cursor, OpenClaw) can drive it as a tool.",
         result:
@@ -188,13 +197,20 @@ export const PROJECTS: Record<Lang, Project[]> = {
         ["~95%", "per-unit cost reduction vs prior"],
         [">5×", "throughput · 120K+ SKUs / hour"],
       ],
-      stack: ["Python 3.13", "FastAPI", "SQLAlchemy 2.0 async", "PostgreSQL 16", "Kafka 3.7", "AWS ECS", "Kubernetes"],
+      stack: [
+        "Python",
+        "FastAPI",
+        "SQLAlchemy",
+        "PostgreSQL",
+        "Kafka",
+        "AWS ECS",
+        "Kubernetes",
+      ],
       diag: "funnel",
       narrative: {
         problem:
           "Korean e-commerce dynamic pricing requires SKU-to-product matching at production volume across multiple platforms. The prior implementation ran every match through an LLM — accurate, but cost was prohibitive, latency scaled linearly with traffic, and past decisions weren't reused. The triggering event was a customer promotion contract: ~15,000 target products per day for three weeks. The original pipeline couldn't absorb that economically.",
-        why:
-          "The core insight was that most matching decisions don't need an LLM at all. Exact matches and obvious non-matches can be handled deterministically; pay LLM cost only on the genuinely ambiguous middle. Building this as a funnel rather than a flat pipeline meant we could move 95% of decisions to cheaper layers while preserving accuracy where it actually mattered — which made the promotion economically viable, and the architecture durable for whatever came next.",
+        why: "The core insight was that most matching decisions don't need an LLM at all. Exact matches and obvious non-matches can be handled deterministically; pay LLM cost only on the genuinely ambiguous middle. Building this as a funnel rather than a flat pipeline meant we could move 95% of decisions to cheaper layers while preserving accuracy where it actually mattered — which made the promotion economically viable, and the architecture durable for whatever came next.",
         approach:
           "I architected the v1 funnel — cache reuse of prior matches (~67% of traffic, free), deterministic hard rules (~6%, ~93% precision), then selective LLM fallback (~33%). The full pipeline is async streaming via Kafka with per-source result topics so consumers don't contend. For burst handling I designed a sharded LLM consumer pool (N tasks × M concurrency) with a per-task in-memory sliding-window RPM/TPM rate limiter — the system can saturate available LLM throughput without exceeding upstream limits. v2 generalization (multi-client, multi-source) and ongoing refinement was collaborative with the team.",
         result:
@@ -218,15 +234,24 @@ export const PROJECTS: Record<Lang, Project[]> = {
       outcomes: [
         ["~50%", "inference cost reduction vs sync API"],
         ["Multi", "internal services migrated where applicable"],
-        ["2", "production providers (OpenAI · Bedrock)"],
+        ["3", "production providers (OpenAI · Bedrock · Azure)"],
       ],
-      stack: ["Python", "FastAPI", "Kafka", "Redis", "S3", "AWS ECS", "OpenAI Batch", "Bedrock"],
+      stack: [
+        "Python",
+        "FastAPI",
+        "Kafka",
+        "Redis",
+        "S3",
+        "AWS ECS",
+        "OpenAI Batch",
+        "Bedrock",
+        "Azure",
+      ],
       diag: "batch",
       narrative: {
         problem:
           "Multiple Enhans services run high-volume LLM workloads. Synchronous APIs make the math punishing at scale — per-call inference cost dominates the budget for any team that doesn't need real-time. Provider batch APIs are ~50% cheaper but only support single-step tasks out of the box. Most real workloads aren't single-step: classify, fetch related records, generate plans, persist — three inference steps with database access between them.",
-        why:
-          "Either every team rebuilds the same async-batch plumbing (input JSONL packing, S3 staging, polling, error handling), or they keep paying full sync-API cost for tasks that didn't need real-time. Both options waste effort. A shared platform service that makes batch + multi-step a first-class capability solves it once for the whole company instead of N times badly.",
+        why: "Either every team rebuilds the same async-batch plumbing (input JSONL packing, S3 staging, polling, error handling), or they keep paying full sync-API cost for tasks that didn't need real-time. Both options waste effort. A shared platform service that makes batch + multi-step a first-class capability solves it once for the whole company instead of N times badly.",
         approach:
           "I built a managed batch service with three core components — a FastAPI Server that authenticates, validates, and mints task IDs; a Batch Consumer that accumulates by provider:model and submits to the provider's batch API; and a Poller + Reporter that checks every 30s and publishes per-task results to Kafka. Multi-step composition emerges naturally: caller services consume results, run their own DB queries and business logic, then re-enter with derived requests. Provider abstraction (validator + reporter per-provider) makes adding a new provider contained — currently OpenAI Batch and AWS Bedrock; Azure OpenAI and Gemini planned.",
         result:
@@ -252,13 +277,20 @@ export const PROJECTS: Record<Lang, Project[]> = {
         ["6", "platforms supported"],
         ["CES '22 / '23", "Innovation Awards · MWC GLOMO 2021"],
       ],
-      stack: ["C++", "TensorFlow", "Node.js", "AWS CDK", "Kubernetes", "Java/Kotlin", "Swift"],
+      stack: [
+        "C++",
+        "TensorFlow",
+        "Node.js",
+        "AWS CDK",
+        "Kubernetes",
+        "Java/Kotlin",
+        "Swift",
+      ],
       diag: null,
       narrative: {
         problem:
           "Gaze tracking from a standard mobile camera requires both research-grade accuracy and SDK-grade reliability across heterogeneous devices, OSes, and host applications. State-of-the-art models from research papers don't survive the trip to production — they fail on real device variability, real network conditions, and real integration paths. The SDK had to be both accurate enough to be useful and stable enough to embed in customers' apps at scale.",
-        why:
-          "VisualCamp's core thesis was that gaze tracking on consumer mobile cameras was viable as a developer-facing product, not just a research demo. That meant the engineering had to be production-grade end-to-end — not 'ML model in a notebook' but 'C++ pipeline + cross-platform inference + global auth + monitoring + observability' — and it had to scale with developer adoption.",
+        why: "VisualCamp's core thesis was that gaze tracking on consumer mobile cameras was viable as a developer-facing product, not just a research demo. That meant the engineering had to be production-grade end-to-end — not 'ML model in a notebook' but 'C++ pipeline + cross-platform inference + global auth + monitoring + observability' — and it had to scale with developer adoption.",
         approach:
           "I owned the SeeSo SDK product through platform expansion and into stable scale. Built the C++ core pipeline and integrated TensorFlow models for cross-platform inference. Owned the platform roadmap, expanding SDK support to six platforms. Designed and deployed global SDK authentication backed by CDN. Introduced AWS CDK as the team's IaC standard. Later, as Backend Engineer, ran the Kubernetes services with Fluentd / Grafana monitoring and event-driven workflows behind the SDK auth and telemetry pipelines. Earlier (as ML Researcher) reproduced state-of-the-art gaze-tracking models and contributed the +25% accuracy improvement that reached mobile SOTA.",
         result:
@@ -269,8 +301,8 @@ export const PROJECTS: Record<Lang, Project[]> = {
       slug: "jaksam",
       name: "Jaksam (작샘) — AI Practice Coach",
       period: "2025 → Present",
-      co: "Independent · Co-founder",
-      role: "Co-founder · Engineering",
+      co: "Side project",
+      role: "Product · Engineering",
       lede: "Cross-platform music-lesson app for aspiring classical musicians. Records lesson → structured plan → bounded agentic AI coach for the week between lessons. Live on App Store and Google Play.",
       built: [
         "React Native (Expo) app with role-based workflows for student / teacher / parent.",
@@ -281,16 +313,24 @@ export const PROJECTS: Record<Lang, Project[]> = {
       ],
       outcomes: [
         ["Live", "on App Store + Google Play (early stage)"],
-        ["Real", "students of co-founder as test audience"],
+        ["Real", "students of my wife as test audience"],
         ["Bounded", "agentic loop holds per-message cost low"],
       ],
-      stack: ["TypeScript", "React Native", "Expo", "Supabase", "LangChain", "Whisper", "PostgreSQL", "PostHog"],
+      stack: [
+        "TypeScript",
+        "React Native",
+        "Expo",
+        "Supabase",
+        "LangChain",
+        "Whisper",
+        "PostgreSQL",
+        "PostHog",
+      ],
       diag: null,
       narrative: {
         problem:
           "The hardest moment for an aspiring classical musician isn't the lesson — it's the week between lessons. Students leave the studio with notes and good intentions, then sit at the instrument the next day without a clear plan: what to practice, how to practice it, what 'good' sounds like. My wife is a professional pianist and classical-piano teacher; she sees this every week. Even motivated students plateau when their practice loops drift from what the teacher actually said.",
-        why:
-          "My wife's students are all aspiring classical musicians on a professional path — elementary-age performers in specialized programs through college and masters performers. The stakes are real: drifting practice quality compounds over months and years. We wanted to capture each lesson, extract a structured plan, and put a coach in the student's pocket that knows the lesson, the methodology, and the student's history — so practice can stay on the line the teacher set.",
+        why: "My wife's students are all aspiring classical musicians on a professional path — elementary-age performers in specialized programs through college and masters performers. The stakes are real: drifting practice quality compounds over months and years. We wanted to capture each lesson, extract a structured plan, and put a coach in the student's pocket that knows the lesson, the methodology, and the student's history — so practice can stay on the line the teacher set.",
         approach:
           "A React Native (Expo) app with role-based workflows for students, teachers, and parents — multi-tenant Supabase with row-level security. Lesson recording is foreground chunked audio (or video) with resilient upload for weak networks. The orchestrator pipes recordings through Whisper transcription, then through LangChain steps that produce a summary with timestamped key points and a practice plan. Practice sessions get LLM-generated feedback questions. The Jaksam coach itself runs a bounded reasoning + tools loop — capped iterations, two tools (YouTube music-edu search and a methodology KB retrieval), cost-tiered model selection, graceful degradation on tool failure.",
         result:
@@ -305,11 +345,11 @@ export const PROJECTS: Record<Lang, Project[]> = {
       period: "2025.12 → 현재",
       co: "Enhans",
       role: "AI 엔지니어 · 아키텍트",
-      lede: "AI 기반 에이전트와 결정론적 자가복구 리플레이 스크립트를 결합한 3계층 브라우저 자동화 플랫폼. 동일 작업이 수백만 번 반복될 때 저렴하고 안정적으로 실행됨.",
+      lede: "AI 기반 에이전트와 결정론적 자가복구 및 리플레이 스크립트를 결합한 3계층 브라우저 자동화 플랫폼. 동일 작업이 수백만 번 반복될 때 저렴하고 안정적으로 실행됨.",
       built: [
-        "SDK → Runtime → Brain의 3계층 구조를 처음부터 끝까지 설계. 워크플로 + Healing 서브시스템 설계 주도.",
+        "SDK → Runtime → Brain의 3계층 구조를 처음부터 끝까지 설계. 리플레이 워크플로우 + Healing 서브시스템 설계 주도.",
         "런타임 다중 턴 오케스트레이션 루프: 스냅샷 → 행동 → 반복, 단일 act() 호출 뒤에서 자동 동작.",
-        "YAML 리플레이 시스템: 성공한 에이전트 실행을 결정론적 스크립트로 컴파일, 실패 시 Brain으로 우아한 폴백.",
+        "YAML 리플레이 시스템: 성공한 에이전트 실행을 결정론적 스크립트로 컴파일, 실패 시 Brain으로 Graceful Fallback.",
         "Healing Server 설계 (상태 머신 healthy→healing→degraded, 락 모드, Building Agent에 위임).",
         "다중 언어 SDK (Node · Python · Kotlin); Claude Code · Cursor · OpenClaw용 Agent Skill 패키징.",
       ],
@@ -318,15 +358,24 @@ export const PROJECTS: Record<Lang, Project[]> = {
         ["~10×", "워크플로 경로 비용 / 지연 절감"],
         ["#3", "Mind2Web 웹 에이전트 벤치마크 (최고 #2)"],
       ],
-      stack: ["TypeScript", "Python", "Kotlin", "Playwright", "CDP", "AWS ECS", "FastAPI", "OpenAI", "Anthropic"],
+      stack: [
+        "TypeScript",
+        "Python",
+        "Kotlin",
+        "Playwright",
+        "CDP",
+        "AWS ECS",
+        "FastAPI",
+        "OpenAI",
+        "Anthropic",
+      ],
       diag: "act2",
       narrative: {
         problem:
-          "엔터프라이즈는 전용 통합을 정당화하기엔 너무 좁고, 사람이 직접 처리하기엔 너무 비싼 브라우저 기반 워크플로우에 의존합니다. 순수 LLM 기반 브라우저 에이전트는 동작하지만 경제적으로 확장되지 않습니다 — 모든 실행이 추론 비용을 지불하고, 실행은 비결정적입니다. 손으로 짠 스크래퍼는 저렴하지만 사이트가 바뀌는 즉시 깨집니다.",
-        why:
-          "흥미로운 공간은 그 중간이었습니다. AI 에이전트가 새로운 작업을 풀고, 반복 가능한 작업은 결정론적 재생 스크립트로 컴파일되며, 그 재생 스크립트가 사이트 변경에 자가 복구하는 시스템. 비용 수학이 대규모에서 성립하는 유일한 형태이고, 동일 작업이 수백만 번 반복될 때 저렴하고 안정적이게 만드는 유일한 설계입니다.",
+          "엔터프라이즈는 전용 통합을 정당화하기엔 너무 좁고, 사람이 직접 처리하기엔 너무 비싼 브라우저 기반 워크플로우에 의존합니다. 순수 LLM 기반 브라우저 에이전트는 동작할수도 있지만 경제적이지는 않습니다 — 모든 실행이 추론 비용을 지불하고, 실행은 비결정적입니다. 손으로 짠 스크래퍼는 저렴하지만 사이트가 바뀌는 즉시 깨집니다.",
+        why: "AI 에이전트가 새로운 작업을 풀고, 반복 가능한 작업은 결정론적 재생 스크립트로 컴파일되며, 재생 스크립트가 실패하였을 경우 자가 복구하는 시스템을 개발했습니다. 대규모로 스케일링이 가능한 형태이고, 동일 작업이 수백만 번 반복될 때 저렴하고 안정적이게 만드는 시스템을 설계/개발했습니다.",
         approach:
-          "플랫폼을 3계층으로 설계했습니다 — 다중 언어 SDK (Node / Python / JVM), 성공한 에이전트 실행을 YAML 재생 스크립트로 캡처하는 Playwright/CDP 런타임, LLM 기반 Brain. Workflow Healing Server는 thin coordination layer로 설계했습니다 — state machine + 위임 패턴 — 스크립트가 깨지면 감지하고, 해당 워크플로를 잠그고, 패칭 자체는 외부 Building Agent에 위임. Healing 시스템이 너무 많은 일을 하려 하지 않기 때문에 작고, 관찰 가능하고, 테스트 가능하게 유지됩니다. ACT-2는 또한 설치 가능한 Agent Skill로 배포되어 다른 AI 에이전트 (Claude Code · Cursor · OpenClaw)가 도구로 구동할 수 있습니다.",
+          "플랫폼을 3계층으로 설계했습니다 — 다중 언어 SDK (Node / Python / JVM), 성공한 에이전트 실행을 YAML 재생 스크립트로 캡처하는 런타임, LLM 기반 Brain. Workflow Healing Server는 thin coordination layer로 설계했습니다 — state machine + 위임 패턴 — 스크립트가 깨지면 감지하고, 해당 워크플로를 잠그고, 패칭 자체는 외부 Building Agent에 위임. Healing 시스템이 너무 많은 일을 하려 하지 않기 때문에 작고, 관찰 가능하고, 테스트 가능하게 유지됩니다. ACT-2는 또한 설치 가능한 Agent Skill로 배포되어 다른 AI 에이전트 (Claude Code · Cursor · OpenClaw)가 도구로 구동할 수 있습니다.",
         result:
           "사내 워크플로우 자동화에 프로덕션 사용 중. Mind2Web 웹 에이전트 벤치마크 최고 2위, 현재 3위. DOM 메타데이터 추출로 Brain 호출 토큰 ~10배 절감, 워크플로 경로에서 순수 에이전틱 실행 대비 ~10배 비용/지연 절감. Healing Server 설계로 비용 절감이 지속됩니다 — 워크플로우가 drift에서 자동 복구되며 소리 없이 degrade하지 않음.",
       },
@@ -337,7 +386,7 @@ export const PROJECTS: Record<Lang, Project[]> = {
       period: "2025.04 — 2025.12",
       co: "Enhans",
       role: "AI 엔지니어 · v1 아키텍트",
-      lede: "한국 이커머스 다이내믹 프라이싱을 위한 SKU-to-product 매칭. 3단계 퍼널 — 재사용 → 결정론적 규칙 → 선택적 LLM. 일일 수십만 건의 결정을 처리하는 프로덕션 규모.",
+      lede: "한국 이커머스 다이내믹 프라이싱을 위한 SKU-to-product 매칭. 3단계 퍼널 — 재사용 → 결정론적 규칙 → 선택적 LLM. 일일 수십만-수백만 건의 요청을 처리하는 프로덕션 규모.",
       built: [
         "v1 퍼널 설계: ~67% 캐시 히트, ~6% 결정론적 규칙, ~33% 선택적 LLM 폴백.",
         "비동기 스트리밍 파이프라인. POST는 즉시 202 반환; 소스별 Kafka 토픽으로 컨슈머 간 경합 제거.",
@@ -349,13 +398,20 @@ export const PROJECTS: Record<Lang, Project[]> = {
         ["~95%", "단위 비용 절감"],
         [">5×", "처리량 · 시간당 120K+ SKU"],
       ],
-      stack: ["Python 3.13", "FastAPI", "SQLAlchemy 2.0 async", "PostgreSQL 16", "Kafka 3.7", "AWS ECS", "Kubernetes"],
+      stack: [
+        "Python",
+        "FastAPI",
+        "SQLAlchemy",
+        "PostgreSQL",
+        "Kafka",
+        "AWS ECS",
+        "Kubernetes",
+      ],
       diag: "funnel",
       narrative: {
         problem:
           "한국 이커머스 다이내믹 프라이싱은 다수 플랫폼에 걸쳐 프로덕션 규모로 SKU-to-product 매칭을 요구합니다. 그러나 기존 구현은 모든 매칭을 LLM으로 처리했습니다 — 정확하지만 비용이 감당 불가였고, 지연시간은 트래픽에 선형 증가, 과거 결정도 재사용되지 않았습니다. 결정적 계기는 고객 프로모션 계약: 일 ~15,000 target 상품, 3주간. 기존 파이프라인은 비용·시간 모두 감당이 안 됐습니다.",
-        why:
-          "핵심 통찰은 대부분의 매칭 결정이 LLM이 필요 없다는 것이었습니다. 명확한 매칭과 명확한 비매칭은 결정론적으로 처리 가능; LLM 비용은 진짜로 모호한 중간만 지불. 평면 파이프라인이 아닌 funnel로 짜면 95% 결정을 더 저렴한 계층으로 옮기면서 중요한 곳에서는 정확도를 보존할 수 있었습니다 — 이것이 프로모션을 경제적으로 viable하게 만들었고, 이후에 올 어떤 일에도 견디는 아키텍처가 되었습니다.",
+        why: "핵심 통찰은 대부분의 매칭 결정이 LLM이 필요 없다는 것이었습니다. 명확한 매칭과 명확한 비매칭은 결정론적으로 처리 가능; LLM 비용은 진짜로 모호한 중간만 지불. 평면 파이프라인이 아닌 funnel로 짜면 95% 결정을 더 저렴한 계층으로 옮기면서 중요한 곳에서는 정확도를 보존할 수 있었습니다 — 이것이 프로모션을 경제적으로 viable하게 만들었고, 이후에 올 어떤 일에도 견디는 아키텍처가 되었습니다.",
         approach:
           "v1 funnel을 architected — 과거 매칭 캐시 재사용 (~67%, 무료), 결정론적 hard rule (~6%, 정밀도 ~93%), 선택적 LLM 폴백 (~33%). 전체 파이프라인은 Kafka 기반 async streaming, source별 결과 토픽으로 컨슈머 간 경합 없음. Burst 처리를 위해 sharded LLM consumer pool (N tasks × M concurrency)을 설계했고, per-task in-memory sliding-window RPM/TPM rate limiter로 upstream 한도를 넘지 않으면서 가용 LLM 처리량을 saturate. v2 일반화 (multi-client, multi-source)와 지속 개선은 팀과 함께 진행했습니다.",
         result:
@@ -379,15 +435,24 @@ export const PROJECTS: Record<Lang, Project[]> = {
       outcomes: [
         ["~50%", "동기 API 대비 추론 비용 절감"],
         ["다수", "내부 서비스가 배치로 이전"],
-        ["2", "프로덕션 프로바이더 (OpenAI · Bedrock)"],
+        ["3", "프로덕션 프로바이더 (OpenAI · Bedrock · Azure)"],
       ],
-      stack: ["Python", "FastAPI", "Kafka", "Redis", "S3", "AWS ECS", "OpenAI Batch", "Bedrock"],
+      stack: [
+        "Python",
+        "FastAPI",
+        "Kafka",
+        "Redis",
+        "S3",
+        "AWS ECS",
+        "OpenAI Batch",
+        "Bedrock",
+        "Azure",
+      ],
       diag: "batch",
       narrative: {
         problem:
           "Enhans 전반에서 다수 서비스가 high-volume LLM 워크로드를 실행합니다. 동기 API는 scale에서 비용이 punishing — real-time이 필요 없는 팀에게도 per-call 추론 비용이 예산을 잠식합니다. Provider batch API는 ~50% 저렴하지만 out-of-the-box로는 single-step만 지원. 실제 워크로드 대부분은 single-step이 아닙니다: 분류 → 관련 레코드 조회 → 계획 생성 → persist — 단계 사이에 DB 접근이 있는 3단계 추론.",
-        why:
-          "모든 팀이 같은 async-batch 플러밍 (input JSONL 패킹, S3 staging, polling, error handling)을 다시 만들거나, real-time이 필요 없는 작업에 full sync-API 비용을 지불해야 했습니다. 둘 다 노력 낭비. 배치 + multi-step을 1급 시민으로 만드는 공유 플랫폼 서비스가 회사 전체를 위해 N번 어설프게가 아니라 한 번에 해결합니다.",
+        why: "모든 팀이 같은 async-batch 플러밍 (input JSONL 패킹, S3 staging, polling, error handling)을 다시 만들거나, real-time이 필요 없는 작업에 full sync-API 비용을 지불해야 했습니다. 둘 다 노력 낭비. 배치 + multi-step을 1급 시민으로 만드는 공유 플랫폼 서비스가 회사 전체를 위해 N번 어설프게가 아니라 한 번에 해결합니다.",
         approach:
           "매니지드 배치 서비스를 3개 핵심 컴포넌트로 구축 — auth / validation / task ID 발급의 FastAPI Server, `provider:model` 단위로 누적해 provider의 batch API에 제출하는 Batch Consumer, 30초마다 확인하고 Kafka에 task별 결과를 게시하는 Poller + Reporter. Multi-step composition은 자연스럽게 emerge: caller 서비스가 결과를 consume하고, 자체 DB 쿼리와 비즈니스 로직을 실행한 뒤, 파생된 요청으로 재진입. Provider 추상화 (per-provider validator + reporter)로 새 provider 추가가 contained — 현재 OpenAI Batch와 AWS Bedrock; Azure OpenAI와 Gemini 추가 예정.",
         result:
@@ -413,13 +478,20 @@ export const PROJECTS: Record<Lang, Project[]> = {
         ["6", "플랫폼 지원"],
         ["CES '22 / '23", "혁신상 · MWC GLOMO 2021"],
       ],
-      stack: ["C++", "TensorFlow", "Node.js", "AWS CDK", "Kubernetes", "Java/Kotlin", "Swift"],
+      stack: [
+        "C++",
+        "TensorFlow",
+        "Node.js",
+        "AWS CDK",
+        "Kubernetes",
+        "Java/Kotlin",
+        "Swift",
+      ],
       diag: null,
       narrative: {
         problem:
           "표준 모바일 카메라로부터의 시선 추적은 연구 수준의 정확도와 이질적 디바이스 / OS / 호스트 앱에 걸친 SDK 수준의 안정성을 모두 요구합니다. 연구 논문의 최첨단 모델은 프로덕션으로의 여정을 살아남지 못합니다 — 실제 디바이스 다양성, 실제 네트워크 조건, 실제 통합 경로에서 실패합니다. SDK는 유용하기에 충분히 정확하면서도 고객 앱에 embed될 만큼 안정적이어야 했습니다.",
-        why:
-          "VisualCamp의 핵심 thesis는 소비자 모바일 카메라의 시선 추적이 연구 데모가 아닌 개발자 대상 제품으로서 viable하다는 것이었습니다. 그러려면 엔지니어링이 end-to-end 프로덕션 수준이어야 했습니다 — '노트북 속 ML 모델'이 아닌 'C++ 파이프라인 + 크로스 플랫폼 추론 + 글로벌 auth + 모니터링 + 관찰가능성' — 그리고 개발자 채택과 함께 scale해야 했습니다.",
+        why: "VisualCamp의 핵심 thesis는 소비자 모바일 카메라의 시선 추적이 연구 데모가 아닌 개발자 대상 제품으로서 viable하다는 것이었습니다. 그러려면 엔지니어링이 end-to-end 프로덕션 수준이어야 했습니다 — '노트북 속 ML 모델'이 아닌 'C++ 파이프라인 + 크로스 플랫폼 추론 + 글로벌 auth + 모니터링 + 관찰가능성' — 그리고 개발자 채택과 함께 scale해야 했습니다.",
         approach:
           "플랫폼 확장 단계부터 안정적 규모까지 SeeSo SDK 제품을 owned. C++ 코어 파이프라인 구축 및 TensorFlow 모델을 cross-platform 추론에 통합. 플랫폼 로드맵을 owning하여 SDK 지원을 6개 플랫폼으로 확장. CDN 기반 글로벌 SDK 인증 설계 및 배포. AWS CDK를 팀의 IaC 표준으로 도입. 이후 Backend Engineer로서 Fluentd / Grafana 모니터링과 event-driven 워크플로우 기반 Kubernetes 서비스 운영. 더 이전에 (ML Researcher로서) 최첨단 시선 추적 모델 재현 및 +25% 정확도 개선으로 모바일 SOTA 도달에 기여.",
         result:
@@ -430,8 +502,8 @@ export const PROJECTS: Record<Lang, Project[]> = {
       slug: "jaksam",
       name: "작샘 (Jaksam) — AI 연습 코치",
       period: "2025 → 현재",
-      co: "독립 · 공동창업자",
-      role: "공동창업자 · 엔지니어링",
+      co: "사이드 프로젝트",
+      role: "기획 및 개발",
       lede: "클래식 전공생을 위한 크로스 플랫폼 레슨 앱. 레슨 녹음 → 구조화된 연습 계획 → 레슨 사이 한 주를 위한 제한된 에이전트형 AI 코치. App Store · Google Play 정식 출시.",
       built: [
         "React Native (Expo) 앱; 학생 / 선생님 / 학부모 역할별 워크플로.",
@@ -442,16 +514,24 @@ export const PROJECTS: Record<Lang, Project[]> = {
       ],
       outcomes: [
         ["출시", "App Store + Google Play (초기 단계)"],
-        ["실제", "공동창업자의 학생을 테스트 사용자로"],
+        ["실제", "아내의 학생을 테스트 사용자로"],
         ["제한된", "에이전트 루프로 메시지당 비용 통제"],
       ],
-      stack: ["TypeScript", "React Native", "Expo", "Supabase", "LangChain", "Whisper", "PostgreSQL", "PostHog"],
+      stack: [
+        "TypeScript",
+        "React Native",
+        "Expo",
+        "Supabase",
+        "LangChain",
+        "Whisper",
+        "PostgreSQL",
+        "PostHog",
+      ],
       diag: null,
       narrative: {
         problem:
           "클래식 전공생에게 가장 어려운 순간은 레슨 자체가 아니라 레슨과 레슨 사이의 한 주입니다. 학생은 노트와 좋은 의도와 함께 스튜디오를 떠나고, 다음 날 악기 앞에 앉으면 명확한 계획이 없습니다 — 무엇을 연습할지, 어떻게 연습할지, '잘한다'는 것이 어떤 소리인지. 제 아내는 전문 피아니스트이자 클래식 피아노 강사로, 매주 이를 봅니다. 동기 부여된 학생들조차 연습 루프가 선생님의 실제 말과 drift할 때 plateau합니다.",
-        why:
-          "아내의 학생들은 모두 전문 연주자의 길을 걷는 클래식 전공생들입니다 — 전문 프로그램의 초등학생 연주자부터 대학생·대학원생 연주자까지. 위험 부담은 진짜입니다: drift된 연습 품질은 개월과 년 단위로 누적됩니다. 우리는 각 레슨을 캡처하고, 구조화된 계획을 추출하고, 학생의 주머니에 레슨·방법론·학생 히스토리를 아는 코치를 넣어 — 연습이 선생님이 그린 line 위에 머물 수 있도록 하고 싶었습니다.",
+        why: "아내의 학생들은 모두 전문 연주자의 길을 걷는 클래식 전공생들입니다 — 전문 프로그램의 초등학생 연주자부터 대학생·대학원생 연주자까지. 위험 부담은 진짜입니다: drift된 연습 품질은 개월과 년 단위로 누적됩니다. 우리는 각 레슨을 캡처하고, 구조화된 계획을 추출하고, 학생의 주머니에 레슨·방법론·학생 히스토리를 아는 코치를 넣어 — 연습이 선생님이 그린 line 위에 머물 수 있도록 하고 싶었습니다.",
         approach:
           "학생 / 선생님 / 학부모 역할별 워크플로의 React Native (Expo) 앱 — Row-Level Security 기반 멀티 테넌트 Supabase. 레슨 녹음은 약한 네트워크 견디는 chunked foreground audio (또는 video). 오케스트레이터가 녹음을 Whisper transcription → LangChain 단계로 보내 timestamped key points 요약과 연습 계획을 produce. 연습 세션에는 LLM 생성 피드백 질문이 따라옵니다. Jaksam 코치 자체는 bounded reasoning + tools 루프 — 제한된 반복, 두 도구 (음악교육 필터드 YouTube 검색과 방법론 KB retrieval), 비용 계층 모델 선택, 도구 실패 시 graceful degradation.",
         result:
@@ -461,7 +541,10 @@ export const PROJECTS: Record<Lang, Project[]> = {
   ],
 };
 
-export const RESUME_HEADLINES: Record<Lang, Record<ProjectSlug, [string, string]>> = {
+export const RESUME_HEADLINES: Record<
+  Lang,
+  Record<ProjectSlug, [string, string]>
+> = {
   en: {
     "act-2": ["~10×", "tokens & cost saved · #3 Mind2Web"],
     "agentos-matching": ["+7.5pp", "accuracy · ~95% cost ↓ · 120K SKU/h"],

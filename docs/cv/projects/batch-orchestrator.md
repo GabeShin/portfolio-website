@@ -6,7 +6,7 @@ role: AI Engineer (architect + builder)
 status: production
 start: 2025
 end: null
-stack: [Python, FastAPI, Kafka, Redis, S3, Docker, AWS ECS, OpenAI Batch API, AWS Bedrock Batch Inference]
+stack: [Python, FastAPI, Kafka, Redis, S3, Docker, AWS ECS, OpenAI Batch API, AWS Bedrock Batch Inference, Azure OpenAI Batch]
 tags: [llm-infrastructure, batch-api, cost-optimization, multi-step-orchestration, provider-abstraction, async-pipeline]
 links:
   internal: ""
@@ -119,14 +119,14 @@ The orchestrator itself is stateless across steps — each batch is independent 
 
 ### Provider abstraction
 
-OpenAI and Bedrock are the two production providers; Azure OpenAI and Gemini are planned. The validator and reporter are abstracted per-provider so adding a new provider is mostly a matter of writing the JSONL adapter and the result parser. The caller specifies `provider` and `model` per request — the orchestrator picks the right path.
+OpenAI, Bedrock, and Azure are the three production providers; Gemini is planned. The validator and reporter are abstracted per-provider so adding a new provider is mostly a matter of writing the JSONL adapter and the result parser. The caller specifies `provider` and `model` per request — the orchestrator picks the right path.
 
 ## Outcomes
 
 - **Production batch endpoint** consumed by multiple internal services for high-volume LLM workloads.
 - **~50% cost reduction** per inference vs. synchronous API for callers who can tolerate batch latency (minutes to hours).
 - **Multi-step batch workflows** are now a normal pattern internally — teams compose two- or three-step batches with DB lookups between them, instead of either rebuilding the async plumbing or paying full sync-API cost.
-- **Provider-agnostic** — same API surface for OpenAI and Bedrock; adding new providers is a contained change.
+- **Provider-agnostic** — same API surface for OpenAI, Bedrock, and Azure; adding new providers is a contained change.
 - Removes a class of work that every LLM-using team would otherwise have to redo (input JSONL packing, S3 staging, batch submission, polling, result parsing, error handling, retry logic).
 
 ## Notes

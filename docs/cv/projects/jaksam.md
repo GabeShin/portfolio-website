@@ -4,7 +4,7 @@ name: Jaksam (작샘)
 name_full_ko: 작은선생님
 name_meaning: "small teacher"
 company: independent
-role: Co-founder / Engineer
+role: Product / Engineering (side project)
 status: production (early stage)
 start: 2025
 end: null
@@ -19,7 +19,7 @@ last_updated: 2026-04-26
 
 # Jaksam (작샘)
 
-A cross-platform music-lesson app that helps students take more away from their lessons and practice independently. Co-founded with my wife — a professional pianist and classical-piano teacher. Her students are all aspiring classical musicians on a professional path: from elementary-age performers in specialized programs through college and masters performers. **"Jaksam" (작샘)** is short for **작은선생님** ("small teacher") — a familiar term in the Korean classical-music community. It names both the product and the in-app AI coach.
+A cross-platform music-lesson app that helps students take more away from their lessons and practice independently. Built as a side project with my wife — a professional pianist and classical-piano teacher. Her students are all aspiring classical musicians on a professional path: from elementary-age performers in specialized programs through college and masters performers. **"Jaksam" (작샘)** is short for **작은선생님** ("small teacher") — a familiar term in the Korean classical-music community. It names both the product and the in-app AI coach.
 
 ## Problem
 
@@ -121,5 +121,5 @@ i18next with Korean as primary locale. The app UI, the AI coach's prompts, the p
 ## Notes
 
 - Source at `~/personal/music-app/`. Spec docs at `docs/specs/{version}/` are the best read for design intent (e.g., `1_2_0/jaksam-agentic-coach.md` for the agentic coach v2 design).
-- Co-founder is my wife. She's the domain anchor — every product decision has to survive a session with her own students. That tight feedback loop is unusual for a side project and is the real reason it's been worth building.
+- My wife is the domain anchor — every product decision has to survive a session with her own students. That tight feedback loop is unusual for a side project and is the real reason it's been worth building.
 - Stage framing on resumes / website should stay accurate: "in production, early stage, iterating" rather than overstating traction.

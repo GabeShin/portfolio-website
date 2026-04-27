@@ -8,7 +8,7 @@ status: production
 start: 2025-04
 end: null
 focus_period: 2025-04 → 2025-12
-stack: [Python 3.13, FastAPI, SQLAlchemy 2.0 async, PostgreSQL 16, Apache Kafka 3.7, AWS ECS, Kubernetes, dependency-injector, Poetry]
+stack: [Python, FastAPI, SQLAlchemy, PostgreSQL, Kafka, AWS ECS, Kubernetes, dependency-injector, Poetry]
 tags: [entity-resolution, retrieval, llm-routing, e-commerce, dynamic-pricing, burst-traffic, async-pipeline, hexagonal-architecture]
 links:
   internal: ""
