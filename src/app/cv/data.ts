@@ -625,7 +625,10 @@ export const RESUME_HEADLINES: Record<
   en: {
     "act-2": ["~10×", "tokens & cost saved · #3 Mind2Web"],
     "agentos-matching": ["+7.5pp", "accuracy · ~95% cost ↓ · 120K SKU/h"],
-    "title-extractor": ["~98%", "deterministic accuracy · LLM-free at inference"],
+    "title-extractor": [
+      "~98%",
+      "deterministic accuracy · LLM-free at inference",
+    ],
     "batch-orchestrator": ["~50%", "inference cost ↓ vs sync API"],
     "seeso-sdk": ["5M+", "monthly auths · 70% cost ↓ · 6 platforms"],
     jaksam: ["Live", "App Store + Google Play"],

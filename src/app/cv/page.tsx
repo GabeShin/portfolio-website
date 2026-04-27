@@ -44,27 +44,57 @@ function ArrowMarker({ id }: { id: string }) {
 function DiagAct2({ lang }: { lang: Lang }) {
   const t =
     lang === "kr"
-      ? { sdk: "SDK", runtime: "런타임", brain: "Brain", wf: "WF DB", heal: "Healing" }
-      : { sdk: "SDK", runtime: "Runtime", brain: "Brain", wf: "WF DB", heal: "Healing" };
+      ? {
+          sdk: "SDK",
+          runtime: "런타임",
+          brain: "Brain",
+          wf: "WF DB",
+          heal: "Healing",
+        }
+      : {
+          sdk: "SDK",
+          runtime: "Runtime",
+          brain: "Brain",
+          wf: "WF DB",
+          heal: "Healing",
+        };
   return (
     <svg viewBox="0 0 480 140" style={{ width: "100%", height: "auto" }}>
       <rect x="6" y="50" width="76" height="40" className="dbox" />
-      <text x="44" y="68" textAnchor="middle" className="dlbl">{t.sdk}</text>
-      <text x="44" y="80" textAnchor="middle" className="dlbl dlbl-m">Node·Py·JVM</text>
+      <text x="44" y="68" textAnchor="middle" className="dlbl">
+        {t.sdk}
+      </text>
+      <text x="44" y="80" textAnchor="middle" className="dlbl dlbl-m">
+        Node·Py·JVM
+      </text>
       <rect x="118" y="26" width="130" height="88" className="dbox dbox-fill" />
-      <text x="183" y="42" textAnchor="middle" className="dlbl dlbl-b">{t.runtime}</text>
+      <text x="183" y="42" textAnchor="middle" className="dlbl dlbl-b">
+        {t.runtime}
+      </text>
       <rect x="130" y="50" width="106" height="22" className="dsub" />
-      <text x="183" y="64" textAnchor="middle" className="dlbl">multi-turn loop</text>
+      <text x="183" y="64" textAnchor="middle" className="dlbl">
+        multi-turn loop
+      </text>
       <rect x="130" y="80" width="106" height="22" className="dsub" />
-      <text x="183" y="94" textAnchor="middle" className="dlbl">YAML replay</text>
+      <text x="183" y="94" textAnchor="middle" className="dlbl">
+        YAML replay
+      </text>
       <rect x="288" y="26" width="130" height="88" className="dbox" />
-      <text x="353" y="42" textAnchor="middle" className="dlbl dlbl-b">{t.brain}</text>
+      <text x="353" y="42" textAnchor="middle" className="dlbl dlbl-b">
+        {t.brain}
+      </text>
       <rect x="300" y="50" width="106" height="22" className="dsub" />
-      <text x="353" y="64" textAnchor="middle" className="dlbl">LLM agent</text>
+      <text x="353" y="64" textAnchor="middle" className="dlbl">
+        LLM agent
+      </text>
       <rect x="300" y="80" width="106" height="22" className="dsub" />
-      <text x="353" y="94" textAnchor="middle" className="dlbl">{t.heal}</text>
+      <text x="353" y="94" textAnchor="middle" className="dlbl">
+        {t.heal}
+      </text>
       <rect x="438" y="50" width="36" height="40" rx="18" className="dbox" />
-      <text x="456" y="74" textAnchor="middle" className="dlbl">{t.wf}</text>
+      <text x="456" y="74" textAnchor="middle" className="dlbl">
+        {t.wf}
+      </text>
       <path d="M82 70 L116 70" className="darr" markerEnd="url(#m1)" />
       <path d="M250 70 L286 70" className="darr" markerEnd="url(#m1)" />
       <path d="M418 70 L438 70" className="darr darr-d" />
@@ -97,22 +127,42 @@ function DiagFunnel({ lang }: { lang: Lang }) {
   return (
     <svg viewBox="0 0 480 160" style={{ width: "100%", height: "auto" }}>
       <rect x="6" y="60" width="56" height="36" className="dbox" />
-      <text x="34" y="82" textAnchor="middle" className="dlbl">{t.client}</text>
+      <text x="34" y="82" textAnchor="middle" className="dlbl">
+        {t.client}
+      </text>
       <rect x="76" y="60" width="56" height="36" className="dbox" />
-      <text x="104" y="82" textAnchor="middle" className="dlbl">{t.api}</text>
+      <text x="104" y="82" textAnchor="middle" className="dlbl">
+        {t.api}
+      </text>
       <rect x="146" y="60" width="56" height="36" rx="18" className="dbox" />
-      <text x="174" y="82" textAnchor="middle" className="dlbl">{t.kafka}</text>
+      <text x="174" y="82" textAnchor="middle" className="dlbl">
+        {t.kafka}
+      </text>
       <rect x="216" y="14" width="124" height="32" className="dbox dbox-fill" />
-      <text x="278" y="30" textAnchor="middle" className="dlbl dlbl-b">{t.reuse}</text>
-      <text x="278" y="40" textAnchor="middle" className="dlbl">~67%</text>
+      <text x="278" y="30" textAnchor="middle" className="dlbl dlbl-b">
+        {t.reuse}
+      </text>
+      <text x="278" y="40" textAnchor="middle" className="dlbl">
+        ~67%
+      </text>
       <rect x="216" y="60" width="124" height="36" className="dbox" />
-      <text x="278" y="76" textAnchor="middle" className="dlbl dlbl-b">{t.rules}</text>
-      <text x="278" y="88" textAnchor="middle" className="dlbl">~6% · 93% precision</text>
+      <text x="278" y="76" textAnchor="middle" className="dlbl dlbl-b">
+        {t.rules}
+      </text>
+      <text x="278" y="88" textAnchor="middle" className="dlbl">
+        ~6% · 93% precision
+      </text>
       <rect x="216" y="110" width="124" height="32" className="dbox" />
-      <text x="278" y="126" textAnchor="middle" className="dlbl dlbl-b">{t.llm}</text>
-      <text x="278" y="136" textAnchor="middle" className="dlbl">~33%</text>
+      <text x="278" y="126" textAnchor="middle" className="dlbl dlbl-b">
+        {t.llm}
+      </text>
+      <text x="278" y="136" textAnchor="middle" className="dlbl">
+        ~33%
+      </text>
       <rect x="356" y="60" width="118" height="36" className="dbox" />
-      <text x="415" y="82" textAnchor="middle" className="dlbl">{t.res}</text>
+      <text x="415" y="82" textAnchor="middle" className="dlbl">
+        {t.res}
+      </text>
       <path d="M62 78 L76 78" className="darr" markerEnd="url(#m2)" />
       <path d="M132 78 L146 78" className="darr" markerEnd="url(#m2)" />
       <path d="M202 78 Q210 78 216 30" className="darr" markerEnd="url(#m2)" />
@@ -120,7 +170,11 @@ function DiagFunnel({ lang }: { lang: Lang }) {
       <path d="M202 78 Q210 78 216 126" className="darr" markerEnd="url(#m2)" />
       <path d="M340 30 Q350 30 356 76" className="darr" markerEnd="url(#m2)" />
       <path d="M340 78 L356 78" className="darr" markerEnd="url(#m2)" />
-      <path d="M340 126 Q350 126 356 80" className="darr" markerEnd="url(#m2)" />
+      <path
+        d="M340 126 Q350 126 356 80"
+        className="darr"
+        markerEnd="url(#m2)"
+      />
       <ArrowMarker id="m2" />
     </svg>
   );
@@ -152,25 +206,45 @@ function DiagBatch({ lang }: { lang: Lang }) {
   return (
     <svg viewBox="0 0 480 170" style={{ width: "100%", height: "auto" }}>
       <rect x="6" y="74" width="68" height="32" className="dbox" />
-      <text x="40" y="94" textAnchor="middle" className="dlbl">{t.app}</text>
+      <text x="40" y="94" textAnchor="middle" className="dlbl">
+        {t.app}
+      </text>
       <rect x="92" y="36" width="220" height="106" className="dbox-dash" />
-      <text x="202" y="30" textAnchor="middle" className="dlbl dlbl-b">Orchestrator</text>
+      <text x="202" y="30" textAnchor="middle" className="dlbl dlbl-b">
+        Orchestrator
+      </text>
       <rect x="100" y="46" width="80" height="22" className="dbox" />
-      <text x="140" y="60" textAnchor="middle" className="dlbl">{t.srv}</text>
+      <text x="140" y="60" textAnchor="middle" className="dlbl">
+        {t.srv}
+      </text>
       <rect x="100" y="78" width="80" height="22" className="dbox" />
-      <text x="140" y="92" textAnchor="middle" className="dlbl">{t.acc}</text>
+      <text x="140" y="92" textAnchor="middle" className="dlbl">
+        {t.acc}
+      </text>
       <rect x="100" y="110" width="80" height="22" className="dbox" />
-      <text x="140" y="124" textAnchor="middle" className="dlbl">{t.poll}</text>
+      <text x="140" y="124" textAnchor="middle" className="dlbl">
+        {t.poll}
+      </text>
       <rect x="218" y="46" width="80" height="22" className="dbox" />
-      <text x="258" y="60" textAnchor="middle" className="dlbl">Reporter</text>
+      <text x="258" y="60" textAnchor="middle" className="dlbl">
+        Reporter
+      </text>
       <rect x="218" y="78" width="80" height="22" className="dbox" />
-      <text x="258" y="92" textAnchor="middle" className="dlbl">{t.s3}</text>
+      <text x="258" y="92" textAnchor="middle" className="dlbl">
+        {t.s3}
+      </text>
       <rect x="218" y="110" width="80" height="22" className="dbox" />
-      <text x="258" y="124" textAnchor="middle" className="dlbl">{t.redis}</text>
+      <text x="258" y="124" textAnchor="middle" className="dlbl">
+        {t.redis}
+      </text>
       <rect x="338" y="58" width="74" height="22" className="dbox dbox-fill" />
-      <text x="375" y="72" textAnchor="middle" className="dlbl">{t.oai}</text>
+      <text x="375" y="72" textAnchor="middle" className="dlbl">
+        {t.oai}
+      </text>
       <rect x="338" y="100" width="74" height="22" className="dbox dbox-fill" />
-      <text x="375" y="114" textAnchor="middle" className="dlbl">{t.br}</text>
+      <text x="375" y="114" textAnchor="middle" className="dlbl">
+        {t.br}
+      </text>
       <path d="M74 90 L100 56" className="darr" markerEnd="url(#m3)" />
       <path d="M74 90 L100 90" className="darr" markerEnd="url(#m3)" />
       <path d="M180 90 L218 90" className="darr" markerEnd="url(#m3)" />
@@ -212,30 +286,56 @@ function DiagExtractor({ lang }: { lang: Lang }) {
     <svg viewBox="0 0 480 158" style={{ width: "100%", height: "auto" }}>
       {/* Sources stacked left */}
       <rect x="6" y="14" width="76" height="22" className="dbox" />
-      <text x="44" y="28" textAnchor="middle" className="dlbl">{t.ing}</text>
+      <text x="44" y="28" textAnchor="middle" className="dlbl">
+        {t.ing}
+      </text>
       <rect x="6" y="46" width="76" height="22" className="dbox" />
-      <text x="44" y="60" textAnchor="middle" className="dlbl">{t.fb}</text>
+      <text x="44" y="60" textAnchor="middle" className="dlbl">
+        {t.fb}
+      </text>
       <rect x="6" y="78" width="76" height="22" className="dbox" />
-      <text x="44" y="92" textAnchor="middle" className="dlbl">{t.disc}</text>
-      <text x="44" y="108" textAnchor="middle" className="dlbl dlbl-m">{t.via}</text>
+      <text x="44" y="92" textAnchor="middle" className="dlbl">
+        {t.disc}
+      </text>
+      <text x="44" y="108" textAnchor="middle" className="dlbl dlbl-m">
+        {t.via}
+      </text>
 
       {/* Mid row: Queue → Agent pool → Pipeline → Rulebook */}
       <rect x="106" y="46" width="60" height="22" rx="11" className="dbox" />
-      <text x="136" y="60" textAnchor="middle" className="dlbl">{t.queue}</text>
+      <text x="136" y="60" textAnchor="middle" className="dlbl">
+        {t.queue}
+      </text>
 
       <rect x="190" y="46" width="64" height="22" className="dbox dbox-fill" />
-      <text x="222" y="60" textAnchor="middle" className="dlbl dlbl-b">{t.agents}</text>
+      <text x="222" y="60" textAnchor="middle" className="dlbl dlbl-b">
+        {t.agents}
+      </text>
 
       <rect x="278" y="46" width="84" height="22" className="dbox" />
-      <text x="320" y="60" textAnchor="middle" className="dlbl">{t.pipeline}</text>
+      <text x="320" y="60" textAnchor="middle" className="dlbl">
+        {t.pipeline}
+      </text>
 
       <rect x="386" y="46" width="84" height="22" className="dbox" />
-      <text x="428" y="60" textAnchor="middle" className="dlbl">{t.rules}</text>
+      <text x="428" y="60" textAnchor="middle" className="dlbl">
+        {t.rules}
+      </text>
 
       {/* Extractor (bottom) */}
-      <rect x="180" y="118" width="220" height="32" className="dbox dbox-fill" />
-      <text x="290" y="131" textAnchor="middle" className="dlbl dlbl-b">{t.extractor}</text>
-      <text x="290" y="143" textAnchor="middle" className="dlbl dlbl-m">{t.extractorSub}</text>
+      <rect
+        x="180"
+        y="118"
+        width="220"
+        height="32"
+        className="dbox dbox-fill"
+      />
+      <text x="290" y="131" textAnchor="middle" className="dlbl dlbl-b">
+        {t.extractor}
+      </text>
+      <text x="290" y="143" textAnchor="middle" className="dlbl dlbl-m">
+        {t.extractorSub}
+      </text>
 
       {/* Arrows: sources fan-in to queue */}
       <path d="M82 24 Q92 24 106 52" className="darr" markerEnd="url(#m4)" />
@@ -248,7 +348,11 @@ function DiagExtractor({ lang }: { lang: Lang }) {
       <path d="M362 56 L386 56" className="darr" markerEnd="url(#m4)" />
 
       {/* Rulebook → Extractor (dotted feed line) */}
-      <path d="M428 68 Q428 100 400 130" className="darr darr-d" markerEnd="url(#m4)" />
+      <path
+        d="M428 68 Q428 100 400 130"
+        className="darr darr-d"
+        markerEnd="url(#m4)"
+      />
 
       <ArrowMarker id="m4" />
     </svg>
@@ -257,24 +361,45 @@ function DiagExtractor({ lang }: { lang: Lang }) {
 
 function DiagTimeline({ lang }: { lang: Lang }) {
   const pts = TIMELINE_POINTS[lang];
+  // Pad dots inside x=60..420 so center-anchored labels (e.g. "ML Researcher",
+  // "Backend Engineer") have ~60px overflow budget on each side without
+  // clipping at the SVG edges.
+  const PAD = 60;
+  const VIEW_W = 480;
+  const span = VIEW_W - PAD * 2;
   return (
-    <svg viewBox="0 0 480 76" style={{ width: "100%", height: "auto" }}>
-      <line x1="20" y1="34" x2="460" y2="34" stroke="#111" strokeWidth="1" />
+    <svg viewBox={`0 0 ${VIEW_W} 76`} style={{ width: "100%", height: "auto" }}>
+      <line
+        x1={PAD}
+        y1="34"
+        x2={VIEW_W - PAD}
+        y2="34"
+        stroke="#111"
+        strokeWidth="1"
+      />
       {pts.map((p, i) => {
-        const x = 20 + (440 / (pts.length - 1)) * i;
+        const x = PAD + (span / (pts.length - 1)) * i;
         const [year, top, bottom] = p;
         const hasTop = top.length > 0;
         return (
           <g key={i}>
             <circle cx={x} cy="34" r="3.5" fill="#111" />
-            <text x={x} y="20" textAnchor="middle" className="dlbl dlbl-b">{year}</text>
+            <text x={x} y="20" textAnchor="middle" className="dlbl dlbl-b">
+              {year}
+            </text>
             {hasTop ? (
               <>
-                <text x={x} y="50" textAnchor="middle" className="dlbl">{top}</text>
-                <text x={x} y="62" textAnchor="middle" className="dlbl dlbl-m">{bottom}</text>
+                <text x={x} y="50" textAnchor="middle" className="dlbl">
+                  {top}
+                </text>
+                <text x={x} y="62" textAnchor="middle" className="dlbl dlbl-m">
+                  {bottom}
+                </text>
               </>
             ) : (
-              <text x={x} y="56" textAnchor="middle" className="dlbl dlbl-m">{bottom}</text>
+              <text x={x} y="56" textAnchor="middle" className="dlbl dlbl-m">
+                {bottom}
+              </text>
             )}
           </g>
         );
@@ -318,8 +443,12 @@ function CVDocument({ lang }: { lang: Lang }) {
           <div className="head-meta">
             <div className="meta">{l.cv} · 2026</div>
             <div className="meta">{c.email}</div>
-            <div className="meta">{c.phone} · {c.loc}</div>
-            <div className="meta">{c.web} · {c.gh}</div>
+            <div className="meta">
+              {c.phone} · {c.loc}
+            </div>
+            <div className="meta">
+              {c.web} · {c.gh}
+            </div>
           </div>
         </div>
         <div className="tagline">{c.headline}</div>
@@ -329,7 +458,9 @@ function CVDocument({ lang }: { lang: Lang }) {
       <section>
         <h2 className="sect">{l.profile}</h2>
         <p className="body">{c.summary}</p>
-        <div className="diag-wrap"><DiagTimeline lang={lang} /></div>
+        <div className="diag-wrap">
+          <DiagTimeline lang={lang} />
+        </div>
       </section>
 
       <section>
@@ -385,7 +516,9 @@ function CVDocument({ lang }: { lang: Lang }) {
           <h2 className="sect">{l.pubs}</h2>
           <div className="body">Question-to-Knowledge (Q2K)</div>
           <div className="meta">IEEE BigData 2025 · co-first author</div>
-          <div className="body" style={{ marginTop: 6 }}>CES Innovation Awards · 2022, 2023</div>
+          <div className="body" style={{ marginTop: 6 }}>
+            CES Innovation Awards · 2022, 2023
+          </div>
           <div className="body">MWC GLOMO 2021 · Best Mobile Innovation</div>
         </div>
         <div>
@@ -399,9 +532,13 @@ function CVDocument({ lang }: { lang: Lang }) {
             {lang === "kr" ? "언어" : "Languages"}
           </div>
           <div className="body">Python · TypeScript · Kotlin · C++</div>
-          <div className="meta meta-em" style={{ marginTop: 6 }}>{l.langs}</div>
+          <div className="meta meta-em" style={{ marginTop: 6 }}>
+            {l.langs}
+          </div>
           <div className="body">
-            {lang === "kr" ? "한국어 · 영어 (둘 다 능통)" : "English · Korean (fluent)"}
+            {lang === "kr"
+              ? "한국어 · 영어 (둘 다 능통)"
+              : "English · Korean (fluent)"}
           </div>
         </div>
       </section>
@@ -429,14 +566,20 @@ function ResumeDocument({ lang }: { lang: Lang }) {
           </div>
           <div className="head-meta">
             <div className="meta">{l.resume} · 2026</div>
-            <div className="meta">{c.email} · {c.phone}</div>
+            <div className="meta">
+              {c.email} · {c.phone}
+            </div>
             <div className="meta">{c.web}</div>
-            <div className="meta">{c.gh} · {c.li}</div>
+            <div className="meta">
+              {c.gh} · {c.li}
+            </div>
           </div>
         </div>
         <div className="tagline">{c.headline}</div>
         <div className="rule" />
-        <p className="body" style={{ marginTop: 8 }}>{c.summary}</p>
+        <p className="body" style={{ marginTop: 8 }}>
+          {c.summary}
+        </p>
       </header>
 
       <section>
@@ -446,11 +589,15 @@ function ResumeDocument({ lang }: { lang: Lang }) {
             <aside className="role-gutter">
               <div className="g-num">{headline[p.slug][0]}</div>
               <div className="g-lbl">{headline[p.slug][1]}</div>
-              <div className="meta" style={{ marginTop: 6 }}>{p.period}</div>
+              <div className="meta" style={{ marginTop: 6 }}>
+                {p.period}
+              </div>
             </aside>
             <div className="role-body">
               <h3 className="proj-name">{p.name}</h3>
-              <div className="meta meta-em">{p.co} · {p.role}</div>
+              <div className="meta meta-em">
+                {p.co} · {p.role}
+              </div>
               <ul className="bullets">
                 {p.built.slice(0, 4).map((b, j) => (
                   <li key={j}>{b}</li>
@@ -464,17 +611,23 @@ function ResumeDocument({ lang }: { lang: Lang }) {
       <section className="grid-3">
         <div>
           <h2 className="sect">{l.edu}</h2>
-          <div className="body">Washington University in St. Louis · BSBA · 2016</div>
+          <div className="body">
+            Washington University in St. Louis · BSBA · 2016
+          </div>
         </div>
         <div>
           <h2 className="sect">{l.pubs}</h2>
           <div className="body">Q2K · IEEE BigData 2025 (co-first)</div>
-          <div className="body">CES &apos;22 / &apos;23 Innovation · MWC &apos;21 GLOMO</div>
+          <div className="body">
+            CES &apos;22 / &apos;23 Innovation · MWC &apos;21 GLOMO
+          </div>
         </div>
         <div>
           <h2 className="sect">{l.langs}</h2>
           <div className="body">
-            {lang === "kr" ? "한국어 · 영어 (둘 다 능통)" : "English · Korean (fluent)"}
+            {lang === "kr"
+              ? "한국어 · 영어 (둘 다 능통)"
+              : "English · Korean (fluent)"}
           </div>
         </div>
       </section>
@@ -532,7 +685,10 @@ function PickerBar({
         ))}
       </div>
       <div className="picker-spacer" />
-      <button className="picker-btn picker-print" onClick={() => window.print()}>
+      <button
+        className="picker-btn picker-print"
+        onClick={() => window.print()}
+      >
         Print / Save as PDF
       </button>
     </div>
@@ -554,7 +710,9 @@ export default function CVResumePage() {
       <style>{styles}</style>
       <div className={`cv-page ${mono.className}`}>
         <header className="app-bar">
-          <span className="crumb"><b>Gabe Shin</b></span>
+          <span className="crumb">
+            <b>Gabe Shin</b>
+          </span>
           <span className="crumb">CV &amp; Résumé · 2026</span>
           <span className="spacer" />
           <span className="crumb">
