@@ -11,7 +11,11 @@ export default function NavBar() {
     router.push("/");
   };
 
-  if (pathname?.startsWith("/wedding") || pathname?.startsWith("/jaksam")) {
+  if (
+    pathname?.startsWith("/wedding") ||
+    pathname?.startsWith("/jaksam") ||
+    pathname?.startsWith("/cv")
+  ) {
     return null;
   }
 

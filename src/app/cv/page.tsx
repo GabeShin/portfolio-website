@@ -718,15 +718,46 @@ const styles = `
 
 /* Print */
 @media print {
-  html, body { background: #fff !important; }
-  .cv-page { background: #fff !important; padding: 0; }
-  .cv-page .app-bar, .cv-page .picker-bar { display: none !important; }
-  .cv-page .stack { display: block !important; padding: 0 !important; gap: 0 !important; }
-  .cv-page .col { gap: 0 !important; }
-  .cv-page .sheet {
-    box-shadow: none !important; max-width: none !important; width: 100% !important;
-    padding: 48px 56px !important; page-break-after: always;
+  /* Letter @ zero outer margin — sheet's own padding handles content margins.
+     Asking for margin: 0 also tends to suppress browser header/footer (URL,
+     date, page #) in Chromium-based browsers, though users can still
+     override in the print dialog's "Headers and footers" toggle. */
+  @page {
+    size: letter;
+    margin: 0;
   }
-  .cv-page .sheet + .sheet { margin-top: 0 !important; }
+  html, body {
+    background: var(--paper) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .cv-page {
+    background: var(--paper) !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cv-page .app-bar,
+  .cv-page .picker-bar { display: none !important; }
+  .cv-page .stack {
+    display: block !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    margin: 0 !important;
+  }
+  .cv-page .col { gap: 0 !important; margin: 0 !important; }
+  .cv-page .sheet {
+    box-shadow: none !important;
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.55in 0.6in !important;
+    background: var(--paper) !important;
+  }
+  .cv-page .sheet + .sheet { margin-top: 0 !important; page-break-before: always; }
+  /* Avoid awkward page breaks inside narrative blocks */
+  .cv-page .doc .narr-block,
+  .cv-page .doc .role,
+  .cv-page .doc .proj { page-break-inside: avoid; }
 }
 `;

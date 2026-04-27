@@ -43,6 +43,10 @@ export default function AboutPage() {
               >
                 LinkedIn
               </a>
+              <br />
+              <Link className="text-text" href="/cv">
+                CV / Resume
+              </Link>
             </div>
           </div>
           <div>

@@ -14,13 +14,14 @@ export default function ProfileGridCell() {
         <p className="inline">Hello, I am </p>
         <h1 className="inline"> Gabe Shin</h1>
         <p className="inline">
-          , a web developer from South Korea currently based in Seoul.{" "}
+          , an AI engineer based in Seoul.{" "}
         </p>
         <br />
         <br />
         <p className="inline">
-          I am interested in applying AI in products and look for ways to
-          implement my knowledge of web development.
+          I work on agentic systems, browser automation, and production-scale
+          data pipelines — building reusable infrastructure that lets other
+          teams move faster.
         </p>
       </div>
     </div>
