@@ -181,6 +181,80 @@ function DiagBatch({ lang }: { lang: Lang }) {
   );
 }
 
+function DiagExtractor({ lang }: { lang: Lang }) {
+  const t =
+    lang === "kr"
+      ? {
+          ing: "Ingestion",
+          fb: "Feedback",
+          disc: "Discovery",
+          via: "via ACT-2",
+          queue: "큐",
+          agents: "에이전트 풀",
+          pipeline: "파이프라인",
+          rules: "룰북 (git)",
+          extractor: "Extractor",
+          extractorSub: "LLM-free 추론",
+        }
+      : {
+          ing: "Ingestion",
+          fb: "Feedback",
+          disc: "Discovery",
+          via: "via ACT-2",
+          queue: "Queue",
+          agents: "Agent pool",
+          pipeline: "Pipeline",
+          rules: "Rulebook (git)",
+          extractor: "Extractor",
+          extractorSub: "LLM-free at inference",
+        };
+  return (
+    <svg viewBox="0 0 480 158" style={{ width: "100%", height: "auto" }}>
+      {/* Sources stacked left */}
+      <rect x="6" y="14" width="76" height="22" className="dbox" />
+      <text x="44" y="28" textAnchor="middle" className="dlbl">{t.ing}</text>
+      <rect x="6" y="46" width="76" height="22" className="dbox" />
+      <text x="44" y="60" textAnchor="middle" className="dlbl">{t.fb}</text>
+      <rect x="6" y="78" width="76" height="22" className="dbox" />
+      <text x="44" y="92" textAnchor="middle" className="dlbl">{t.disc}</text>
+      <text x="44" y="108" textAnchor="middle" className="dlbl dlbl-m">{t.via}</text>
+
+      {/* Mid row: Queue → Agent pool → Pipeline → Rulebook */}
+      <rect x="106" y="46" width="60" height="22" rx="11" className="dbox" />
+      <text x="136" y="60" textAnchor="middle" className="dlbl">{t.queue}</text>
+
+      <rect x="190" y="46" width="64" height="22" className="dbox dbox-fill" />
+      <text x="222" y="60" textAnchor="middle" className="dlbl dlbl-b">{t.agents}</text>
+
+      <rect x="278" y="46" width="84" height="22" className="dbox" />
+      <text x="320" y="60" textAnchor="middle" className="dlbl">{t.pipeline}</text>
+
+      <rect x="386" y="46" width="84" height="22" className="dbox" />
+      <text x="428" y="60" textAnchor="middle" className="dlbl">{t.rules}</text>
+
+      {/* Extractor (bottom) */}
+      <rect x="180" y="118" width="220" height="32" className="dbox dbox-fill" />
+      <text x="290" y="131" textAnchor="middle" className="dlbl dlbl-b">{t.extractor}</text>
+      <text x="290" y="143" textAnchor="middle" className="dlbl dlbl-m">{t.extractorSub}</text>
+
+      {/* Arrows: sources fan-in to queue */}
+      <path d="M82 24 Q92 24 106 52" className="darr" markerEnd="url(#m4)" />
+      <path d="M82 56 L106 56" className="darr" markerEnd="url(#m4)" />
+      <path d="M82 88 Q92 88 106 60" className="darr" markerEnd="url(#m4)" />
+
+      {/* Mid-row chain */}
+      <path d="M166 56 L190 56" className="darr" markerEnd="url(#m4)" />
+      <path d="M254 56 L278 56" className="darr" markerEnd="url(#m4)" />
+      <path d="M362 56 L386 56" className="darr" markerEnd="url(#m4)" />
+
+      {/* Rulebook → Extractor (dotted feed line) */}
+      <path d="M428 68 Q428 100 400 130" className="darr darr-d" markerEnd="url(#m4)" />
+
+      <ArrowMarker id="m4" />
+    </svg>
+  );
+}
+
 function DiagTimeline({ lang }: { lang: Lang }) {
   const pts = TIMELINE_POINTS[lang];
   return (
@@ -217,6 +291,8 @@ function Diagram({ slug, lang }: { slug: DiagSlug; lang: Lang }) {
       return <DiagFunnel lang={lang} />;
     case "batch":
       return <DiagBatch lang={lang} />;
+    case "extractor":
+      return <DiagExtractor lang={lang} />;
     case "timeline":
       return <DiagTimeline lang={lang} />;
   }

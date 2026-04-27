@@ -4,10 +4,11 @@
 
 export type Lang = "en" | "kr";
 export type DocType = "cv" | "resume";
-export type DiagSlug = "act2" | "funnel" | "batch" | "timeline";
+export type DiagSlug = "act2" | "funnel" | "batch" | "extractor" | "timeline";
 export type ProjectSlug =
   | "act-2"
   | "agentos-matching"
+  | "title-extractor"
   | "batch-orchestrator"
   | "seeso-sdk"
   | "jaksam";
@@ -218,6 +219,44 @@ export const PROJECTS: Record<Lang, Project[]> = {
       },
     },
     {
+      slug: "title-extractor",
+      name: "Rule-based Extractor — Korean E-Commerce",
+      period: "2025",
+      co: "Enhans",
+      role: "AI Engineer · Architect",
+      lede: "Production deterministic extraction service for Korean e-commerce listings, plus a domain-specific agent harness that grows its rulebook autonomously. LLM-free at inference — all the AI lives in the build loop.",
+      built: [
+        "FastAPI service: 3-pass convergence pipeline (alias → category → brand → product → attribute → normalize → conflict).",
+        "6,400+ regex rules across ~120 category files / ~370 brand files; ~11,000 tests against the production rulebook.",
+        "Designed the agent harness — DB-backed job queue with three job types (ingestion / feedback / discovery via ACT-2 scraping); concurrent agent pool runs a multi-step pipeline that turns inputs into committed Python rule files.",
+        "Powers the deterministic matching layer of AgentOS matching: SKUs canonicalizing to the same form match without an LLM call.",
+      ],
+      outcomes: [
+        ["~98%", "deterministic accuracy on matched portion"],
+        ["6,400+", "regex rules · 11,000+ tests"],
+        ["LLM-free", "at inference · agents only at build"],
+      ],
+      stack: [
+        "Python",
+        "FastAPI",
+        "regex",
+        "Claude Code",
+        "AWS ECS Fargate",
+        "PostgreSQL",
+        "React",
+      ],
+      diag: "extractor",
+      narrative: {
+        problem:
+          "Korean e-commerce listing titles are noisy: encoding variants, vendor-specific suffixes, normalization gaps, category-specific conventions across Coupang, Naver, Ohouse, and others. Routing every match through an LLM is expensive and slow when most decisions are deterministic. But hand-authoring 6,000+ rules across hundreds of brands and categories doesn't scale either — the long tail keeps growing as new products appear.",
+        why: "I wanted a deterministic, auditable rulebook that runs at request time without any LLM, paired with a self-improving build pipeline that uses LLM agents during build to grow and maintain it. The interesting design question wasn't 'can an LLM extract this'; it was 'can an LLM agent author the rules another system uses, with humans in a review-and-merge loop?' That's a different shape from chat-style assistance — it's agent-as-rule-author, working on a deterministic system that runs in production.",
+        approach:
+          "Two coupled systems shipped as one product. The extractor is a FastAPI service with a 3-pass convergence pipeline backed by 6,400+ regex rules, ~11,000 tests, and full evidence trails on every response. The agent harness around it has a DB-backed job queue (ingestion / feedback / discovery), a job loop that dispatches to a concurrent agent pool, and a multi-step ingestion pipeline that turns a structured product list into catalog files, generates real-world test cases, drafts and reviews the rules, and produces attribute coverage. Discovery uses ACT-2 to scrape brand sites for new products to ingest — three of my Enhans projects (rule-based extractor, AFK harness pattern, ACT-2) compose into a single self-improving rulebook system.",
+        result:
+          "~98% deterministic accuracy on the matched portion at production scale. No LLM at inference — orders-of-magnitude faster and cheaper than the prior full-LLM pipeline; this is the deterministic layer that lets AgentOS matching route only ~33% of decisions to LLM. The rulebook keeps growing through the harness: humans review and merge, but the agent does the volume. One of the most concrete production applications of agent-harness tooling I've built.",
+      },
+    },
+    {
       slug: "batch-orchestrator",
       name: "LLM Batch Orchestrator",
       period: "2025",
@@ -419,6 +458,44 @@ export const PROJECTS: Record<Lang, Project[]> = {
       },
     },
     {
+      slug: "title-extractor",
+      name: "Rule-based Extractor — 한국 이커머스",
+      period: "2025",
+      co: "Enhans",
+      role: "AI 엔지니어 · 아키텍트",
+      lede: "한국 이커머스 listing을 위한 프로덕션 결정론적 추출 서비스와 자율적으로 룰북을 성장시키는 도메인 특화 에이전트 하네스. 인퍼런스에서는 LLM-free — 모든 AI 작업은 빌드 루프에 위치.",
+      built: [
+        "FastAPI 서비스: 3-pass 수렴 파이프라인 (alias → category → brand → product → attribute → normalize → conflict).",
+        "6,400+ 정규식 룰 (~120 카테고리 파일 / ~370 브랜드 파일); 프로덕션 룰북 대상 ~11,000 테스트.",
+        "에이전트 하네스 설계 — DB 기반 작업 큐 3종 (ingestion / feedback / discovery via ACT-2 스크래핑); 동시 에이전트 풀이 다단계 파이프라인 실행, 결과물을 커밋 가능한 Python 룰 파일로 변환.",
+        "AgentOS 매칭의 결정론적 매칭 레이어로 사용 — 동일 canonical 형태로 정규화되는 SKU는 LLM 호출 없이 매칭.",
+      ],
+      outcomes: [
+        ["~98%", "매칭된 부분 결정론적 정확도"],
+        ["6,400+", "정규식 룰 · 11,000+ 테스트"],
+        ["LLM-free", "인퍼런스 LLM 미사용 · 빌드 시에만 에이전트"],
+      ],
+      stack: [
+        "Python",
+        "FastAPI",
+        "regex",
+        "Claude Code",
+        "AWS ECS Fargate",
+        "PostgreSQL",
+        "React",
+      ],
+      diag: "extractor",
+      narrative: {
+        problem:
+          "한국 이커머스 listing 타이틀은 noisy합니다: 인코딩 변형, 벤더별 접미사, 정규화 갭, 쿠팡 / 네이버 / 오늘의집 등 플랫폼별 카테고리 컨벤션. 결정론적으로 처리할 수 있는 대부분의 결정에 LLM을 routing하는 것은 비싸고 느립니다. 하지만 수백 개 브랜드와 카테고리에 걸쳐 6,000+ 룰을 손으로 작성하는 것도 scale하지 않습니다 — long-tail이 새 상품 등장과 함께 계속 자랍니다.",
+        why: "리퀘스트 타임에 LLM 없이 동작하는 결정론적·감사 가능한 룰북과, 빌드 타임에 LLM 에이전트가 피드백과 디스커버리로부터 룰북을 키우고 유지하는 셀프-임프루빙 빌드 파이프라인을 만들고 싶었습니다. 흥미로운 설계 질문은 'LLM이 이걸 추출할 수 있는가'가 아니라 'LLM 에이전트가 다른 시스템이 사용할 룰을 작성하고, 사람은 review-and-merge 루프에 들어갈 수 있는가'였습니다. 채팅 스타일 어시스턴스와는 다른 형태 — 프로덕션에서 동작하는 결정론적 시스템 위에서 에이전트가 룰 작성자 역할을 합니다.",
+        approach:
+          "두 개의 결합된 시스템을 하나의 제품으로 출시. 추출기는 6,400+ 정규식 룰과 ~11,000 테스트, 모든 응답에 evidence trail이 붙는 3-pass 수렴 파이프라인의 FastAPI 서비스. 그 주변의 에이전트 하네스는 DB 기반 작업 큐 (ingestion / feedback / discovery), 동시 에이전트 풀로 dispatch하는 job loop, 그리고 구조화된 상품 리스트를 catalog 파일로 변환하고, 실세계 테스트 케이스를 생성하고, 룰을 작성·검토하고, attribute 커버리지를 produce하는 다단계 ingestion 파이프라인을 가집니다. Discovery는 ACT-2를 사용해 브랜드 사이트를 스크래핑하여 새 상품을 ingest — Enhans 프로젝트 3개 (rule-based extractor, AFK 하네스 패턴, ACT-2)가 단일 셀프-임프루빙 룰북 시스템으로 합쳐집니다.",
+        result:
+          "프로덕션 규모에서 매칭된 부분 ~98% 결정론적 정확도. 인퍼런스에서 LLM 미사용 — 기존 full-LLM 파이프라인 대비 orders-of-magnitude 빠르고 저렴; AgentOS 매칭이 결정의 ~33%만 LLM으로 routing하게 만드는 결정론적 레이어. 룰북은 하네스가 지속 성장시키며, 사람은 review-and-merge하지만 volume은 에이전트가 처리. 가장 구체적인 에이전트 하네스 프로덕션 응용 중 하나.",
+      },
+    },
+    {
       slug: "batch-orchestrator",
       name: "LLM 배치 오케스트레이터",
       period: "2025",
@@ -548,6 +625,7 @@ export const RESUME_HEADLINES: Record<
   en: {
     "act-2": ["~10×", "tokens & cost saved · #3 Mind2Web"],
     "agentos-matching": ["+7.5pp", "accuracy · ~95% cost ↓ · 120K SKU/h"],
+    "title-extractor": ["~98%", "deterministic accuracy · LLM-free at inference"],
     "batch-orchestrator": ["~50%", "inference cost ↓ vs sync API"],
     "seeso-sdk": ["5M+", "monthly auths · 70% cost ↓ · 6 platforms"],
     jaksam: ["Live", "App Store + Google Play"],
@@ -555,6 +633,7 @@ export const RESUME_HEADLINES: Record<
   kr: {
     "act-2": ["~10×", "토큰 / 비용 절감 · #3 Mind2Web"],
     "agentos-matching": ["+7.5%p", "정확도 · ~95% 비용 절감 · 120K SKU/h"],
+    "title-extractor": ["~98%", "결정론적 정확도 · 인퍼런스 LLM-free"],
     "batch-orchestrator": ["~50%", "동기 API 대비 추론 비용 절감"],
     "seeso-sdk": ["500만+", "월간 인증 · 70% 비용 절감 · 6 플랫폼"],
     jaksam: ["출시", "App Store + Google Play"],
