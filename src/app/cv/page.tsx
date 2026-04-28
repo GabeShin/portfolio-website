@@ -1051,13 +1051,20 @@ const styles = `
 
 /* Print */
 @media print {
-  /* Letter @ zero outer margin — sheet's own padding handles content margins.
-     Asking for margin: 0 also tends to suppress browser header/footer (URL,
-     date, page #) in Chromium-based browsers, though users can still
-     override in the print dialog's "Headers and footers" toggle. */
+  /* Per-page margins live on @page so every page (not just first/last) gets
+     breathing room top/bottom. Sheet padding is zeroed below to avoid
+     doubling. Trade-off: non-zero @page margin lets Chromium render its
+     default header/footer (URL, date, page #) in that band — users can
+     turn it off via the print dialog's "Headers and footers" toggle. */
   @page {
     size: letter;
-    margin: 0;
+    margin: 0.5in 0.6in;
+  }
+  /* Cream paper looks nice on screen but wastes toner / looks dingy in PDFs.
+     Force pure white in print, including the diagram tint band. */
+  .cv-page {
+    --paper: #fff;
+    --tint: #fff;
   }
   html, body {
     background: var(--paper) !important;
@@ -1084,13 +1091,26 @@ const styles = `
     max-width: none !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 0.55in 0.6in !important;
+    padding: 0 !important;
     background: var(--paper) !important;
   }
   .cv-page .sheet + .sheet { margin-top: 0 !important; page-break-before: always; }
-  /* Avoid awkward page breaks inside narrative blocks */
+
+  /* Tighten vertical rhythm for print — desktop spacing wastes paper. */
+  .cv-page .doc section { margin-bottom: 14px; }
+  .cv-page .doc .proj { padding: 14px 0; }
+  .cv-page .doc .role { padding: 10px 0; }
+  .cv-page .doc .narrative { gap: 8px; }
+
+  /* Keep short blocks intact, but let .proj (CV entries) split across pages —
+     projects are taller than a page region, so avoiding breaks inside them
+     leaves large gaps at the bottom of the prior page. */
   .cv-page .doc .narr-block,
   .cv-page .doc .role,
-  .cv-page .doc .proj { page-break-inside: avoid; }
+  .cv-page .doc .diag-wrap { page-break-inside: avoid; }
+
+  /* Don't strand headings or project names at the bottom of a page. */
+  .cv-page .doc h2.sect,
+  .cv-page .doc .proj-name { page-break-after: avoid; }
 }
 `;
