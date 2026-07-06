@@ -51,7 +51,7 @@ Single feedback channel between Gabe and Claude for `docs/cv/`. Workflow:
 
 47. **[nice-to-have]** Jaksam app store URLs — App Store and Play Store listing links so we can add them to the project file's `links.external`.
 
-    > _your answer here_
+    > _Resolved 2026-07-06 (from `src/app/jaksam/JaksamLanding.tsx`): App Store `https://apps.apple.com/kr/app/%EC%9E%91%EC%83%98/id6759096853`, Play Store `https://play.google.com/store/apps/details?id=com.jaksam.app` (Android app is now live)._
 
 50. **[nice-to-have]** Target page length for `cv_en.md` / `cv_kr.md` (the long-form portfolio version) — open-ended, or target a specific page count (e.g., 4–6 pages)? Drives how much per-project depth to include.
 
